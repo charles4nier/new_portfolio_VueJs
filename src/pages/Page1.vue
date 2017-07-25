@@ -85,16 +85,19 @@ export default {
 
   h1 {
     position: absolute;
-    top: 10%;
-    left: 8%;
-    font-size: 4em;
-    opacity: 1;
     transform-origin: bottom;
     transform: translate3d(0, 0, 0) scaleY(1);
   }
 
   .title-enter {
     opacity: 0;
+  }
+
+  .title-enter-to {
+    top: 10%;
+    left: 8%;
+    font-size: 4em;
+    opacity: 1;
   }
 
   .title-enter-active {

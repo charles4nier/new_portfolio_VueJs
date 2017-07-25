@@ -25,12 +25,12 @@ export default {
 
 <template>
   <div id="projets">
-    <nav class="projects-nav">
+    <nav v-if="show" class="projects-nav">
       <ul>
-        <li v-for="item in dataNav"><router-link class="nav-link" :to="{ path: item.link}">{{ item.name }}</router-link></li>
+        <li v-for="item in dataNav"><router-link class="nav-link" :to="{ path: item.link}" @click.native="test">{{ item.name }}</router-link></li>
       </ul>
     </nav>
-    <p>Plus de projets</p>
+    <p @click="show = !show">Plus de projets</p>
     <transition name="projectsTransition">
       <router-view></router-view>
     </transition>
@@ -42,10 +42,16 @@ export default {
   name: 'projets',
   data () {
     return {
+      show: false,
       dataNav: [
         {link: '/projets/page1', name: 'Page 1'},
         {link: '/projets/page2', name: 'Page 2'}
       ]
+    }
+  },
+  methods: {
+    test: function () {
+      this.show = false
     }
   }
 }
@@ -54,17 +60,27 @@ export default {
 <style scoped>
 .projects-nav {
   position: absolute;
-  width: 150px;
+  width: 250px;
   height: 100%;
   background-color: lime;
-  top: 5%;
-  left: 5%;
+  top: 0;
+  left: 0;
   z-index: 150;
 }
 
-.porjects-nav ul {
+.projects-nav ul {
+  height: 100%;
+  width: 100%;
+}
+
+.projects-nav ul li {
   display: flex;
-  flex-direction: column;
+  height: 150px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  list-style-type: none;
+  background-color: blue;
 }
 
 p {
@@ -80,6 +96,7 @@ p {
   font-weight: 600;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .projectsTransition-enter {
