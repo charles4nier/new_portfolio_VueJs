@@ -53,7 +53,9 @@ export default {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: pink;
+    background: #2c3e50;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #3498db, #2c3e50);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #3498db, #2c3e50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     left: 0;
     top: 55%;
     transform: translate3d(0,0,0) scaleY(0.3);

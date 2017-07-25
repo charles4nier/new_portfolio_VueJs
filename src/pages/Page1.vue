@@ -7,19 +7,19 @@
     </transition>
     <div class="project-scene">
       <transition name="title" type="animation" appear>
-        <h1>Learn Eat</h1>
+        <h1 ref="title" v-if="showTitle">Learn Eat</h1>
       </transition>
       <div class="carroussel">
-        <div class="card">
+        <!-- <div class="card">
           <p @click="test" class="cv-nav" :class="{active: developper}">Développeur Web</p>
             <div v-if="show" class="cv-container">
             </div>
-        </div>
-        <div class="divrouge">
-          <transition>
-            <img v-if="show" src="" alt="">
-          </transition>
-        </div>
+        </div> -->
+        <transition name="showImg">
+          <div class="divrouge" v-if="showImg">
+          <!-- <img v-if="show" src="" alt=""> -->
+          </div>
+        </transition>
       </div>
     </div>
   </section>
@@ -29,8 +29,18 @@
 export default {
   data () {
     return {
-      show: true
+      show: true,
+      showTitle: false,
+      showImg: false
     }
+  },
+  mounted: function () {
+    setTimeout(() => {
+      this.showTitle = true
+    }, 820)
+    setTimeout(() => {
+      this.showImg = true
+    }, 900)
   }
 }
 </script>
@@ -49,16 +59,16 @@ export default {
   .colored-headband {
     position: absolute;
     width: 100%;
-    height: 100%;
-    background-color: pink;
+    height: 160%;
+    background: linear-gradient(to right, #fd746c, #ff9068);
     left: 0;
     top: 55%;
-    transform: translate3d(0,0,0) scaleY(0.3);
+    transform: translate3d(0,0,0) scaleY(0.17);
     transform-origin: 50% 0%;
   }
-
+/*
   .test-enter-active {
-    animation: coloredHeadbandEnter .65s ease-out forwards .3s;
+    animation: coloredHeadbandEnter .55s ease-out forwards .4s;
   }
 
   .test-leave-active {
@@ -66,14 +76,9 @@ export default {
   }
 
   @keyframes coloredHeadbandEnter {
-    0% { transform: translate3d(0, -650px, 0) scaleY(1);},
-    100% { transform: translate3d(0, 0, 0) scaleY(0.3);}
-  }
-
-  @keyframes coloredHeadbandLeave {
-    100% { transform: translate3d(0, 0, 0) scaleY(0.3);},
-    0% { transform: translate3d(0, -650px, 0) scaleY(15);}
-  }
+    0% { transform: translate3d(0, -650px, 0);},
+    100% { transform: translate3d(0, 0, 0);}
+  }*/
 
   .project-scene {
     position: relative;
@@ -86,28 +91,35 @@ export default {
   h1 {
     position: absolute;
     transform-origin: bottom;
-    transform: translate3d(0, 0, 0) scaleY(1);
+    transform: translate3d(0, 0, 0) scaleY(1) skewX(-3deg);
+    top: 17%;
+    left: 8%;
+    font-size: 4em;
+    opacity: 1;
+    letter-spacing: -2px;
   }
 
   .title-enter {
     opacity: 0;
   }
 
-  .title-enter-to {
-    top: 10%;
-    left: 8%;
-    font-size: 4em;
-    opacity: 1;
+  .title-enter-active {
+    animation: titleEnter .35s ease-out forwards;
   }
 
-  .title-enter-active {
-    animation: titleEnter .7s ease-out forwards .4s;
+  .title-leave-active {
+    animation: titleLeave .4s ease-out forwards;
   }
 
   @keyframes titleEnter {
-    0% { transform: translate3d(0, -110%, 0) scaleY(2); },
-    95% { transform: translate3d(0, -20%, 0) scaleY(1.6); },
-    100% { transform: translate3d(0, 0, 0) scaleY(1); }
+    0% { transform: translate3d(0, -110%, 0) scaleY(2); opacity: 0;},
+    95% { transform: translate3d(0, -20%, 0) scaleY(1.6);},
+    100% { transform: translate3d(0, 0, 0) scaleY(1); opacity: 1;}
+  }
+
+  @keyframes titleLeave {
+    0% { transform: translate3d(0, 0, 0) scaleY(1);},
+    100% { transform: translate3d(0, -110%, 0) scaleY(2);}
   }
 
   .card {
@@ -122,35 +134,12 @@ export default {
     border: 1px solid black;
   }
 
-  /*.card::before {
-    position: absolute;
-    width: calc(100% - 15px);
-    height: 15px;
-    bottom: -15px;
-    right: 15px;
-    background-color: rgba(0, 255, 0, 0.5);
-    z-index: -1;
-    content: '';
-  }
-
-  .card::after {
-    position: absolute;
-    width: 15px;
-    height: 100%;
-    top: 15px;
-    right: -15px;
-    background-color: rgba(0, 255, 0, 0.5);
-    z-index: -1;
-    content: '';
-  }*/
-
   .carroussel {
     display: flex;
     width: 86%;
     height: 230px;
     margin-top: 50%;
-    justify-content: space-around;
-    flex-wrap: nowrap;
+    overflow: hidden;
   }
 
   .carroussel .divrouge {
@@ -158,5 +147,11 @@ export default {
     width: 310px;
     height: 230px;
     z-index: 2;
+    margin-left: 18%;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .showImg-enter, .showImg-enter-active {
+    animation: titleEnter .3s ease-out forwards;
   }
 </style>

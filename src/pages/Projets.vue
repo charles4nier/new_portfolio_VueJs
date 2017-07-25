@@ -24,17 +24,22 @@ export default {
 </style> -->
 
 <template>
-  <div id="projets">
-    <nav v-if="show" class="projects-nav">
-      <ul>
-        <li v-for="item in dataNav"><router-link class="nav-link" :to="{ path: item.link}" @click.native="test">{{ item.name }}</router-link></li>
-      </ul>
-    </nav>
+  <section id="projets">
+    <transition name="showNavProject">
+      <nav v-if="show" class="projects-nav">
+        <ul>
+          <li v-for="item in dataNav"><router-link class="nav-link" :to="{ path: item.link}" @click.native="test">{{ item.name }}</router-link></li>
+        </ul>
+      </nav>
+    </transition>
+    <div class="calc" v-if="show">
+
+    </div>
     <p @click="show = !show">Plus de projets</p>
     <transition name="projectsTransition">
       <router-view></router-view>
     </transition>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -58,6 +63,16 @@ export default {
 </script>
 
 <style scoped>
+.calc {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(5,5,5,0.65);
+  z-index: 140;
+}
+
 .projects-nav {
   position: absolute;
   width: 250px;
@@ -66,7 +81,22 @@ export default {
   top: 0;
   left: 0;
   z-index: 150;
+  transform-origin: top;
+  transform: translate3d(0, 0, 0);
+  transition-property: all;
+  transition-duration: .2s;
+  transition-timing-function: ease-in-out;
 }
+
+.showNavProject-enter {
+  transform: translate3d(-250px, 0, 0);
+}
+
+.showNavProject-leave-active {
+  transform: translate3d(-250px, 0, 0);
+}
+
+
 
 .projects-nav ul {
   height: 100%;
@@ -108,12 +138,12 @@ p {
   animation-duration: .4s;
   animation-delay: .4s;
   animation-timing-function: ease-out;
-  transform-origin: 50% 50%;
+  transform-origin: 50% 100%;
 }
 
 @keyframes projectsTransitionEnter {
-  0% {transform: scale(2); opacity: 1},
-  100% {transform: scale(1); opacity: 0}
+  0% {transform: scale(2); opacity: 0;},
+  100% {transform: scale(1); opacity: 1;}
 }
 
 .projectsTransition-leave-active {
