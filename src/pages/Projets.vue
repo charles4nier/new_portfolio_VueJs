@@ -32,10 +32,10 @@ export default {
         </ul>
       </nav>
     </transition>
-    <div class="calc" v-if="show">
-
-    </div>
+    <div class="calc" v-if="show"></div>
+    <span class="up-arrow"><img src="../assets/uparrow.png" alt="une pointe de flèche" width="25px"></span>
     <p @click="show = !show"><span>Plus de projets</span></p>
+    <span class="down-arrow"><img src="../assets/uparrow.png" alt="une pointe de flèche" width="25px"></span>
     <transition name="projectsTransition">
       <router-view></router-view>
     </transition>
@@ -166,6 +166,21 @@ p:hover span {
   transition: all .1s ease-out;
   color: white;
   z-index: 2;
+}
+
+.up-arrow {
+  position: absolute;
+  top: 50%;
+  left: 8%;
+  z-index: 5;
+}
+
+.down-arrow {
+  position: absolute;
+  bottom: 12%;
+  left: 8%;
+  z-index: 5;
+  transform: rotate(180deg);
 }
 
 .projectsTransition-enter {

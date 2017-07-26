@@ -25,7 +25,17 @@ export default {
 
 <template>
   <div id="app">
-    <router-view></router-view>
+    <nav class="main-nav">
+      <ul>
+        <li>Projets</li>
+        <li>A propos de moi</li>
+        <li><a href="https://github.com/charles4nier"><img src="./assets/gitHub.svg" alt="l'icône de github" width="18px" target="_blank"></a></li>
+        <li><a href="https://github.com/charles4nier"><img src="./assets/linkedin.svg" alt="l'icône de github" width="18px" target="_blank"></a></li>
+      </ul>
+    </nav>
+    <main>
+      <router-view></router-view>
+    </main>
   </div>
 </template>
 
@@ -37,10 +47,34 @@ export default {
 
 <style>
   #app {
+    position: relative;
     height: 100vh;
     width: 100vw;
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  .main-nav {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 80px;
+    justify-content: flex-end;
+    z-index: 5;
+  }
+
+  .main-nav ul {
+    display: flex;
+  }
+
+  .main-nav ul li {
+    font-size: 0.9em;
+    letter-spacing: -1px;
+    font-weight: 600;
+    margin-right: 20px;
+    margin-top: 10px;
+    list-style-type: none;
+  }
+
 </style>
