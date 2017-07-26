@@ -17,11 +17,12 @@
         <h1 ref="title" v-if="showTitle">Learn Eat</h1>
       </transition>
       <div class="carroussel">
-        <!-- <div class="card">
-          <p @click="test" class="cv-nav" :class="{active: developper}">Développeur Web</p>
-            <div v-if="show" class="cv-container">
-            </div>
-        </div> -->
+        <div class="card">
+          <transition name="showImg">
+          <p v-if="showBackgroundImg">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+        </transition>
+      </div>
         <transition name="showImg">
           <div class="divrouge" v-if="showImg">
             <img  src="../assets/learn-eat.jpg" alt="">
@@ -29,6 +30,7 @@
         </transition>
       </div>
     </div>
+    <a class="linkToWebSite" href="http://www.learn-eat.fr/" target="_blank">Voir le site</a>
   </section>
 </template>
 
@@ -51,7 +53,7 @@ export default {
     }, 900)
     setTimeout(() => {
       this.showBackgroundImg = true
-    }, 850)
+    }, 1030)
   }
 }
 </script>
@@ -83,7 +85,7 @@ export default {
   .background-img-container {
     position: absolute;
     width: 55%;
-    height: 75%;
+    height: 80%;
     left: 40%;
     top: 15%;
     background-image: url('../assets/learn-eat.jpg');
@@ -103,23 +105,17 @@ export default {
     left: 0;
     opacity: 0.7;
     background: #00C9FF;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #92FE9D, #00C9FF);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #92FE9D, #00C9FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-
-
+    background: -webkit-linear-gradient(to right, #92FE9D, #00C9FF);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #92FE9D, #00C9FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   }
 
   .showBackgroundImg-enter-active {
-    animation: showBackgroundImg .35s ease-out forwards;
+    animation: showBackgroundImg .4s ease-out forwards;
   }
 
   @keyframes showBackgroundImg {
-    0% { transform: translate3d(0, -90%, 0) scaleY(1.6);},
-    5% {opacity: 1;},
-    45% { transform: translate3d(0, -20%, 0);},
-    90% {transform: scaleY(1);},
-    100% { transform: translate3d(0, 0, 0);}
+    0% {opacity: 0;},
+    100% {opacity: 1;}
   }
 /*
   .test-enter-active {
@@ -157,6 +153,7 @@ background: linear-gradient(to right, #92FE9D, #00C9FF); /* W3C, IE 10+/ Edge, F
 
   .title-enter {
     opacity: 0;
+    transform: skewX(-3deg)
   }
 
   .title-enter-active {
@@ -168,11 +165,11 @@ background: linear-gradient(to right, #92FE9D, #00C9FF); /* W3C, IE 10+/ Edge, F
   }
 
   @keyframes titleEnter {
-    0% { transform: translate3d(0, -110%, 0)},
+    0% { transform: translate3d(0, -110%, 0) scaleY(2) skewX(-3deg); opacity: 0;},
     5% {opacity: 1;},
     45% { transform: translate3d(0, -20%, 0) scaleY(1.6);},
-    90% {transform: scaleY(1);},
-    100% { transform: translate3d(0, 0, 0);}
+    80% { transform: scaleY(1);},
+    100% { transform: translate3d(0, 0, 0) skewX(-3deg);}
   }
 
   @keyframes titleLeave {
@@ -182,14 +179,21 @@ background: linear-gradient(to right, #92FE9D, #00C9FF); /* W3C, IE 10+/ Edge, F
 
   .card {
     position: absolute;
-    width: 450px;
-    height: 500px;
-    top: 15%;
-    right: 11%;
-    background-color: white;
+    width: 35%;
+    height: 200px;
+    top: 54%;
+    right: 8%;
     color: black;
     z-index: 3;
-    border: 1px solid black;
+  }
+
+  .card p {
+    font-size: 0.9em;
+    font-weight: 500;
+    color: white;
+    margin-top: 6%;
+    overflow: hidden;
+    line-height: -1.2;
   }
 
   .carroussel {
@@ -206,17 +210,57 @@ background: linear-gradient(to right, #92FE9D, #00C9FF); /* W3C, IE 10+/ Edge, F
     height: 100%;
     z-index: 2;
     margin-left: 18%;
-    transform-origin: 50% 0%;
+    transform-origin: 50% 70%;
     transform: translate3d(0, 0, 0);
   }
 
   .showImg-enter, .showImg-enter-active {
-    animation: titleEnter .3s ease-out forwards;
+    animation: showImgEnter .3s ease-out forwards;
+  }
+
+  @keyframes showImgEnter {
+    0% { transform: translate3d(0, -110%, 0) scaleY(2); opacity: 0;},
+    5% {opacity: 1;},
+    95% { transform: translate3d(0, -20%, 0) scaleY(1.6);},
+    100% { transform: translate3d(0, 0, 0) scaleY(1);}
   }
 
   .divrouge img {
     width: 100%;
     height: 100%;
     border: 1px solid rgb(220, 220, 220);
+  }
+
+  .linkToWebSite {
+    position: absolute;
+    bottom: 10%;
+    right: 10%;
+    z-index: 3;
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+    letter-spacing: -1px;
+    transition: transform .2s ease-in-out;
+  }
+
+  .linkToWebSite:hover {
+    transform: translate3d(10px, 0, 0);
+  }
+
+  .linkToWebSite::after {
+    position: absolute;
+    width: 45px;
+    height: 2px;
+    right: -95px;
+    top: 10px;
+    background-color: black;
+    transform: scaleX(1.8);
+    transform-origin: right;
+    transition: transform .2s ease-in-out;
+    content: '';
+  }
+
+  .linkToWebSite:hover::after {
+    transform: scaleX(1.4) translate3d(-7px, 0, 0);
   }
 </style>

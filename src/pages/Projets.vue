@@ -35,7 +35,7 @@ export default {
     <div class="calc" v-if="show">
 
     </div>
-    <p @click="show = !show">Plus de projets</p>
+    <p @click="show = !show"><span>Plus de projets</span></p>
     <transition name="projectsTransition">
       <router-view></router-view>
     </transition>
@@ -96,8 +96,6 @@ export default {
   transform: translate3d(-250px, 0, 0);
 }
 
-
-
 .projects-nav ul {
   height: 100%;
   width: 100%;
@@ -127,6 +125,47 @@ p {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  overflow: hidden;
+  transition: all .1s ease-out;
+}
+
+p:hover {
+  box-shadow: 0 0 4px rgba(255,255,255, 0.4);
+}
+
+p::before, p::after {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  background-color: black;
+  transition: all .1s ease-out;
+  content: '';
+}
+
+p::before {
+  top: 0;
+  left: 0;
+  transform: translate3d(0, -100%, 0);
+}
+
+p:hover::before {
+  transform: translate3d(0, 0, 0);
+}
+
+p::after {
+  top: 0;
+  right: 0;
+  transform: translate3d(-50%, 200%, 0);
+}
+
+p:hover::after {
+  transform: translate3d(0, 0, 0);
+}
+
+p:hover span {
+  transition: all .1s ease-out;
+  color: white;
+  z-index: 2;
 }
 
 .projectsTransition-enter {
