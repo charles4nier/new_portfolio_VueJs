@@ -1,5 +1,12 @@
 <template>
   <section class="page1">
+    <transition name="showBackgroundImg">
+      <div v-if="showBackgroundImg" class="background-img-container">
+        <div class="filterBackground">
+
+        </div>
+      </div>
+    </transition>
     <transition name="test" type="animation" appear>
       <div class="colored-headband">
 
@@ -17,7 +24,7 @@
         </div> -->
         <transition name="showImg">
           <div class="divrouge" v-if="showImg">
-          <!-- <img v-if="show" src="" alt=""> -->
+            <img  src="../assets/learn-eat.jpg" alt="">
           </div>
         </transition>
       </div>
@@ -31,7 +38,8 @@ export default {
     return {
       show: true,
       showTitle: false,
-      showImg: false
+      showImg: false,
+      showBackgroundImg: false
     }
   },
   mounted: function () {
@@ -41,6 +49,9 @@ export default {
     setTimeout(() => {
       this.showImg = true
     }, 900)
+    setTimeout(() => {
+      this.showBackgroundImg = true
+    }, 850)
   }
 }
 </script>
@@ -65,6 +76,50 @@ export default {
     top: 55%;
     transform: translate3d(0,0,0) scaleY(0.17);
     transform-origin: 50% 0%;
+    opacity: 0.8;
+    z-index: 2;
+  }
+
+  .background-img-container {
+    position: absolute;
+    width: 55%;
+    height: 75%;
+    left: 40%;
+    top: 15%;
+    background-image: url('../assets/learn-eat.jpg');
+    background-size: cover;
+    z-index: 1;
+    /*filter: invert(75%);*/
+    opacity: 1;
+    transform-origin: 50% 30%;
+    transform: skewX(-2deg) scaleY(1);
+  }
+
+  .filterBackground {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.7;
+    background: #00C9FF;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #92FE9D, #00C9FF);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #92FE9D, #00C9FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+
+  }
+
+  .showBackgroundImg-enter-active {
+    animation: showBackgroundImg .35s ease-out forwards;
+  }
+
+  @keyframes showBackgroundImg {
+    0% { transform: translate3d(0, -90%, 0) scaleY(1.6);},
+    5% {opacity: 1;},
+    45% { transform: translate3d(0, -20%, 0);},
+    90% {transform: scaleY(1);},
+    100% { transform: translate3d(0, 0, 0);}
   }
 /*
   .test-enter-active {
@@ -86,6 +141,7 @@ export default {
     width: 100%;
     height: 100%;
     justify-content: space-around;
+    z-index: 3;
   }
 
   h1 {
@@ -112,9 +168,11 @@ export default {
   }
 
   @keyframes titleEnter {
-    0% { transform: translate3d(0, -110%, 0) scaleY(2); opacity: 0;},
-    95% { transform: translate3d(0, -20%, 0) scaleY(1.6);},
-    100% { transform: translate3d(0, 0, 0) scaleY(1); opacity: 1;}
+    0% { transform: translate3d(0, -110%, 0)},
+    5% {opacity: 1;},
+    45% { transform: translate3d(0, -20%, 0) scaleY(1.6);},
+    90% {transform: scaleY(1);},
+    100% { transform: translate3d(0, 0, 0);}
   }
 
   @keyframes titleLeave {
@@ -137,21 +195,28 @@ export default {
   .carroussel {
     display: flex;
     width: 86%;
-    height: 230px;
+    height: 35%;
     margin-top: 50%;
     overflow: hidden;
   }
 
   .carroussel .divrouge {
     background-color: red;
-    width: 310px;
-    height: 230px;
+    width: 35%;
+    height: 100%;
     z-index: 2;
     margin-left: 18%;
+    transform-origin: 50% 0%;
     transform: translate3d(0, 0, 0);
   }
 
   .showImg-enter, .showImg-enter-active {
     animation: titleEnter .3s ease-out forwards;
+  }
+
+  .divrouge img {
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgb(220, 220, 220);
   }
 </style>

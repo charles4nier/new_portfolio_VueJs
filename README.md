@@ -1,6 +1,8 @@
-# y
+# Qu'est-ce que c'est ?
 
-> A Vue.js project
+> Mon portofolio réalisé avec VueJs.
+Il présente mes projets et mon cursus.
+Il comprendra dans un deuxième temps un blog.
 
 ## Build Setup
 

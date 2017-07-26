@@ -39,7 +39,7 @@ export default {
     <transition name="projectsTransition">
       <router-view></router-view>
     </transition>
-  </section>
+  </section >
 </template>
 
 <script>
@@ -150,7 +150,7 @@ p {
   transition-property: all;
   transition-duration: .4s;
   transition-timing-function: ease-in-out;
-  transform: translate3d(0, -100%, 0);
+  transform: translate3d(0, 100%, 0);
   opacity: 0
 }
 
