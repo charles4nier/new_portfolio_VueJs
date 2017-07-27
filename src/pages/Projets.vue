@@ -43,12 +43,14 @@ export default {
           // ou ver le haut.
           // positif = vers le bas
           if (event.deltaY > 0) {
+            // permet de vérifier si nous sommes à la fin du début this.dataNav et revenir au début ou pas
             if (i + 1 === this.dataNav.length) {
               this.$router.push(this.dataNav[0].link)
             } else {
               this.$router.push(this.dataNav[i + 1].link)
             }
           } else {
+            // permet de vérifier si nous sommes au début du début this.dataNav et d'aller à la fin ou pas
             if (i === 0) {
               i = this.dataNav.length - 1
               this.$router.push(this.dataNav[i].link)
