@@ -1,41 +1,16 @@
-<!-- <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <p>Bonjour</p>
-    <router-view></router-view>
-  </div>
-</template>
-
-<script>
-export default {
-  name: 'app'
-}
-</script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style> -->
-
 <template>
-  <section id="projets">
+  <section id="projets" @wheel="scrollTo">
+    <span class="scroll-up"><img src="../assets/uparrow.png" alt="une pointe de flèche" width="15px"></span>
+    <span class="scroll-down"><img src="../assets/uparrow.png" alt="une pointe de flèche" width="15px"></span>
     <transition name="showNavProject">
       <nav v-if="show" class="projects-nav">
         <ul>
-          <li v-for="item in dataNav"><router-link class="nav-link" :to="{ path: item.link}" @click.native="test">{{ item.name }}</router-link></li>
+          <li v-for="item in dataNav"><router-link class="nav-link" :to="{ path: item.link}" @click.native="goTo">{{ item.name }}</router-link></li>
         </ul>
       </nav>
     </transition>
     <div class="calc" v-if="show"></div>
-    <span class="up-arrow"><img src="../assets/uparrow.png" alt="une pointe de flèche" width="25px"></span>
     <p @click="show = !show"><span>Plus de projets</span></p>
-    <span class="down-arrow"><img src="../assets/uparrow.png" alt="une pointe de flèche" width="25px"></span>
     <transition name="projectsTransition">
       <router-view></router-view>
     </transition>
@@ -55,14 +30,59 @@ export default {
     }
   },
   methods: {
-    test: function () {
+    // fonction qui permet de naviguer au click
+    goTo: function () {
       this.show = false
+    },
+    // fonction qui permet de naviguer grace au scroll de la souris
+    scrollTo: function (event) {
+      let path = this.$route.path
+      for (let i = 0; i < this.dataNav.length; i++) {
+        if (path === this.dataNav[i].link) {
+          // permet de détecter si le mouvement de la souris est vers le
+          // ou ver le haut.
+          // positif = vers le bas
+          if (event.deltaY > 0) {
+            if (i + 1 === this.dataNav.length) {
+              this.$router.push(this.dataNav[0].link)
+            } else {
+              this.$router.push(this.dataNav[i + 1].link)
+            }
+          } else {
+            if (i === 0) {
+              i = this.dataNav.length - 1
+              this.$router.push(this.dataNav[i].link)
+            } else {
+              this.$router.push(this.dataNav[i - 1].link)
+            }
+          }
+        }
+      }
     }
   }
 }
 </script>
 
 <style scoped>
+.scroll-up, .scroll-down {
+  position: absolute;
+  width: 30px;
+  left: calc(50% - 15px);
+  z-index: 5;
+}
+
+.scroll-up {
+  top: 1%;
+}
+
+.scroll-down {
+  bottom: 1%;
+}
+
+.scroll-down img {
+  transform: rotate(180deg);
+}
+
 .calc {
   position: absolute;
   top: 0;
