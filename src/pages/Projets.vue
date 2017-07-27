@@ -26,8 +26,8 @@ export default {
       show: false,
       dataNav: [
         {link: '/projets/learn-eat', name: 'Learn Eat'},
-        {link: '/projets/pfgc', name: 'Paris Foot Golf Club'},
-        {link: '/projets/ik-music', name: 'Ik music Production'},
+        {link: '/projets/paris-foot-golf-club', name: 'Paris Foot Golf Club'},
+        {link: '/projets/ik-music-production', name: 'Ik music Production'},
         {link: '/projets/les-legumes-de-cedric', name: 'Les légumes de Cédric'}
       ]
     }

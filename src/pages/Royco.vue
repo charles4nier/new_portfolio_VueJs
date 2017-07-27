@@ -14,7 +14,7 @@
     </transition>
     <div class="project-scene">
       <transition name="title" type="animation" appear>
-        <h1 ref="title" v-if="showTitle">Les légumes de Cédric</h1>
+        <h1 ref="title" v-if="showTitle">Les légumes<br>   de Cédric</h1>
       </transition>
       <div class="carroussel">
         <div class="card">
@@ -25,7 +25,7 @@
       </div>
         <transition name="showImg">
           <div class="divrouge" v-if="showImg">
-            <img  src="../assets/learn-eat.jpg" alt="">
+            <img  src="../assets/royco.png" alt="">
           </div>
         </transition>
       </div>
@@ -75,8 +75,8 @@ export default {
     width: 100%;
     height: 160%;
     background: #DCE35B;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #45B649, #DCE35B);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #45B649, #DCE35B); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: -webkit-linear-gradient(to left, #45B649, #DCE35B);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #45B649, #DCE35B); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     left: 0;
     top: 55%;
     transform: translate3d(0,0,0) scaleY(0.17);
@@ -91,7 +91,7 @@ export default {
     height: 80%;
     left: 40%;
     top: 15%;
-    background-image: url('../assets/learn-eat.jpg');
+    background-image: url('../assets/royco.png');
     background-size: cover;
     z-index: 1;
     /*filter: invert(75%);*/
@@ -106,10 +106,13 @@ export default {
     height: 100%;
     top: 0;
     left: 0;
-    opacity: 0.7;
-    background: #F7971E;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #FFD200, #F7971E);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #FFD200, #F7971E); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    opacity: 0.3;
+    background: #c21500;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #ffc500, #c21500);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #ffc500, #c21500); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+
   }
 
   .showBackgroundImg-enter-active {

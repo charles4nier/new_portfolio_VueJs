@@ -14,7 +14,7 @@
     </transition>
     <div class="project-scene">
       <transition name="title" type="animation" appear>
-        <h1 ref="title" v-if="showTitle">Paris Foot Golf Club</h1>
+        <h1 ref="title" v-if="showTitle">Paris Foot<br> Golf Club</h1>
       </transition>
       <div class="carroussel">
         <div class="card">
@@ -25,7 +25,7 @@
       </div>
         <transition name="showImg">
           <div class="divrouge" v-if="showImg">
-            <img  src="../assets/learn-eat.jpg" alt="">
+            <img  src="../assets/pfgc.png" alt="">
           </div>
         </transition>
       </div>
@@ -74,9 +74,10 @@ export default {
     position: absolute;
     width: 100%;
     height: 160%;
-    background: #2c3e50;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #3498db, #2c3e50);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #3498db, #2c3e50); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #F0F2F0;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #141e30, #F0F2F0);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #141e30, #F0F2F0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
     left: 0;
     top: 55%;
     transform: translate3d(0,0,0) scaleY(0.17);
@@ -91,7 +92,7 @@ export default {
     height: 80%;
     left: 40%;
     top: 15%;
-    background-image: url('../assets/learn-eat.jpg');
+    background-image: url('../assets/pfgc.png');
     background-size: cover;
     z-index: 1;
     /*filter: invert(75%);*/
@@ -106,10 +107,13 @@ export default {
     height: 100%;
     top: 0;
     left: 0;
-    opacity: 0.7;
-    background: #1F1C2C;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #928DAB, #1F1C2C);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #928DAB, #1F1C2C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    opacity: 0.4;
+    background: #F0F2F0;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #141e30, #F0F2F0);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #141e30, #F0F2F0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+
   }
 
   .showBackgroundImg-enter-active {

@@ -21,12 +21,12 @@ export default new Router({
           component: LearnEat
         },
         {
-          path: 'pfgc',
+          path: 'paris-foot-golf-club',
           name: 'PFCG',
           component: PFCG
         },
         {
-          path: 'ik-music',
+          path: 'ik-music-production',
           name: 'IkMusic',
           component: IkMusic
         },

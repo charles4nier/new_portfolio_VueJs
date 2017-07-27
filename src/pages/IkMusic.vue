@@ -14,7 +14,7 @@
     </transition>
     <div class="project-scene">
       <transition name="title" type="animation" appear>
-        <h1 ref="title" v-if="showTitle">IK Music Production</h1>
+        <h1 ref="title" v-if="showTitle">IK Music<br>Production</h1>
       </transition>
       <div class="carroussel">
         <div class="card">
@@ -25,7 +25,7 @@
       </div>
         <transition name="showImg">
           <div class="divrouge" v-if="showImg">
-            <img  src="../assets/learn-eat.jpg" alt="">
+            <img  src="../assets/ikmusic.png" alt="">
           </div>
         </transition>
       </div>
@@ -73,9 +73,10 @@ export default {
     position: absolute;
     width: 100%;
     height: 160%;
-    background: #7F00FF;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #E100FF, #7F00FF);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #E100FF, #7F00FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #fceabb;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #f8b500, #fceabb);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #f8b500, #fceabb); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
     left: 0;
     top: 55%;
     transform: translate3d(0,0,0) scaleY(0.17);
@@ -90,7 +91,7 @@ export default {
     height: 80%;
     left: 40%;
     top: 15%;
-    background-image: url('../assets/learn-eat.jpg');
+    background-image: url('../assets/ikmusic.png');
     background-size: cover;
     z-index: 1;
     /*filter: invert(75%);*/
@@ -106,9 +107,12 @@ export default {
     top: 0;
     left: 0;
     opacity: 0.7;
-    background: #74ebd5;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to left, #ACB6E5, #74ebd5);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to left, #ACB6E5, #74ebd5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #BA8B02;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #181818, #BA8B02);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #181818, #BA8B02); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+
   }
 
   .showBackgroundImg-enter-active {

@@ -34,8 +34,8 @@ export default {
       <ul>
         <li><router-link class="main-nav-link" to="/projets/learn-eat">Projets</router-link></li>
         <li><router-link class="main-nav-link" to="/projets/learn-eat">A propos de moi</router-link></li>
-        <li><a href="https://github.com/charles4nier"><img src="./assets/gitHub.svg" alt="l'icône de github" width="18px" target="_blank"></a></li>
-        <li><a href="https://github.com/charles4nier"><img src="./assets/linkedin.svg" alt="l'icône de github" width="18px" target="_blank"></a></li>
+        <li><a class="main-nav-link" href="https://github.com/charles4nier"><img src="./assets/gitHub.svg" alt="l'icône de github" width="18px" target="_blank"></a></li>
+        <li><a class="main-nav-link" href="https://github.com/charles4nier"><img src="./assets/linkedin.svg" alt="l'icône de github" width="18px" target="_blank"></a></li>
       </ul>
     </nav>
     <main>
@@ -67,11 +67,13 @@ export default {
     height: 80px;
     justify-content: flex-end;
     z-index: 5;
+    pointer-events: none;
   }
 
   .main-nav-link  {
     text-decoration: none;
     color: black;
+    pointer-events: auto;
   }
 
   .button-menu {
@@ -82,6 +84,7 @@ export default {
     left: 4%;
     cursor: pointer;
     z-index: 5;
+    pointer-events: auto;
   }
 
   .first-bar, .second-bar, .third-bar {
