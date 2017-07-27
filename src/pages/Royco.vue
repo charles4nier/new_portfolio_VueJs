@@ -1,5 +1,5 @@
 <template>
-  <section class="page1">
+  <article class="page1">
     <transition name="showBackgroundImg">
       <div v-if="showBackgroundImg" class="background-img-container">
         <div class="filterBackground">
@@ -14,7 +14,7 @@
     </transition>
     <div class="project-scene">
       <transition name="title" type="animation" appear>
-        <h1 ref="title" v-if="showTitle">Learn Eat</h1>
+        <h1 ref="title" v-if="showTitle">Les légumes de Cédric</h1>
       </transition>
       <div class="carroussel">
         <div class="card">
@@ -31,11 +31,12 @@
       </div>
     </div>
     <a class="linkToWebSite" href="http://www.learn-eat.fr/" target="_blank">Voir le site</a>
-  </section>
+  </article>
 </template>
 
 <script>
 export default {
+  name: 'Royco',
   data () {
     return {
       show: true,
@@ -73,7 +74,9 @@ export default {
     position: absolute;
     width: 100%;
     height: 160%;
-    background: linear-gradient(to right, #fd746c, #ff9068);
+    background: #DCE35B;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #45B649, #DCE35B);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #45B649, #DCE35B); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     left: 0;
     top: 55%;
     transform: translate3d(0,0,0) scaleY(0.17);
@@ -104,9 +107,9 @@ export default {
     top: 0;
     left: 0;
     opacity: 0.7;
-    background: #00C9FF;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #92FE9D, #00C9FF);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #92FE9D, #00C9FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #F7971E;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FFD200, #F7971E);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FFD200, #F7971E); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   }
 
   .showBackgroundImg-enter-active {

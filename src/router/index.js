@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Projets from '@/pages/Projets'
-import Page1 from '@/pages/Page1'
-import Page2 from '@/pages/Page2'
+import LearnEat from '@/pages/LearnEat'
+import PFCG from '@/pages/PFCG'
+import IkMusic from '@/pages/IkMusic'
+import Royco from '@/pages/Royco'
 
 Vue.use(Router)
 
@@ -14,17 +16,27 @@ export default new Router({
       component: Projets,
       children: [
         {
-          path: 'page1',
-          name: 'Page1',
-          component: Page1
+          path: 'learn-eat',
+          name: 'learn',
+          component: LearnEat
         },
         {
-          path: 'page2',
-          name: 'Page2',
-          component: Page2
+          path: 'pfgc',
+          name: 'PFCG',
+          component: PFCG
+        },
+        {
+          path: 'ik-music',
+          name: 'IkMusic',
+          component: IkMusic
+        },
+        {
+          path: 'les-legumes-de-cedric',
+          name: 'Royco',
+          component: Royco
         }
       ]
     },
-      { path: '/', redirect: '/page1' }
+      { path: '/', redirect: '/projets/learn-eat' }
   ]
 })

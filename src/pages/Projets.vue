@@ -1,7 +1,8 @@
 <template>
   <section id="projets" @wheel="scrollTo">
-    <span class="scroll-up"><img src="../assets/uparrow.png" alt="une pointe de flèche" width="15px"></span>
-    <span class="scroll-down"><img src="../assets/uparrow.png" alt="une pointe de flèche" width="15px"></span>
+    <!-- <span class="scroll-up"><img src="../assets/uparrow.png" alt="une pointe de flèche" width="15px"></span>
+    <span class="scroll-down"><img src="../assets/uparrow.png" alt="une pointe de flèche" width="15px"></span> -->
+    <span class="scroll-info">Scrollez pour naviguer</span>
     <transition name="showNavProject">
       <nav v-if="show" class="projects-nav">
         <ul>
@@ -24,8 +25,10 @@ export default {
     return {
       show: false,
       dataNav: [
-        {link: '/projets/page1', name: 'Page 1'},
-        {link: '/projets/page2', name: 'Page 2'}
+        {link: '/projets/learn-eat', name: 'Learn Eat'},
+        {link: '/projets/pfgc', name: 'Paris Foot Golf Club'},
+        {link: '/projets/ik-music', name: 'Ik music Production'},
+        {link: '/projets/les-legumes-de-cedric', name: 'Les légumes de Cédric'}
       ]
     }
   },
@@ -66,7 +69,7 @@ export default {
 </script>
 
 <style scoped>
-.scroll-up, .scroll-down {
+/*.scroll-up, .scroll-down {
   position: absolute;
   width: 30px;
   left: calc(50% - 15px);
@@ -83,6 +86,28 @@ export default {
 
 .scroll-down img {
   transform: rotate(180deg);
+}*/
+
+.scroll-info {
+  position: absolute;
+  left: 4%;
+  bottom: 4%;
+  font-size: 0.9em;
+  letter-spacing: -1px;
+  transform: skewX(-3deg);
+  z-index: 5;
+}
+
+.scroll-info::before {
+  position: absolute;
+  width: 1px;
+  height: 50px;
+  top: -60px;
+  left: calc(50% - 1px);
+  background-color: black;
+  transform: skewX(3deg);
+  opacity: 0.6;
+  content: '';
 }
 
 .calc {

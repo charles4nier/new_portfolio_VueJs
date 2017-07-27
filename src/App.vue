@@ -32,8 +32,8 @@ export default {
         <div class="third-bar"></div>
       </div>
       <ul>
-        <li>Projets</li>
-        <li>A propos de moi</li>
+        <li><router-link class="main-nav-link" to="/projets/learn-eat">Projets</router-link></li>
+        <li><router-link class="main-nav-link" to="/projets/learn-eat">A propos de moi</router-link></li>
         <li><a href="https://github.com/charles4nier"><img src="./assets/gitHub.svg" alt="l'icône de github" width="18px" target="_blank"></a></li>
         <li><a href="https://github.com/charles4nier"><img src="./assets/linkedin.svg" alt="l'icône de github" width="18px" target="_blank"></a></li>
       </ul>
@@ -67,6 +67,11 @@ export default {
     height: 80px;
     justify-content: flex-end;
     z-index: 5;
+  }
+
+  .main-nav-link  {
+    text-decoration: none;
+    color: black;
   }
 
   .button-menu {
