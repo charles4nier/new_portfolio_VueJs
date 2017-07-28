@@ -84,6 +84,10 @@ export default {
 </script>
 
 <style scoped>
+section {
+  height: 100vh;
+}
+
 .scroll-info {
   position: absolute;
   left: 4%;
