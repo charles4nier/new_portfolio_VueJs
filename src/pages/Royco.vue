@@ -1,5 +1,5 @@
 <template>
-  <article class="page1">
+  <div class="page1">
     <transition name="showBackgroundImg">
       <div v-if="showBackgroundImg" class="background-img-container">
         <div class="filterBackground">
@@ -31,7 +31,7 @@
       </div>
     </div>
     <a class="linkToWebSite" href="http://www.learn-eat.fr/" target="_blank">Voir le site</a>
-  </article>
+  </div>
 </template>
 
 <script>
@@ -205,17 +205,16 @@ background: linear-gradient(to left, #ffc500, #c21500); /* W3C, IE 10+/ Edge, Fi
   .carroussel {
     display: flex;
     width: 86%;
-    height: 35%;
+    height: 35.1%;
     margin-top: 50%;
     overflow: hidden;
   }
 
   .carroussel .divrouge {
-    background-color: red;
-    width: 35%;
+    width: 40%;
     height: 100%;
     z-index: 2;
-    margin-left: 18%;
+    margin-left: 14%;
     transform-origin: 50% 70%;
     transform: translate3d(0, 0, 0);
   }
@@ -240,7 +239,7 @@ background: linear-gradient(to left, #ffc500, #c21500); /* W3C, IE 10+/ Edge, Fi
   .linkToWebSite {
     position: absolute;
     bottom: 10%;
-    right: 10%;
+    right: 110px;
     z-index: 3;
     text-decoration: none;
     color: black;

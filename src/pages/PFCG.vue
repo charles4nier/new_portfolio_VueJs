@@ -1,5 +1,5 @@
 <template>
-  <article class="page1">
+  <div class="page1">
     <transition name="showBackgroundImg">
       <div v-if="showBackgroundImg" class="background-img-container">
         <div class="filterBackground">
@@ -31,7 +31,7 @@
       </div>
     </div>
     <a class="linkToWebSite" href="http://www.learn-eat.fr/" target="_blank">Voir le site</a>
-  </article>
+  </div>
 </template>
 
 <script>
@@ -109,11 +109,8 @@ background: linear-gradient(to left, #141e30, #F0F2F0); /* W3C, IE 10+/ Edge, Fi
     left: 0;
     opacity: 0.4;
     background: #F0F2F0;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #141e30, #F0F2F0);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #141e30, #F0F2F0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-
-
+    background: -webkit-linear-gradient(to right, #141e30, #F0F2F0);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #141e30, #F0F2F0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   }
 
   .showBackgroundImg-enter-active {
@@ -206,17 +203,16 @@ background: linear-gradient(to right, #141e30, #F0F2F0); /* W3C, IE 10+/ Edge, F
   .carroussel {
     display: flex;
     width: 86%;
-    height: 35%;
+    height: 35.1%;
     margin-top: 50%;
     overflow: hidden;
   }
 
   .carroussel .divrouge {
-    background-color: red;
-    width: 35%;
+    width: 40%;
     height: 100%;
     z-index: 2;
-    margin-left: 18%;
+    margin-left: 14%;
     transform-origin: 50% 70%;
     transform: translate3d(0, 0, 0);
   }
@@ -241,7 +237,7 @@ background: linear-gradient(to right, #141e30, #F0F2F0); /* W3C, IE 10+/ Edge, F
   .linkToWebSite {
     position: absolute;
     bottom: 10%;
-    right: 10%;
+    right: 110px;
     z-index: 3;
     text-decoration: none;
     color: black;

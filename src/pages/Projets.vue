@@ -6,15 +6,17 @@
     <transition name="showNavProject">
       <nav v-if="show" class="projects-nav">
         <ul>
-          <li v-for="item in dataNav"><router-link class="nav-link" :to="{ path: item.link}" @click.native="goTo">{{ item.name }}</router-link></li>
+          <li v-for="item in dataNav" :style="{ backgroundImage: 'url(' + item.style + ')' }"><router-link class="nav-link" :to="{ path: item.link}" @click.native="goTo">{{ item.name }}</router-link></li>
         </ul>
       </nav>
     </transition>
     <div class="calc" v-if="show"></div>
     <p @click="show = !show"><span>Plus de projets</span></p>
-    <transition name="projectsTransition">
-      <router-view></router-view>
-    </transition>
+    <article :class="{'down-transition': downTransition, 'up-transition': upTransition} ">
+      <transition name="projectsTransition">
+        <router-view></router-view>
+      </transition>
+    </article>
   </section >
 </template>
 
@@ -24,11 +26,14 @@ export default {
   data () {
     return {
       show: false,
+      downTransition: true,
+      upTransition: false,
+      image: 'http://1.bp.blogspot.com/-8PfnHfgrH4I/TylX2v8pTMI/AAAAAAAAJJ4/TICBoSEI57o/s1600/search_by_image_image.png',
       dataNav: [
-        {link: '/projets/learn-eat', name: 'Learn Eat'},
-        {link: '/projets/paris-foot-golf-club', name: 'Paris Foot Golf Club'},
-        {link: '/projets/ik-music-production', name: 'Ik music Production'},
-        {link: '/projets/les-legumes-de-cedric', name: 'Les légumes de Cédric'}
+        {link: '/projets/learn-eat', name: 'Learn Eat', style: 'http://1.bp.blogspot.com/-8PfnHfgrH4I/TylX2v8pTMI/AAAAAAAAJJ4/TICBoSEI57o/s1600/search_by_image_image.png'},
+        {link: '/projets/paris-foot-golf-club', name: 'Paris Foot Golf Club', style: '../assets/ikmusic.png'},
+        {link: '/projets/ik-music-production', name: 'Ik music Production', style: '../assets/ikmusic.png'},
+        {link: '/projets/les-legumes-de-cedric', name: 'Les légumes de Cédric', style: '../assets/ikmusic.png'}
       ]
     }
   },
@@ -39,13 +44,20 @@ export default {
     },
     // fonction qui permet de naviguer grace au scroll de la souris
     scrollTo: function (event) {
+      // récupération de l'url
       let path = this.$route.path
+      // navigation dans le tableau dataNav qui contient toutes les url
       for (let i = 0; i < this.dataNav.length; i++) {
+        // on vérifie que le chemin l'url correspond bien à un lien stocké
+        // dans dataNav
         if (path === this.dataNav[i].link) {
           // permet de détecter si le mouvement de la souris est vers le
           // ou ver le haut.
           // positif = vers le bas
           if (event.deltaY > 0) {
+            // permet de gérer le sens du départ de la page
+            this.downTransition = true
+            this.upTransition = false
             // permet de vérifier si nous sommes à la fin du début this.dataNav et revenir au début ou pas
             if (i + 1 === this.dataNav.length) {
               this.$router.push(this.dataNav[0].link)
@@ -53,6 +65,9 @@ export default {
               this.$router.push(this.dataNav[i + 1].link)
             }
           } else {
+            // permet de gérer le sens du départ de la page
+            this.downTransition = false
+            this.upTransition = true
             // permet de vérifier si nous sommes au début du début this.dataNav et d'aller à la fin ou pas
             if (i === 0) {
               i = this.dataNav.length - 1
@@ -155,7 +170,8 @@ export default {
   justify-content: center;
   align-items: center;
   list-style-type: none;
-  background-color: blue;
+  /*background-image: url('../assets/pfgc.png');*/
+  background-size: cover;
 }
 
 p {
@@ -230,6 +246,12 @@ p:hover span {
   transform: rotate(180deg);
 }
 
+article {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
 .projectsTransition-enter {
   opacity: 0;
 }
@@ -247,12 +269,20 @@ p:hover span {
   100% {transform: scale(1); opacity: 1;}
 }
 
-.projectsTransition-leave-active {
+.down-transition .projectsTransition-leave-active {
   transition-property: all;
   transition-duration: .4s;
   transition-timing-function: ease-in-out;
   transform: translate3d(0, 100%, 0);
-  opacity: 0
+  opacity: 0;
+}
+
+.up-transition .projectsTransition-leave-active {
+  transition-property: all;
+  transition-duration: .4s;
+  transition-timing-function: ease-in-out;
+  transform: translate3d(0, -100%, 0);
+  opacity: 0;
 }
 
 .router-link-exact-active {
