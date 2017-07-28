@@ -1,16 +1,14 @@
 <template>
   <section>
-    <header>
-      <h1>Expériences et compétences</h1>
-    </header>
+    <nav>
+      <ul>
+        <li @click="test" id="developper" class="cv-nav" :class="{active: developper}">Développeur Web</li>
+        <li @click="test" id="agent" class="cv-nav" :class="{active: agent}">Agent Immobilier</li>
+        <li @click="test" id="studio" class="cv-nav" :class="{active: studio}">Fondateur Studio Troll</li>
+      </ul>
+    </nav>
     <article class="experiences">
-      <nav>
-        <ul>
-          <li @click="test" id="developper" class="cv-nav" :class="{active: developper}">Développeur Web</li>
-          <li @click="test" id="agent" class="cv-nav" :class="{active: agent}">Agent Immobilier</li>
-          <li @click="test" id="studio" class="cv-nav" :class="{active: studio}">Fondateur Studio Troll</li>
-        </ul>
-      </nav>
+
         <div v-if="developper" class="cv-container">
           <ul>
             <li v-for="experience in developperData"><span class="blue">{{ experience.agence }}</span>
@@ -131,9 +129,6 @@
     transition: all .3s;
   }
 
-  .competences {
-    background-color: red;
-  }
 
   nav {
     position: absolute;

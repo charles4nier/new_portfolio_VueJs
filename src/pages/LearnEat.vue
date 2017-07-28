@@ -8,9 +8,7 @@
       </div>
     </transition>
     <transition name="test" type="animation" appear>
-      <div class="colored-headband">
-
-      </div>
+      <div class="colored-headband"></div>
     </transition>
     <div class="project-scene">
       <transition name="title" type="animation" appear>
@@ -62,13 +60,13 @@ export default {
   mounted: function () {
     setTimeout(() => {
       this.showTitle = true
-    }, 820)
+    }, 590)
     setTimeout(() => {
       this.showCarrousel = true
-    }, 900)
+    }, 670)
     setTimeout(() => {
       this.showBackgroundImg = true
-    }, 1030)
+    }, 930)
   }
 }
 </script>

@@ -34,12 +34,12 @@ export default {
       <ul>
         <li><router-link class="main-nav-link" to="/projets/learn-eat">Projets</router-link></li>
           <li><router-link class="main-nav-link" to="/a-propos">A propos de moi</router-link></li>
-        <li><a class="main-nav-link" href="https://github.com/charles4nier"><img src="./assets/gitHub.svg" alt="l'icône de github" width="18px" target="_blank"></a></li>
-        <li><a class="main-nav-link" href="https://github.com/charles4nier"><img src="./assets/linkedin.svg" alt="l'icône de github" width="18px" target="_blank"></a></li>
+        <li><a class="main-nav-link" href="https://github.com/charles4nier" target="_blank"><img src="./assets/gitHub.svg" alt="l'icône de github" width="18px"></a></li>
+        <li><a class="main-nav-link" href="https://www.linkedin.com/in/charles-fournier-856723121/" target="_blank"><img src="./assets/linkedin.svg" alt="l'icône de github" width="18px"></a></li>
       </ul>
     </nav>
     <main ref="main">
-      <transition name="mainTransition" mode="out-in">
+      <transition name="mainTransition">
         <router-view></router-view>
       </transition>
     </main>
@@ -201,24 +201,28 @@ background: linear-gradient(to bottom, #C4E0E5, #4CA1AF); /* W3C, IE 10+/ Edge, 
 
   .mainTransition-enter {
     opacity: 0;
+    transform: translate3d(0, -100%, 0);
   }
 
   .mainTransition-enter-active {
     animation-name: mainTransitionEnter;
-    animation-duration: .3s;
+    animation-duration: .5s;
     animation-timing-function: ease-out;
+    transform-origin: 50% 100%;
     transform: scale(1);
   }
 
   @keyframes mainTransitionEnter {
-    0% {opacity: 0;},
-    100% {opacity: 1;}
+    0% {opacity: 0; transform: translate3d(0, -100%, 0) scaleX(1.6);},
+    100% {opacity: 1; transform: translate3d(0, 0, 0) scaleX(1);}
   }
 
   .mainTransition-leave-active {
-    transition-property: opacity;
-    transition-duration: .3s;
+    transition-property: all;
+    transition-duration: .5s;
     transition-timing-function: ease-in-out;
     opacity: 0;
+    transform-origin: 50% 20%;
+    transform: translate3d(0, 80%, 0) scaleY(0.8);
   }
 </style>
