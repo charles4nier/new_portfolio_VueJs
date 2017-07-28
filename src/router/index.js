@@ -5,11 +5,13 @@ import LearnEat from '@/pages/LearnEat'
 import PFCG from '@/pages/PFCG'
 import IkMusic from '@/pages/IkMusic'
 import Royco from '@/pages/Royco'
+import Moi from '@/pages/Moi'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    { path: '/', redirect: '/projets/learn-eat' },
     {
       path: '/projets',
       name: 'Projets',
@@ -37,6 +39,6 @@ export default new Router({
         }
       ]
     },
-      { path: '/', redirect: '/projets/learn-eat' }
+    { path: '/a-propos', component: Moi }
   ]
 })

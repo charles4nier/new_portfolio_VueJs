@@ -16,7 +16,7 @@
       <transition name="title" type="animation" appear>
         <h1 ref="title" v-if="showTitle">Paris Foot<br> Golf Club</h1>
       </transition>
-      <div class="carroussel">
+      <div class="visual-container">
         <div class="card">
           <transition name="showImg">
           <p v-if="showBackgroundImg">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -24,7 +24,7 @@
         </transition>
       </div>
         <transition name="showImg">
-          <div class="divrouge" v-if="showImg">
+          <div class="carroussel" v-if="showImg">
             <img  src="../assets/pfgc.png" alt="">
           </div>
         </transition>
@@ -92,7 +92,7 @@ background: linear-gradient(to left, #141e30, #F0F2F0); /* W3C, IE 10+/ Edge, Fi
     height: 80%;
     left: 40%;
     top: 15%;
-    background-image: url('../assets/pfgc.png');
+    background-image: url('../assets/pfgc2.png');
     background-size: cover;
     z-index: 1;
     /*filter: invert(75%);*/
@@ -200,7 +200,7 @@ background: linear-gradient(to left, #141e30, #F0F2F0); /* W3C, IE 10+/ Edge, Fi
     line-height: -1.2;
   }
 
-  .carroussel {
+  .visual-container {
     display: flex;
     width: 86%;
     height: 35.1%;
@@ -208,7 +208,7 @@ background: linear-gradient(to left, #141e30, #F0F2F0); /* W3C, IE 10+/ Edge, Fi
     overflow: hidden;
   }
 
-  .carroussel .divrouge {
+  .visual-container .carroussel {
     width: 40%;
     height: 100%;
     z-index: 2;
@@ -228,7 +228,7 @@ background: linear-gradient(to left, #141e30, #F0F2F0); /* W3C, IE 10+/ Edge, Fi
     100% { transform: translate3d(0, 0, 0) scaleY(1);}
   }
 
-  .divrouge img {
+  .carroussel img {
     width: 100%;
     height: 100%;
     border: 1px solid rgb(220, 220, 220);

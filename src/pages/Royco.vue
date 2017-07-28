@@ -16,7 +16,7 @@
       <transition name="title" type="animation" appear>
         <h1 ref="title" v-if="showTitle">Les légumes<br>   de Cédric</h1>
       </transition>
-      <div class="carroussel">
+      <div class="visual-container">
         <div class="card">
           <transition name="showImg">
           <p v-if="showBackgroundImg">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -24,8 +24,8 @@
         </transition>
       </div>
         <transition name="showImg">
-          <div class="divrouge" v-if="showImg">
-            <img  src="../assets/royco.png" alt="">
+          <div class="carroussel" v-if="showImg">
+            <img  src="../assets/royco2.png" alt="">
           </div>
         </transition>
       </div>
@@ -108,11 +108,8 @@ export default {
     left: 0;
     opacity: 0.3;
     background: #c21500;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to left, #ffc500, #c21500);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to left, #ffc500, #c21500); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-
-
+    background: -webkit-linear-gradient(to left, #ffc500, #c21500);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #ffc500, #c21500); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   }
 
   .showBackgroundImg-enter-active {
@@ -202,7 +199,7 @@ background: linear-gradient(to left, #ffc500, #c21500); /* W3C, IE 10+/ Edge, Fi
     line-height: -1.2;
   }
 
-  .carroussel {
+  .visual-container {
     display: flex;
     width: 86%;
     height: 35.1%;
@@ -210,7 +207,7 @@ background: linear-gradient(to left, #ffc500, #c21500); /* W3C, IE 10+/ Edge, Fi
     overflow: hidden;
   }
 
-  .carroussel .divrouge {
+  .visual-container .carroussel {
     width: 40%;
     height: 100%;
     z-index: 2;
@@ -230,7 +227,7 @@ background: linear-gradient(to left, #ffc500, #c21500); /* W3C, IE 10+/ Edge, Fi
     100% { transform: translate3d(0, 0, 0) scaleY(1);}
   }
 
-  .divrouge img {
+  .carroussel img {
     width: 100%;
     height: 100%;
     border: 1px solid rgb(220, 220, 220);

@@ -2,7 +2,6 @@
   <section id="projets" @wheel="scrollTo">
     <!-- <span class="scroll-up"><img src="../assets/uparrow.png" alt="une pointe de flèche" width="15px"></span>
     <span class="scroll-down"><img src="../assets/uparrow.png" alt="une pointe de flèche" width="15px"></span> -->
-    <span class="scroll-info">Scrollez pour naviguer</span>
     <transition name="showNavProject">
       <nav v-if="show" class="projects-nav">
         <ul>
@@ -17,6 +16,7 @@
         <router-view></router-view>
       </transition>
     </article>
+    <span class="scroll-info">Scrollez pour naviguer</span>
   </section >
 </template>
 
@@ -84,25 +84,6 @@ export default {
 </script>
 
 <style scoped>
-/*.scroll-up, .scroll-down {
-  position: absolute;
-  width: 30px;
-  left: calc(50% - 15px);
-  z-index: 5;
-}
-
-.scroll-up {
-  top: 1%;
-}
-
-.scroll-down {
-  bottom: 1%;
-}
-
-.scroll-down img {
-  transform: rotate(180deg);
-}*/
-
 .scroll-info {
   position: absolute;
   left: 4%;

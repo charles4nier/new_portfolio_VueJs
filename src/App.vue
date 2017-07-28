@@ -33,20 +33,38 @@ export default {
       </div>
       <ul>
         <li><router-link class="main-nav-link" to="/projets/learn-eat">Projets</router-link></li>
-        <li><router-link class="main-nav-link" to="/projets/learn-eat">A propos de moi</router-link></li>
+          <li><router-link class="main-nav-link" to="/a-propos">A propos de moi</router-link></li>
         <li><a class="main-nav-link" href="https://github.com/charles4nier"><img src="./assets/gitHub.svg" alt="l'icône de github" width="18px" target="_blank"></a></li>
         <li><a class="main-nav-link" href="https://github.com/charles4nier"><img src="./assets/linkedin.svg" alt="l'icône de github" width="18px" target="_blank"></a></li>
       </ul>
     </nav>
-    <main>
-      <router-view></router-view>
+    <main ref="main">
+      <transition name="mainTransition" mode="out-in">
+        <router-view></router-view>
+      </transition>
     </main>
+    <div ref="background1" class="background1"></div>
+    <div ref="background2" class="background2"></div>
+    <div ref="background3" class="background3"></div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  methods: {
+    mainTransition: function () {
+      this.$refs.background1.style.transform = 'translate3d(0,0,0)'
+      this.$refs.background2.style.transform = 'translate3d(0,0,0)'
+      this.$refs.background3.style.transform = 'translate3d(0,0,0)'
+
+      setTimeout(() => {
+        this.$refs.background1.style.transform = 'translate3d(-50%,100%,0)'
+        this.$refs.background2.style.transform = 'translate3d(0,-100%,0)'
+        this.$refs.background3.style.transform = 'translate3d(50%,100%,0)'
+      }, 600)
+    }
+  }
 }
 </script>
 
@@ -60,13 +78,17 @@ export default {
     -moz-osx-font-smoothing: grayscale;
   }
 
+  main {
+    transition: opacity .2s ease-out;
+  }
+
   .main-nav {
     position: absolute;
     display: flex;
     width: 100%;
     height: 80px;
     justify-content: flex-end;
-    z-index: 5;
+    z-index: 10;
     pointer-events: none;
   }
 
@@ -121,7 +143,9 @@ export default {
     transform: translate3d(-2px,0,0) skewX(-10deg) rotate(0deg);
   }
 
-  .button-menu:hover .second-bar {
+  .button-menu:hover .second-bar {<div ref="background1" class="background1"></div>
+    <div ref="background2" class="background1"></div>
+    <div ref="background3" class="background1"></div>
     transform: translate3d(2px,0,0) skewX(-10deg) rotate(0deg);
   }
 
@@ -146,4 +170,55 @@ export default {
     list-style-type: none;
   }
 
+  .background1, .background2, .background3 {
+    position: absolute;
+    height: 100%;
+    width: 33.4%;
+    top: 0;
+    background: #4CA1AF;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to bottom, #C4E0E5, #4CA1AF);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to bottom, #C4E0E5, #4CA1AF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    z-index: 10;
+  }
+
+  .background1 {
+    transform: translate3d(-30%, -100%, 0);
+    transition: transform .2s ease-out;
+  }
+
+  .background2 {
+    transform: translate3d(0, 100%, 0);
+    transition: transform .2s ease-out .1s;
+    left: 33.4%;
+  }
+
+  .background3 {
+    transform: translate3d(30%, -100%, 0);
+    transition: transform .2s ease-out .2s;
+    left: 66.8%;
+  }
+
+  .mainTransition-enter {
+    opacity: 0;
+  }
+
+  .mainTransition-enter-active {
+    animation-name: mainTransitionEnter;
+    animation-duration: .3s;
+    animation-timing-function: ease-out;
+    transform: scale(1);
+  }
+
+  @keyframes mainTransitionEnter {
+    0% {opacity: 0;},
+    100% {opacity: 1;}
+  }
+
+  .mainTransition-leave-active {
+    transition-property: opacity;
+    transition-duration: .3s;
+    transition-timing-function: ease-in-out;
+    opacity: 0;
+  }
 </style>

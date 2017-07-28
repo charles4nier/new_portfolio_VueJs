@@ -16,18 +16,20 @@
       <transition name="title" type="animation" appear>
         <h1 ref="title" v-if="showTitle">Learn Eat</h1>
       </transition>
-      <div class="carroussel">
+      <div class="visual-container">
         <div class="card">
           <transition name="showImg">
           <p v-if="showBackgroundImg">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
         </transition>
       </div>
         <transition name="showImg">
-          <div class="divrouge" v-if="showImg">
-            <img  src="../assets/learn-eat.jpg" alt="">
+          <div class="carroussel" v-if="showCarrousel">
+            <img  ref="img1" v-if="showImg1" src="../assets/learn-eat2.png" alt="">
+            <img  ref="img2" v-if="showImg2" src="../assets/learn-eat.png" alt="">
           </div>
         </transition>
+        <span class="carroussel-dots" @click="carrousel1"></span>
+        <span class="carroussel-dots" @click="carrousel2"></span>
       </div>
     </div>
     <a class="linkToWebSite" href="http://www.learn-eat.fr/" target="_blank">Voir le site</a>
@@ -40,8 +42,21 @@ export default {
     return {
       show: true,
       showTitle: false,
-      showImg: false,
+      showCarrousel: false,
+      showImg1: true,
+      showImg2: false,
       showBackgroundImg: false
+    }
+  },
+  methods: {
+    carrousel1: function () {
+      this.showImg1 = true
+      this.showImg2 = false
+    },
+    carrousel2: function () {
+      this.showImg1 = false
+      this.showImg2 = true
+      this.$refs.img
     }
   },
   mounted: function () {
@@ -49,7 +64,7 @@ export default {
       this.showTitle = true
     }, 820)
     setTimeout(() => {
-      this.showImg = true
+      this.showCarrousel = true
     }, 900)
     setTimeout(() => {
       this.showBackgroundImg = true
@@ -88,7 +103,7 @@ export default {
     height: 80%;
     left: 40%;
     top: 15%;
-    background-image: url('../assets/learn-eat.jpg');
+    background-image: url('../assets/learn-eat.png');
     background-size: cover;
     z-index: 1;
     /*filter: invert(75%);*/
@@ -196,7 +211,7 @@ export default {
     line-height: -1.2;
   }
 
-  .carroussel {
+  .visual-container {
     display: flex;
     width: 86%;
     height: 35.1%;
@@ -204,7 +219,7 @@ export default {
     overflow: hidden;
   }
 
-  .carroussel .divrouge {
+  .visual-container .carroussel {
     width: 40%;
     height: 100%;
     z-index: 2;
@@ -224,10 +239,27 @@ export default {
     100% { transform: translate3d(0, 0, 0) scaleY(1);}
   }
 
-  .divrouge img {
+  .carroussel img {
     width: 100%;
     height: 100%;
     border: 1px solid rgb(220, 220, 220);
+  }
+
+  .carroussel-dots {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    top: 87%;
+    left: 35.5%;
+    background-color: black;
+    z-index: 100;
+    border-radius: 50%;
+    opacity: 0.9;
+    cursor: pointer;
+  }
+
+  .carroussel-dots:last-child {
+    left: 37.5%;
   }
 
   .linkToWebSite {
