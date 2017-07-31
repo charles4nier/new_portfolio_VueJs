@@ -13,6 +13,7 @@
       <StudioTroll :showStudioTroll="showStudioTroll"></StudioTroll>
     </div>
     <div class="skills">
+      <DeveloperSkills></DeveloperSkills>
     </div>
   </section>
 </template>
@@ -21,9 +22,10 @@
   import Developer from '../components/Developer'
   import Immo from '../components/Immo'
   import StudioTroll from '../components/StudioTroll'
+  import DeveloperSkills from '../components/DeveloperSkills'
 
   export default {
-    components: { Developer, Immo, StudioTroll },
+    components: { Developer, Immo, StudioTroll, DeveloperSkills },
     data () {
       return {
         showDeveloper: false,
@@ -138,5 +140,13 @@
 
   #developer-list.active:before, #immo-list.active:before, #studio-list.active:before {
     transform: translate3d(0, 0, 0);
+  }
+
+  .skills {
+    position: absolute;
+    width: 40%;
+    height: 90%;
+    top: 30%;
+    right: 5%;
   }
 </style>
