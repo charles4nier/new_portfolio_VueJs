@@ -208,7 +208,7 @@ background: linear-gradient(to bottom, #C4E0E5, #4CA1AF); /* W3C, IE 10+/ Edge, 
     animation-name: mainTransitionEnter;
     animation-duration: .5s;
     animation-timing-function: ease-out;
-    transform-origin: 50% 100%;
+    transform-origin: 50% 30%;
     transform: scale(1);
   }
 
@@ -219,10 +219,10 @@ background: linear-gradient(to bottom, #C4E0E5, #4CA1AF); /* W3C, IE 10+/ Edge, 
 
   .mainTransition-leave-active {
     transition-property: all;
-    transition-duration: .5s;
+    transition-duration: .4s;
     transition-timing-function: ease-in-out;
+    transform-origin: 50% 30%;
+    transform: translate3d(0, 100%, 0) scaleY(0.8);
     opacity: 0;
-    transform-origin: 50% 20%;
-    transform: translate3d(0, 80%, 0) scaleY(0.8);
   }
 </style>
