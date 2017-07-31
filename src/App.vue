@@ -14,7 +14,7 @@
       </ul>
     </nav>
     <main ref="main">
-      <transition name="mainTransition">
+      <transition name="mainTransition" mode="out-in">
         <router-view></router-view>
       </transition>
     </main>
@@ -197,20 +197,21 @@ export default {
 
   .mainTransition-enter-active {
     animation-name: mainTransitionEnter;
-    animation-duration: .7s;
+    animation-duration: .5s;
     animation-timing-function: ease-out;
     transform-origin: 50% 30%;
     transform: scale(1);
   }
 
   @keyframes mainTransitionEnter {
-    0% {opacity: 0; transform: translate3d(0, -100%, 0)},
-    100% {opacity: 1; transform: translate3d(0, 0, 0)}
+    0% {opacity: 0; transform: translate3d(0, -100%, 0) scaleY(2);},
+    80% {opacity: 0; transform: scaleY(1.6);},
+    100% {opacity: 1; transform: translate3d(0, 0, 0)scaleY(1);}
   }
 
   .mainTransition-leave-active {
     transition-property: all;
-    transition-duration: .7s;
+    transition-duration: .5s;
     transition-timing-function: ease-out;
     transform-origin: 50% 50%;
     transform: translate3d(0, 100%, 0);

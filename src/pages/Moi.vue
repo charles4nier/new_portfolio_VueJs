@@ -1,13 +1,13 @@
 <template>
   <section>
     <nav>
-      <ul class="experiences-ul" v-if="showExperiencesContainer">
+      <ul class="experiences-ul">
         <li class="cv-nav" id="developer-list" :class="{active: showDeveloper}"><span @click="showContent" id="developer" :class="{active: showDeveloper}">Développeur Web</span></li>
         <li class="cv-nav" id="immo-list" :class="{active: showImmo}"><span @click="showContent" id="immo" :class="{active: showImmo}">Agent Immobilier</span></li>
         <li class="cv-nav" id="studio-list" :class="{active: showStudioTroll}"><span @click="showContent" id="studio" :class="{active: showStudioTroll}">Fondateur Studio Troll</span></li>
       </ul>
     </nav>
-    <div ref="exeperiences-container" v-if="showExperiencesContainer" class="experiences-container">
+    <div class="experiences-container">
       <Developer :showDeveloper="showDeveloper"></Developer>
       <Immo :showImmo="showImmo"></Immo>
       <StudioTroll :showStudioTroll="showStudioTroll"></StudioTroll>
@@ -26,8 +26,7 @@
     components: { Developer, Immo, StudioTroll },
     data () {
       return {
-        showExperiencesContainer: false,
-        showDeveloper: true,
+        showDeveloper: false,
         showImmo: false,
         showStudioTroll: false
       }
@@ -55,8 +54,8 @@
     },
     mounted: function () {
       setTimeout(() => {
-        this.showExperiencesContainer = true
-      }, 400)
+        this.showDeveloper = true
+      }, 440)
     }
   }
 </script>
