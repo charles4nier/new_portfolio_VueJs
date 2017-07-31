@@ -26,8 +26,6 @@
             <img  ref="img2" v-if="showImg2" src="../assets/learn-eat.png" alt="">
           </div>
         </transition>
-        <span class="carroussel-dots" @click="carrousel1"></span>
-        <span class="carroussel-dots" @click="carrousel2"></span>
       </div>
     </div>
     <a class="linkToWebSite" href="http://www.learn-eat.fr/" target="_blank">Voir le site</a>
@@ -44,17 +42,6 @@ export default {
       showImg1: true,
       showImg2: false,
       showBackgroundImg: false
-    }
-  },
-  methods: {
-    carrousel1: function () {
-      this.showImg1 = true
-      this.showImg2 = false
-    },
-    carrousel2: function () {
-      this.showImg1 = false
-      this.showImg2 = true
-      this.$refs.img
     }
   },
   mounted: function () {
@@ -241,23 +228,6 @@ export default {
     width: 100%;
     height: 100%;
     border: 1px solid rgb(220, 220, 220);
-  }
-
-  .carroussel-dots {
-    position: absolute;
-    width: 7px;
-    height: 7px;
-    top: 87%;
-    left: 35.5%;
-    background-color: black;
-    z-index: 100;
-    border-radius: 50%;
-    opacity: 0.9;
-    cursor: pointer;
-  }
-
-  .carroussel-dots:last-child {
-    left: 37.5%;
   }
 
   .linkToWebSite {

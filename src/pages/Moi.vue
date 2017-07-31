@@ -1,13 +1,13 @@
 <template>
   <section>
     <nav>
-      <ul class="experiences-ul">
-        <li @click="showContent" id="developer" class="cv-nav" :class="{active: showDeveloper}">Développeur Web</li>
-        <li @click="showContent" id="immo" class="cv-nav" :class="{active: showImmo}">Agent Immobilier</li>
-        <li @click="showContent" id="studio" class="cv-nav" :class="{active: showStudioTroll}">Fondateur Studio Troll</li>
+      <ul class="experiences-ul" v-if="showExperiencesContainer">
+        <li class="cv-nav" id="developer-list" :class="{active: showDeveloper}"><span @click="showContent" id="developer" :class="{active: showDeveloper}">Développeur Web</span></li>
+        <li class="cv-nav" id="immo-list" :class="{active: showImmo}"><span @click="showContent" id="immo" :class="{active: showImmo}">Agent Immobilier</span></li>
+        <li class="cv-nav" id="studio-list" :class="{active: showStudioTroll}"><span @click="showContent" id="studio" :class="{active: showStudioTroll}">Fondateur Studio Troll</span></li>
       </ul>
     </nav>
-    <div class="experiences-container">
+    <div ref="exeperiences-container" v-if="showExperiencesContainer" class="experiences-container">
       <Developer :showDeveloper="showDeveloper"></Developer>
       <Immo :showImmo="showImmo"></Immo>
       <StudioTroll :showStudioTroll="showStudioTroll"></StudioTroll>
@@ -26,6 +26,7 @@
     components: { Developer, Immo, StudioTroll },
     data () {
       return {
+        showExperiencesContainer: false,
         showDeveloper: true,
         showImmo: false,
         showStudioTroll: false
@@ -51,6 +52,11 @@
             break
         }
       }
+    },
+    mounted: function () {
+      setTimeout(() => {
+        this.showExperiencesContainer = true
+      }, 400)
     }
   }
 </script>
@@ -86,12 +92,52 @@
   }
 
   .experiences-ul li {
+    position: relative;
+    width: 180px;
+    height: 35px;
     list-style-type: none;
-    font-weight: 600;
     transform: skewX(-3deg);
+    overflow: hidden;
   }
 
-  #developer.active {
-    background-color:  blue;  
+  .experiences-ul li span {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    color: black;
+    z-index: 5;
+    transform: skewX(3deg);
+    transition: color .2s ease-out;
+  }
+
+  #developer-list:before,  #immo-list:before, #studio-list:before{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    content: '';
+    top: 0;
+    left: 0;
+    transform: translate3d(0, -100%, 0);
+    transition: transform .2s ease-out;
+  }
+
+  #developer-list:before, #immo-list:before, #studio-list:before {
+    background: #ff9966;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #ff5e62, #ff9966);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #ff5e62, #ff9966); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
+
+  #developer.active, #immo.active, #studio.active {
+    color: white;
+  }
+
+  #developer-list.active:before, #immo-list.active:before, #studio-list.active:before {
+    transform: translate3d(0, 0, 0);
   }
 </style>

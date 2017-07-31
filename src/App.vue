@@ -1,28 +1,3 @@
-<!-- <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <p>Bonjour</p>
-    <router-view></router-view>
-  </div>
-</template>
-
-<script>
-export default {
-  name: 'app'
-}
-</script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style> -->
-
 <template>
   <div id="app">
     <nav class="main-nav">
@@ -33,7 +8,7 @@ export default {
       </div>
       <ul>
         <li><router-link class="main-nav-link" to="/projets/learn-eat">Projets</router-link></li>
-          <li><router-link class="main-nav-link" to="/a-propos">A propos de moi</router-link></li>
+          <li><router-link class="main-nav-link" to="/a-propos">Mon Cv</router-link></li>
         <li><a class="main-nav-link" href="https://github.com/charles4nier" target="_blank"><img src="./assets/gitHub.svg" alt="l'icône de github" width="18px"></a></li>
         <li><a class="main-nav-link" href="https://www.linkedin.com/in/charles-fournier-856723121/" target="_blank"><img src="./assets/linkedin.svg" alt="l'icône de github" width="18px"></a></li>
       </ul>
@@ -48,7 +23,24 @@ export default {
     <div ref="background3" class="background3"></div>
   </div>
 </template>
+li {
+    list-style-type:none;
+    margin-bottom: 35px;
+  }
 
+  li span {
+    width: 50%;
+    display: block;
+    margin: 5px auto;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.9em;
+  }
+
+  ul div {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
 <script>
 export default {
   name: 'app',
@@ -176,9 +168,8 @@ export default {
     width: 33.4%;
     top: 0;
     background: #4CA1AF;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to bottom, #C4E0E5, #4CA1AF);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to bottom, #C4E0E5, #4CA1AF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+    background: -webkit-linear-gradient(to bottom, #C4E0E5, #4CA1AF);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #C4E0E5, #4CA1AF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     z-index: 10;
   }
 
@@ -206,23 +197,23 @@ background: linear-gradient(to bottom, #C4E0E5, #4CA1AF); /* W3C, IE 10+/ Edge, 
 
   .mainTransition-enter-active {
     animation-name: mainTransitionEnter;
-    animation-duration: .5s;
+    animation-duration: .7s;
     animation-timing-function: ease-out;
     transform-origin: 50% 30%;
     transform: scale(1);
   }
 
   @keyframes mainTransitionEnter {
-    0% {opacity: 0; transform: translate3d(0, -100%, 0) scaleX(1.6);},
-    100% {opacity: 1; transform: translate3d(0, 0, 0) scaleX(1);}
+    0% {opacity: 0; transform: translate3d(0, -100%, 0)},
+    100% {opacity: 1; transform: translate3d(0, 0, 0)}
   }
 
   .mainTransition-leave-active {
     transition-property: all;
-    transition-duration: .4s;
-    transition-timing-function: ease-in-out;
-    transform-origin: 50% 30%;
-    transform: translate3d(0, 100%, 0) scaleY(0.8);
+    transition-duration: .7s;
+    transition-timing-function: ease-out;
+    transform-origin: 50% 50%;
+    transform: translate3d(0, 100%, 0);
     opacity: 0;
   }
 </style>

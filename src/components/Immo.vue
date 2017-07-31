@@ -32,7 +32,7 @@
     position: absolute;
     width: 550px;
     height: 450px;
-    top: 20%;
+    top: 25%;
     left: 5%;
     padding: 15px 5px;
     overflow: hidden;
@@ -46,6 +46,7 @@
   li {
     list-style-type:none;
     margin-bottom: 35px;
+    color: #ff5e62;
   }
 
   li span {
@@ -60,6 +61,7 @@
   ul div {
     font-size: 14px;
     margin-bottom: 5px;
+    color: black;
   }
 
   .experiences-transition-enter, .experiences-transition-leave {
