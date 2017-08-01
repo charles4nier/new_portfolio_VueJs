@@ -22,10 +22,9 @@
   import Developer from '../components/Developer'
   import Immo from '../components/Immo'
   import StudioTroll from '../components/StudioTroll'
-  import DeveloperSkills from '../components/DeveloperSkills'
 
   export default {
-    components: { Developer, Immo, StudioTroll, DeveloperSkills },
+    components: { Developer, Immo, StudioTroll },
     data () {
       return {
         showDeveloper: false,

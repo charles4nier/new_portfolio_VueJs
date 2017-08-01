@@ -20,9 +20,9 @@
     data () {
       return {
         developperData: [
-          {agence: 'Simplon (janvier 2017 - aujourd\'hui)', missions: ['- Réalisation d\'un portfolio Vue Js 2', ' avec- Animation d\'un atelier Vue Js 2', '- Réalisation du site du Paris Foot Golf Club (Maquette / Diagramme de Classe / Cahier des charges / Php 7 / Jquery / Sql)', '- Réalisation d\'une interface utilisateur type blog (Maquette/ Php 7 / Sql / AngularJS)', '- Maquette du site Act ! (Html / Css)']},
-          {agence: 'WNP909 (juin 2017)', missions: ['- Réalisation d\'un template de site (React / Vue.js)', '- Débuggage d\'une appli  (Vue.js / Laravel)', '- Réalisation d\'un prototype pour un appel d\'offre (Jquery / HammerJs)']},
-          {agence: 'FreeLance (novembre 2016 - Décembre 2016)', missions: ['- Réalisation du site Learn-eat ( Design / Maquette / Cahier des charges / Jquery )']}
+          {agence: 'Simplon (janvier 2017 - aujourd\'hui) :', missions: ['- Réalisation d\'un portfolio avec Vue Js 2', '- Animation d\'un atelier Vue Js 2', '- Réalisation du site du Paris Foot Golf Club (Maquette / Diagramme de Classe / Cahier des charges / Php 7 / Jquery / Sql)', '- Réalisation d\'une interface utilisateur type blog (Maquette/ Php 7 / Sql / AngularJS)', '- Maquette du site Act ! (Html / Css)']},
+          {agence: 'WNP909 (juin 2017) :', missions: ['- Réalisation d\'un template de site (React / Vue.js)', '- Débuggage d\'une appli  (Vue.js / Laravel)', '- Réalisation d\'un prototype pour un appel d\'offre (Jquery / HammerJs)']},
+          {agence: 'FreeLance (novembre 2016 - Décembre 2016) :', missions: ['- Réalisation du site Learn-eat ( Design / Maquette / Cahier des charges / Jquery )', '- Réalisation du site Ik Music Production ( Design / Maquette / Cahier des charges / Jquery )']}
         ]
       }
     }
@@ -53,10 +53,8 @@
   }
 
   li span {
-    width: 50%;
+    width: 75%;
     display: block;
-    margin: 5px auto;
-    text-align: center;
     font-weight: 600;
     font-size: 0.9em;
     margin-bottom: 10px;

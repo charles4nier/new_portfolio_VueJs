@@ -19,8 +19,8 @@
     data () {
       return {
         agentData: [
-          {agence: 'IPCSA (octobre 2014 - juillet 2016)', missions: ['- Négocation, vente, location, rédaction de compromis, suivi de dossier (syndic et notaires)', '- Mise en vente, communication', '- Prospection, signature de mandat']},
-          {agence: 'Foncia (juin 2012 - septembre 2014)', missions: ['- Négocation, vente et location', '- Mise en vente, communication', '- Prospection, signature de mandat']}
+          {agence: 'IPCSA (octobre 2014 - juillet 2016) :', missions: ['- Négocation, vente, location, rédaction de compromis, suivi de dossier (syndic et notaires)', '- Mise en vente, communication', '- Prospection, signature de mandat']},
+          {agence: 'Foncia (juin 2012 - septembre 2014) :', missions: ['- Négocation, vente et location', '- Mise en vente, communication', '- Prospection, signature de mandat']}
         ]
       }
     }
@@ -50,12 +50,11 @@
   }
 
   li span {
-    width: 50%;
+    width: 75%;
     display: block;
-    margin: 5px auto;
-    text-align: center;
     font-weight: 600;
     font-size: 0.9em;
+    margin-bottom: 10px;
   }
 
   ul div {

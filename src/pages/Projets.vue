@@ -5,7 +5,7 @@
     <transition name="showNavProject">
       <nav v-if="show" class="projects-nav">
         <ul>
-          <li v-for="item in dataNav" :style="{ backgroundImage: 'url(' + item.style + ')' }"><router-link class="nav-link" :to="{ path: item.link}" @click.native="goTo">{{ item.name }}</router-link></li>
+          <li class="li-menu" v-for="item in dataNav"><router-link class="nav-link" :to="{ path: item.link}" @click.native="goTo" :style="{ backgroundImage: 'url(' + item.style + ')' }"><span>{{ item.name }}</span></router-link></li>
         </ul>
       </nav>
     </transition>
@@ -30,10 +30,10 @@ export default {
       upTransition: false,
       image: 'http://1.bp.blogspot.com/-8PfnHfgrH4I/TylX2v8pTMI/AAAAAAAAJJ4/TICBoSEI57o/s1600/search_by_image_image.png',
       dataNav: [
-        {link: '/projets/learn-eat', name: 'Learn Eat', style: 'http://1.bp.blogspot.com/-8PfnHfgrH4I/TylX2v8pTMI/AAAAAAAAJJ4/TICBoSEI57o/s1600/search_by_image_image.png'},
-        {link: '/projets/paris-foot-golf-club', name: 'Paris Foot Golf Club', style: '../assets/ikmusic.png'},
-        {link: '/projets/ik-music-production', name: 'Ik music Production', style: '../assets/ikmusic.png'},
-        {link: '/projets/les-legumes-de-cedric', name: 'Les légumes de Cédric', style: '../assets/ikmusic.png'}
+        {link: '/projets/learn-eat', name: 'Learn Eat', style: '../../static/assets/learnEat.png'},
+        {link: '/projets/paris-foot-golf-club', name: 'Paris Foot Golf Club', style: '../../static/assets/pfgc2.png'},
+        {link: '/projets/ik-music-production', name: 'Ik music Production', style: '../../static/assets/ikmusic.png'},
+        {link: '/projets/les-legumes-de-cedric', name: 'Les légumes de Cédric', style: '../../static/assets/royco.png'}
       ]
     }
   },
@@ -116,31 +116,31 @@ section {
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: rgba(5,5,5,0.65);
+  background-color: rgba(5,5,5,0.25);
   z-index: 140;
 }
 
 .projects-nav {
   position: absolute;
-  width: 250px;
+  width: 350px;
   height: 100%;
-  background-color: lime;
+  border-right: 2px solid white;
   top: 0;
   left: 0;
   z-index: 150;
   transform-origin: top;
   transform: translate3d(0, 0, 0);
   transition-property: all;
-  transition-duration: .2s;
+  transition-duration: .3s;
   transition-timing-function: ease-in-out;
 }
 
 .showNavProject-enter {
-  transform: translate3d(-250px, 0, 0);
+  transform: translate3d(-350px, 0, 0);
 }
 
 .showNavProject-leave-active {
-  transform: translate3d(-250px, 0, 0);
+  transform: translate3d(-350px, 0, 0);
 }
 
 .projects-nav ul {
@@ -150,14 +150,82 @@ section {
 
 .projects-nav ul li {
   display: flex;
-  height: 150px;
+  height: 180px;
   width: 100%;
   justify-content: center;
   align-items: center;
   list-style-type: none;
-  /*background-image: url('../assets/pfgc.png');*/
-  background-size: cover;
 }
+
+.nav-link {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  text-decoration: none;
+}
+
+.nav-link span {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0, 0.9);
+  color: white;
+  font-weight: 600;
+  z-index: 8;
+  transition: all .2s ease-in-out;
+}
+
+.nav-link:hover span {
+  background-color: rgba(0,0,0, 0);
+  color: black;
+}
+
+.router-link-exact-active span{
+  background-color: rgba(0,0,0, 0);
+  color: black;
+}
+
+.nav-link span::before {
+  position: absolute;
+  width: 190px;
+  height: 50px;
+  top: 60px;
+  left: 80px;
+  z-index: 5;
+  background-color: white;
+  transform: skewX(-3deg) scaleX(1);
+  transform-origin: left;
+  transition: transform .2s ease-out;
+  content: '';
+}
+
+.nav-link:hover span::before {
+  transform: skewX(-3deg) scaleX(0);
+}
+
+/*.nav-link span::after {
+  position: absolute;
+  width: 190px;
+  height: 50px;
+  top: 60px;
+  right: 80px;
+  z-index: 5;
+  background-color: black;
+  transform: skewX(-3deg) scaleX(0);
+  transform-origin: right;
+  transition: transform .2s ease-out;
+  content: '';
+}
+
+.nav-link:hover span::before {
+  transform: skewX(-3deg) scaleX(1);
+}*/
 
 p {
   position: absolute;

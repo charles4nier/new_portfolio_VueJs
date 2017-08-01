@@ -12,12 +12,13 @@ export default {
   },
   data: () => ({
     chartData: {
-      labels: ['Item 1', 'Item 2', 'Item 3'],
+      labels: ['Php', 'Item 2', 'Item 3', 'Item 4'],
       datasets: [
         {
-          label: 'Component 1',
+          label: 'Php',
           data: [10, 20, 30],
-          backgroundColor: 'red'
+          backgroundColor: 'red',
+          borderColor: 'blue'
         },
         {
           label: 'Component 2',
@@ -28,6 +29,11 @@ export default {
           label: 'Component 3',
           data: [30, 40, 50],
           backgroundColor: 'green'
+        },
+        {
+          label: 'Component 4',
+          data: [35, 46, 52],
+          backgroundColor: 'black'
         }
       ]
     }

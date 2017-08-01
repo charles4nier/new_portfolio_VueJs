@@ -19,9 +19,9 @@
     data () {
       return {
         studioData: [
-          {agence: 'Conception', missions: ['- Logique interactive et ergonomique, arborescence des contenus']},
-          {agence: 'Pilotage des projets', missions: ['- Gestion du calendrier, management de l\'équipe, élaboration du business plan']},
-          {agence: 'Production', missions: ['- Création et intégration des contenus']}
+          {agence: 'Conception :', missions: ['- Logique interactive et ergonomique, arborescence des contenus']},
+          {agence: 'Pilotage des projets :', missions: ['- Gestion du calendrier, management de l\'équipe, élaboration du business plan']},
+          {agence: 'Production :', missions: ['- Création et intégration des contenus']}
         ]
       }
     }
@@ -51,12 +51,11 @@
   }
 
   li span {
-    width: 50%;
+    width: 75%;
     display: block;
-    margin: 5px auto;
-    text-align: center;
     font-weight: 600;
     font-size: 0.9em;
+    margin-bottom: 10px;
   }
 
   ul div {
