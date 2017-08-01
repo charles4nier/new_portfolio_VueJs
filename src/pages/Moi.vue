@@ -13,7 +13,7 @@
       <StudioTroll :showStudioTroll="showStudioTroll"></StudioTroll>
     </div>
     <div class="skills">
-      <DeveloperSkills></DeveloperSkills>
+      <DeveloperSkills :showDeveloper="showDeveloper"></DeveloperSkills>
     </div>
   </section>
 </template>
