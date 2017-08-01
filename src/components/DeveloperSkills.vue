@@ -1,42 +1,54 @@
 <template>
-  <vue-chart type="bar" :data="chartData"></vue-chart>
+  <ul>
+    <li v-for="skill in devSkills" :style="{ background: skill.backgroundWebkit, background: skill.background, width: skill.width}">{{ skill.width }}%<img :src="skill.logo" alt="le logo de skill.name" height="45"></li>
+  </ul>
 </template>
 
 <script>
-import VueChart from 'vue-chart-js'
-
 export default {
-  name: 'DeveloperSkills',
-  components: {
-    VueChart
-  },
-  data: () => ({
-    chartData: {
-      labels: ['Php', 'Item 2', 'Item 3', 'Item 4'],
-      datasets: [
-        {
-          label: 'Php',
-          data: [10, 20, 30],
-          backgroundColor: 'red',
-          borderColor: 'blue'
-        },
-        {
-          label: 'Component 2',
-          data: [20, 30, 40],
-          backgroundColor: 'blue'
-        },
-        {
-          label: 'Component 3',
-          data: [30, 40, 50],
-          backgroundColor: 'green'
-        },
-        {
-          label: 'Component 4',
-          data: [35, 46, 52],
-          backgroundColor: 'black'
-        }
+  data () {
+    return {
+      devSkills: [
+        {logo: '../../static/assets/js.png', name: 'Js', backgroundWebkit: '-webkit-linear-gradient(to right, #ff5e62, #f79d00)', background: 'linear-gradient(to right, #ff5e62, #f79d00)', width: '320px'},
+        {logo: '../../static/assets/vuesjs.png', name: 'Vue js', backgroundWebkit: '-webkit-linear-gradient(to right, #ff5e62, #f79d00)', background: 'linear-gradient(to right, #ff5e62, #f79d00)', width: '280px'},
+        {logo: '../../static/assets/react.svg', name: 'React', backgroundWebkit: '-webkit-linear-gradient(to right, #ff5e62, #f79d00)', background: 'linear-gradient(to right, #ff5e62, #f79d00)', width: '200px'},
+        {logo: '../../static/assets/angular.png', name: 'AngularJs', backgroundWebkit: '-webkit-linear-gradient(to right, #ff5e62, #f79d00)', background: 'linear-gradient(to right, #ff5e62, #f79d00)', width: '200px'},
+        {logo: '../../static/assets/php7.png', name: 'Php 7', backgroundWebkit: '-webkit-linear-gradient(to right, #ff5e62, #f79d00)', background: 'linear-gradient(to right, #ff5e62, #f79d00)', width: '280px'},
+        {logo: '../../static/assets/laravel.jpg', name: 'Laravel', backgroundWebkit: '-webkit-linear-gradient(to right, #ff5e62, #f79d00)', background: 'linear-gradient(to right, #ff5e62, #f79d00)', width: '160px'},
+        {logo: '../../static/assets/html5-css.svg', name: 'Html et css', backgroundWebkit: '-webkit-linear-gradient(to right, #ff5e62, #f79d00)', background: 'linear-gradient(to right, #ff5e62, #f79d00)', width: '360px'}
       ]
     }
-  })
+  }
 }
 </script>
+<style scoped>
+  ul {
+    margin-top: 25%;
+    margin-left: 10%;
+  }
+
+  li {
+    position: relative;
+    display: flex;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+    margin-left: 70px;
+    margin-bottom: 35px;
+    list-style-type: none;
+  }
+
+  img {
+    position: absolute;
+    top: -7px;
+    left: -80px;
+  }
+
+  li:nth-child(5) img{
+    left: -73px;
+  }
+
+  li:last-child img{
+    left: -90px;
+  }
+</style>

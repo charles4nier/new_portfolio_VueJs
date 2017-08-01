@@ -22,9 +22,10 @@
   import Developer from '../components/Developer'
   import Immo from '../components/Immo'
   import StudioTroll from '../components/StudioTroll'
+  import DeveloperSkills from '../components/DeveloperSkills'
 
   export default {
-    components: { Developer, Immo, StudioTroll },
+    components: { Developer, Immo, StudioTroll, DeveloperSkills },
     data () {
       return {
         showDeveloper: false,
@@ -145,7 +146,7 @@
     position: absolute;
     width: 40%;
     height: 90%;
-    top: 30%;
+    top: 10%;
     right: 5%;
   }
 </style>

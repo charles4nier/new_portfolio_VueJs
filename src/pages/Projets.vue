@@ -209,24 +209,6 @@ section {
   transform: skewX(-3deg) scaleX(0);
 }
 
-/*.nav-link span::after {
-  position: absolute;
-  width: 190px;
-  height: 50px;
-  top: 60px;
-  right: 80px;
-  z-index: 5;
-  background-color: black;
-  transform: skewX(-3deg) scaleX(0);
-  transform-origin: right;
-  transition: transform .2s ease-out;
-  content: '';
-}
-
-.nav-link:hover span::before {
-  transform: skewX(-3deg) scaleX(1);
-}*/
-
 p {
   position: absolute;
   display: flex;
