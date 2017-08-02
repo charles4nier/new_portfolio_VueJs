@@ -1,12 +1,11 @@
 <template>
   <div>
     <transition-group
-      name="staggered-fade"
       tag="ul"
-      v-bind:css="false"
-      v-on:before-enter="beforeEnter"
-      v-on:enter="enter"
-      v-on:leave="leave"
+      :css="false"
+      v-on:before-enter="beforeEnterList"
+      v-on:enter="enterList"
+      v-on:leave="leaveList"
     >
       <li
         v-if="showDeveloper"
@@ -15,7 +14,24 @@
         :key="index"
         :data-index="index"
       >
-        {{ skill.width }}% <img :src="skill.logo" :alt="'le logo de ' + skill.name" height="45"></li>
+        <img :src="skill.logo" :alt="'le logo de ' + skill.name" height="45">
+        <span class="background-container">
+          <transition
+            name="chart"
+            v-on:before-enter="beforeEnterChart"
+            v-on:enter="enterChart"
+            v-on:after-enter="afterEnterChart"
+          >
+            <span
+              v-show="showChartDev"
+              class="chart"
+              :class="'chart' + index"
+            >
+              {{skill.value}}
+            </span>
+          </transition>
+        </span>
+      </li>
     </transition-group>
   </div>
 </template>
@@ -24,26 +40,26 @@
 import Velocity from 'velocity-animate'
 
 export default {
-  props: ['showDeveloper'],
+  props: ['showDeveloper', 'showChartDev'],
   data () {
     return {
       devSkills: [
-        {logo: '../../static/assets/js.png', name: 'Js', width: '320px'},
-        {logo: '../../static/assets/vuesjs.png', name: 'Vue js', width: '280px'},
-        {logo: '../../static/assets/react.svg', name: 'React', width: '200px'},
-        {logo: '../../static/assets/angular.png', name: 'AngularJs', width: '200px'},
-        {logo: '../../static/assets/php7.png', name: 'Php 7', width: '280px'},
-        {logo: '../../static/assets/laravel.jpg', name: 'Laravel', width: '160px'},
-        {logo: '../../static/assets/html5-css.svg', name: 'Html et css', width: '360px'}
+        {logo: '../../static/assets/js.png', name: 'Js', width: '320px', value: '80%'},
+        {logo: '../../static/assets/vuesjs.png', name: 'Vue js', width: '280px', value: '80%'},
+        {logo: '../../static/assets/react.svg', name: 'React', width: '200px', value: '50%'},
+        {logo: '../../static/assets/angular.png', name: 'AngularJs', width: '200px', value: '50%'},
+        {logo: '../../static/assets/php7.png', name: 'Php 7', width: '280px', value: '70%'},
+        {logo: '../../static/assets/laravel.jpg', name: 'Laravel', width: '160px', value: '40%'},
+        {logo: '../../static/assets/html5-css.svg', name: 'Html et css', width: '360px', value: '90%'}
       ]
     }
   },
   methods: {
-    beforeEnter: function (el) {
+    beforeEnterList: function (el) {
       el.style.opacity = 0
       el.style.transform = 'translate3d(0,0,0)'
     },
-    enter: function (el, done) {
+    enterList: function (el, done) {
       var delay = el.dataset.index * 100
       setTimeout(function () {
         Velocity(
@@ -54,10 +70,10 @@ export default {
         )
       }, delay)
     },
-    leave: function (el, done) {
+    leaveList: function (el, done) {
       Velocity(
         el,
-        { opacity: 0, transform: 'translate3d(0, 100%, 0)' },
+        { opacity: 0, translateY: '100%' },
         { complete: done }
       )
     }
@@ -72,16 +88,11 @@ export default {
 
   li {
     position: relative;
-    display: flex;
     height: 30px;
-    justify-content: center;
-    align-items: center;
     margin-left: 70px;
     margin-bottom: 35px;
     list-style-type: none;
     transform-origin: left;
-    background: -webkit-linear-gradient(to right, #ff5e62, #f79d00);
-    background: linear-gradient(to right, #ff5e62, #f79d00);
   }
 
   img {
@@ -98,40 +109,47 @@ export default {
     left: -90px;
   }
 
-  .skillBar-enter, .skillBar-leave {
-    opacity: 0;
+  .background-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
   }
 
-  .skillBar-enter-active {
-    animation: showSkillBar .6s ease-out forwards;
+  .chart {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    background: -webkit-linear-gradient(to right, #ff5e62, #f79d00);
+    background: linear-gradient(to right, #ff5e62, #f79d00);
   }
 
-  /*#li1.skillBar-enter-active {
-    animation: showSkillBar .6s ease-out forwards .05s;
+  .chart-enter, .chart-leave-active, .chart-leave {
+    animation-name: enterChart;
+    animation-duration: .1s;
+    animation-fill-mode: forwards;
   }
 
-  #li2.skillBar-enter-active {
-    animation: showSkillBar .6s ease-out forwards .2s;
+  @keyframes enterChart {
+    0% {transform: translate3d(-100%, 0, 0);},
+    100% {transform: translate3d(-100%, 0, 0);}
   }
 
-  #li3.skillBar-enter-active {
-    animation: showSkillBar .6s ease-out forwards .3s;
+  .chart-enter-active {
+    animation-name: showChart;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
   }
 
-  #li4.skillBar-enter-active {
-    animation: showSkillBar .6s ease-out forwards .4s;
-  }
-
-  #li5.skillBar-enter-active {
-    animation: showSkillBar .6s ease-out forwards .5s;
-  }
-  #li6.skillBar-enter-active {
-    animation: showSkillBar .6s ease-out forwards .6s;
-  }*/
-
-  @keyframes showSkillBar {
-    0% { transform: scaleX(0); opacity: 0;},
-    5% {opacity: 1;},
-    100% { transform: scaleX(1);}
+  @keyframes showChart {
+    0% {transform: translate3d(-100%, 0, 0);},
+    100% {transform: translate3d(0, 0, 0);}
   }
 </style>

@@ -13,7 +13,7 @@
       <StudioTroll :showStudioTroll="showStudioTroll"></StudioTroll>
     </div>
     <div class="skills">
-      <DeveloperSkills :showDeveloper="showDeveloper"></DeveloperSkills>
+      <DeveloperSkills :showDeveloper="showDeveloper" :showChartDev="showChartDev"></DeveloperSkills>
     </div>
   </section>
 </template>
@@ -29,6 +29,7 @@
     data () {
       return {
         showDeveloper: false,
+        showChartDev: false,
         showImmo: false,
         showStudioTroll: false
       }
@@ -40,16 +41,19 @@
             this.showImmo = false
             this.showStudioTroll = false
             this.showDeveloper = true
+            this.showChartDev = true
             break
           case 'immo':
             this.showImmo = true
             this.showStudioTroll = false
             this.showDeveloper = false
+            this.showChartDev = false
             break
           case 'studio':
             this.showImmo = false
             this.showStudioTroll = true
             this.showDeveloper = false
+            this.showChartDev = false
             break
         }
       }
@@ -58,6 +62,9 @@
       setTimeout(() => {
         this.showDeveloper = true
       }, 440)
+      setTimeout(() => {
+        this.showChartDev = true
+      }, 700)
     }
   }
 </script>
