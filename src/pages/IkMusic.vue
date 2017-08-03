@@ -14,7 +14,7 @@
     </transition>
     <div class="project-scene">
       <transition name="title" type="animation" appear>
-        <h1 ref="title" v-if="showTitle">IK Music<br>Production</h1>
+        <h1 ref="title" v-if="showTitle">IK Music<br> Production</h1>
       </transition>
       <div class="visual-container">
         <div class="card">
@@ -143,6 +143,7 @@ export default {
 
   h1 {
     position: absolute;
+    width: 30%;
     transform-origin: bottom;
     transform: translate3d(0, 0, 0) scaleY(1) skewX(-3deg);
     top: 17%;
@@ -180,6 +181,8 @@ export default {
 
   .card {
     position: absolute;
+    display: flex;
+    align-items: center;
     width: 35%;
     height: 200px;
     top: 54%;
@@ -192,7 +195,6 @@ export default {
     font-size: 0.9em;
     font-weight: 500;
     color: white;
-    margin-top: 6%;
     overflow: hidden;
     line-height: -1.2;
   }
@@ -264,21 +266,96 @@ export default {
     transform: scaleX(1.4) translate3d(-7px, 0, 0);
   }
 
+  @media only screen and (max-width: 4000px) {
+    h1 {
+      width: auto;
+      font-size: 5vw;
+    }
+
+    .card p{
+      font-size: 1.2vw;
+      padding: 0 10px;
+    }
+
+    .linkToWebSite {
+      font-size: 1.3vw;
+      bottom: 6%;
+    }
+  }
+
+  @media only screen and (max-width: 1024px) and (orientation: landscape) {
+    h1 {
+      width: auto;
+      font-size: 2.7vw;
+      top: 55%;
+      left: 28%;
+      padding: 10px 20px;
+      background-color: white;
+    }
+
+    br {
+      display: none;
+    }
+
+    .background-img-container {
+      width: 90%;
+      left: 5%;
+      top: 10%;
+      transform: skewX(0);
+    }
+
+    .visual-container {
+      width: 350px;
+      margin-left: -28%;
+    }
+
+    .visual-container .carroussel{
+      display: none;
+    }
+
+    .card {
+      width: 65%;
+    }
+
+    .card p{
+      margin-top: 5%;
+      font-size: 1.7vw;
+      padding: 0 10px;
+    }
+
+    .linkToWebSite {
+      right: 10px;
+      font-size: 0.75em;
+      bottom: 19%;
+    }
+  }
+
+  @media only screen and (max-width: 880px) {
+    .visual-container .carroussel{
+      display: none;
+    }
+  }
+
   @media only screen and (max-width: 650px) {
 
-  h1 {
-    font-size: 1.5em;
-    background-color: rgba(255,255,255, 1);
-    padding: 10px 20px;
-  }
+    h1 {
+      font-size: 1.5em;
+      background-color: rgba(255,255,255, 1);
+      padding: 10px 20px;
+      width: auto;
+    }
+
+    br {
+      display: block;
+    }
 
     .colored-headband {
       top: 40%;
       height: 180%;
-      opacity: 0.8;
+      opacity: 1;
       background: #fceabb;  /* fallback for old browsers */
-      background: -webkit-linear-gradient(to left, #f8b500, #b39846);  /* Chrome 10-25, Safari 5.1-6 */
-      background: linear-gradient(to left, #f8b500, #b39846); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      background: -webkit-linear-gradient(to left, #f8b500, #f9c230);  /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(to left, #f8b500, #f9c230); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     }
 
     .background-img-container {
@@ -287,7 +364,6 @@ export default {
       top: 0;
       left: 0;
       transform: skewX(0);
-      background: url('../assets/ikmusic.png') -69% 45% scroll;
     }
 
     .card {
@@ -297,11 +373,9 @@ export default {
     }
 
     .card p{
-      margin-top: 20px;
-      font-size: 16px;
+      font-size: 3.6vw;
       padding: 0 10px;
     }
-
 
     .visual-container .carroussel {
       display: none;
@@ -309,8 +383,28 @@ export default {
 
     .linkToWebSite {
       right: 30px;
-      font-size: 0.9em;
-      bottom: 6%;
+      font-size: 0.8em;
+      font-weight: normal;
+      bottom: 32%;
+      letter-spacing: normal;
+    }
+
+    .linkToWebSite::after {
+      top: 8px;
+      height: 1px;
+    }
+  }
+
+  @media only screen and (max-width: 330px) {
+    .card {
+      width: 100vw;
+      right: 0;
+      top: 35%;
+    }
+
+    .card p {
+      font-size: 12px;
+      padding: 0 10px;
     }
   }
 </style>

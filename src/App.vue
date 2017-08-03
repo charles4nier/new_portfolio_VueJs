@@ -8,7 +8,7 @@
       </div>
       <ul>
         <li><router-link class="main-nav-link" to="/projets/learn-eat">Projets</router-link></li>
-          <li><router-link class="main-nav-link" to="/a-propos">Mon Cv</router-link></li>
+        <li><router-link class="main-nav-link" to="/a-propos">Mon Cv</router-link></li>
         <li><a class="main-nav-link" href="https://github.com/charles4nier" target="_blank"><img src="./assets/gitHub.svg" alt="l'icône de github" width="18px"></a></li>
         <li><a class="main-nav-link" href="https://www.linkedin.com/in/charles-fournier-856723121/" target="_blank"><img src="./assets/linkedin.svg" alt="l'icône de github" width="18px"></a></li>
       </ul>
@@ -18,6 +18,7 @@
         <router-view></router-view>
       </transition>
     </main>
+    <footer></footer>
   </div>
 </template>
 li {
@@ -222,6 +223,22 @@ export default {
     opacity: 0;
   }
 
+  @media only screen and (min-width: 1370px) and (max-width: 4000px) and (orientation: landscape) {
+    .main-nav-link {
+      font-size: 1.2vw;
+    }
+
+    .main-nav-link img {
+      width: 1.2vw;
+    }
+
+    .button-menu div {
+      width: 3vw;
+      height: 0.2vw;
+      margin-bottom: 0.2vw;
+    }
+  }
+
   @media only screen and (max-width: 650px) {
     .main-nav {
       display: flex;
@@ -233,6 +250,16 @@ export default {
 
     .button-menu {
       top: 23px;
+    }
+
+    footer {
+      position: absolute;
+      width: 100%;
+      height: 80px;
+      background-color: white;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
     }
   }
 </style>

@@ -284,7 +284,7 @@ p:hover {
 p::before, p::after {
   position: absolute;
   width: 50%;
-  height: 100%;
+  height: 110%;
   background-color: black;
   transition: all .1s ease-out;
   content: '';
@@ -374,10 +374,34 @@ article {
   background-color: red;
 }
 
+@media only screen and (max-width: 4000px) {
+  p {
+    width: 12%;
+    height: 7%;
+    font-size: 1.4vw;
+  }
+
+  .scroll-info {
+    display: none;
+  }
+}
+
+
+@media only screen and (max-width: 1024px) and (orientation: landscape) {
+  p {
+    left: 5%;
+  }
+
+  .scroll-info {
+    display: none;
+  }
+}
+
 @media only screen and (max-width: 650px) {
 
   p {
-    top: 88.5%;
+    left: calc(50% - 65px);
+    top: 90.5%;
     font-size: 0.9em;
     width: 130px;
     height: 40px;
