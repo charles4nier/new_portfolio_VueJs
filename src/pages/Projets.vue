@@ -397,6 +397,14 @@ article {
   }
 }
 
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  p {
+    width: 16%;
+    height: 5.5%;
+    font-size: 1.4vh;
+  }
+}
+
 @media only screen and (max-width: 650px) {
 
   p {

@@ -91,7 +91,7 @@ export default {
     height: 80%;
     left: 40%;
     top: 15%;
-    background-image: url('../assets/pfgc2.png');
+    background: url('../assets/pfgc2.png') 30% scroll;
     background-size: cover;
     z-index: 1;
     /*filter: invert(75%);*/
@@ -332,9 +332,68 @@ export default {
     }
   }
 
-  @media only screen and (max-width: 880px) {
+  @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+    h1 {
+      width: auto;
+      font-size: 2.7vw;
+      top: 55%;
+      left: 28%;
+      padding: 10px 20px;
+      background-color: white;
+    }
+
+    br {
+      display: none;
+    }
+
+    .card {
+      display: flex;
+      width: 68%;
+      top: 60vh;
+    }
+
+    .card p{
+      font-size: 1.7vh;
+      padding: 0 10px;
+    }
+
+    .background-img-container {
+      width: 90%;
+      left: 5%;
+      top: 10%;
+      transform: skewX(0);
+      background: url('../assets/pfgc2.png') 2% scroll;
+      background-size: cover;
+    }
+
     .visual-container .carroussel{
       display: none;
+    }
+
+    .linkToWebSite {
+      font-size: 16px;
+      font-weight: 600;
+      right: 5%;
+    }
+
+    .linkToWebSite::after {
+      display: none;
+    }
+  }
+
+  @media only screen and (min-width: 880px) and (max-width: 1024px) and (orientation: landscape) {
+
+    .colored-headband {
+      opacity: 0.95;
+    }
+
+    .card p{
+      margin-top: 10%;
+    }
+
+    .background-img-container {
+      background: url('../assets/pfgc2.png') bottom scroll;
+      background-size: auto;
     }
   }
 
@@ -366,6 +425,8 @@ export default {
       top: 0;
       left: 0;
       transform: skewX(0);
+      background: url('../assets/pfgc2.png') 40% scroll;
+      background-size: cover;
     }
 
     .card {
