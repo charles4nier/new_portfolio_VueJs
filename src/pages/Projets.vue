@@ -5,7 +5,7 @@
     <transition name="showNavProject">
       <nav v-if="show" class="projects-nav">
         <ul>
-          <li class="li-menu" v-for="item in dataNav"><router-link class="nav-link" :to="{ path: item.link}" @click.native="goTo" :style="{ backgroundImage: 'url(' + item.style + ')' }"><span>{{ item.name }}</span></router-link></li>
+          <li class="li-menu" v-for="item in dataNav"><router-link class="nav-link" :to="{ path: item.link}" @click.native="goTo" :style="{ backgroundImage: 'url(' + item.style + ')' }"><span class="spanCache"></span><span class="spanMessage">{{ item.name }}</span></router-link></li>
         </ul>
       </nav>
     </transition>
@@ -177,7 +177,7 @@ section {
   text-decoration: none;
 }
 
-.nav-link span {
+.nav-link .spanCache {
   position: absolute;
   display: flex;
   width: 100%;
@@ -193,21 +193,21 @@ section {
   transition: all .2s ease-in-out;
 }
 
-.nav-link:hover span {
+.nav-link:hover .spanCache {
   background-color: rgba(0,0,0, 0);
   color: black;
 }
 
-.router-link-exact-active span{
+.router-link-exact-active .spanCache{
   background-color: rgba(0,0,0, 0);
   color: black;
 }
 
-.nav-link span::before {
+.nav-link .spanCache::before {
   position: absolute;
   width: 190px;
   height: 50px;
-  top: 60px;
+  top: 65px;
   left: 80px;
   z-index: 5;
   background-color: white;
@@ -217,8 +217,46 @@ section {
   content: '';
 }
 
-.nav-link:hover span::before {
+.nav-link:hover .spanCache::before {
   transform: skewX(-3deg) scaleX(0);
+}
+
+.nav-link .spanCache::after {
+  position: absolute;
+  width: 192px;
+  height: 50px;
+  top: 65px;
+  right: 78px;
+  z-index: 5;
+  background-color: black;
+  transform: skewX(-3deg) scaleX(0);
+  transform-origin: right;
+  transition: transform .2s ease-out;
+  content: '';
+}
+
+.nav-link:hover .spanCache::after, .router-link-exact-active .spanCache::after {
+  transform: skewX(-3deg) scaleX(1);
+}
+
+.spanMessage {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  font-size: 0.9em;
+  font-weight: 600;
+  z-index: 8;
+  transition: all .2s ease-in-out;
+}
+
+.nav-link:hover .spanMessage, .router-link-exact-active .spanMessage {
+  color: white;
 }
 
 p {
