@@ -3,9 +3,9 @@
     <transition-group
       tag="ul"
       :css="false"
-      v-on:before-enter="beforeEnterList"
-      v-on:enter="enterList"
-      v-on:leave="leaveList"
+      @before-enter="beforeEnterList"
+      @enter="enterList"
+      @leave="leaveList"
     >
       <li
         v-if="showDeveloper"
@@ -18,9 +18,6 @@
         <span class="background-container">
           <transition
             name="chart"
-            v-on:before-enter="beforeEnterChart"
-            v-on:enter="enterChart"
-            v-on:after-enter="afterEnterChart"
           >
             <span
               v-show="showChartDev"

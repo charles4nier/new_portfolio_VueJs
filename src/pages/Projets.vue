@@ -9,7 +9,9 @@
         </ul>
       </nav>
     </transition>
-    <div class="calc" v-if="show"></div>
+    <transition name="showCalc">
+      <div class="calc" v-if="show" @click="show = !show"></div>
+    </transition>
     <p @click="show = !show"><span>Plus de projets</span></p>
     <article :class="{'down-transition': downTransition, 'up-transition': upTransition} ">
       <transition name="projectsTransition">
@@ -116,8 +118,18 @@ section {
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: rgba(5,5,5,0.25);
+  background-color: rgba(5,5,5,0.45);
   z-index: 140;
+  opacity: 1;
+  transition: opacity .1s ease-out;
+}
+
+.showCalc-leave-active {
+  opacity: 0;
+}
+
+.showCalc-enter-active {
+  opacity: 0;
 }
 
 .projects-nav {

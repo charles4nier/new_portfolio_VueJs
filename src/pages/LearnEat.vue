@@ -7,9 +7,7 @@
         </div>
       </div>
     </transition>
-    <transition name="test" type="animation" appear>
-      <div class="colored-headband"></div>
-    </transition>
+    <div class="colored-headband"></div>
     <div class="project-scene">
       <transition name="title" type="animation" appear>
         <h1 ref="title" v-if="showTitle">Learn Eat</h1>
@@ -109,7 +107,7 @@ export default {
     background: linear-gradient(to right, #92FE9D, #00C9FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   }
 
-  .showBackgroundImg-enter-active {
+  .showBackgroundImg-enter, .showBackgroundImg-enter-active {
     animation: showBackgroundImg .4s ease-out forwards;
   }
 
@@ -151,12 +149,12 @@ export default {
     letter-spacing: -2px;
   }
 
-  .title-enter {
+  /*.title-enter {
     opacity: 0;
     transform: skewX(-3deg)
-  }
+  }*/
 
-  .title-enter-active {
+  .title-enter, .title-enter-active {
     animation: titleEnter .35s ease-out forwards;
   }
 
@@ -200,7 +198,7 @@ export default {
     display: flex;
     width: 86%;
     height: 35.1%;
-    margin-top: 50%;
+    margin-top: 50vh;
     overflow: hidden;
   }
 

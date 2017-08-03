@@ -204,7 +204,7 @@ background: linear-gradient(to left, #141e30, #F0F2F0); /* W3C, IE 10+/ Edge, Fi
     display: flex;
     width: 86%;
     height: 35.1%;
-    margin-top: 50%;
+    margin-top: 50vh;
     overflow: hidden;
   }
 

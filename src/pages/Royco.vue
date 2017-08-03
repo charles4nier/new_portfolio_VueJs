@@ -203,7 +203,7 @@ export default {
     display: flex;
     width: 86%;
     height: 35.1%;
-    margin-top: 50%;
+    margin-top: 50vh;
     overflow: hidden;
   }
 

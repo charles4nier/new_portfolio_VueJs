@@ -1,6 +1,6 @@
 <template id="Developper">
   <article>
-    <transition name="experiences-transition" mode="out-in">
+    <transition name="experiences-transition">
       <div v-if="showDeveloper" class="cv-container">
         <ul>
           <li v-for="experience in developperData"><span class="blue">{{ experience.agence }}</span>

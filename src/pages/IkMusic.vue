@@ -20,7 +20,6 @@
         <div class="card">
           <transition name="showImg">
           <p v-if="showBackgroundImg">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
         </transition>
       </div>
         <transition name="showImg">
@@ -74,9 +73,8 @@ export default {
     width: 100%;
     height: 160%;
     background: #fceabb;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to left, #f8b500, #fceabb);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to left, #f8b500, #fceabb); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+    background: -webkit-linear-gradient(to left, #f8b500, #fceabb);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #f8b500, #fceabb); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     left: 0;
     top: 55%;
     transform: translate3d(0,0,0) scaleY(0.17);
@@ -206,7 +204,7 @@ background: linear-gradient(to right, #181818, #BA8B02); /* W3C, IE 10+/ Edge, F
     display: flex;
     width: 86%;
     height: 35.1%;
-    margin-top: 50%;
+    margin-top: 50vh;
     overflow: hidden;
   }
 
