@@ -18,9 +18,6 @@
         <router-view></router-view>
       </transition>
     </main>
-    <div ref="background1" class="background1"></div>
-    <div ref="background2" class="background2"></div>
-    <div ref="background3" class="background3"></div>
   </div>
 </template>
 li {
@@ -196,7 +193,9 @@ export default {
   }
 
   @keyframes mainTransitionEnter {
-    0% {opacity: 0; transform: translate3d(0, -100%, 0);},
+    0% {opacity: 0; trans  nav {
+    background-color: white;
+  }form: translate3d(0, -100%, 0);},
     100% { opacity: 0; transform: translate3d(0, -100%, 0);}
   }
 
@@ -221,5 +220,19 @@ export default {
     transform-origin: 50% 50%;
     transform: translate3d(0, 100%, 0);
     opacity: 0;
+  }
+
+  @media only screen and (max-width: 650px) {
+    .main-nav {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      height: 50px;
+      background-color: white;
+    }
+
+    .button-menu {
+      top: 23px;
+    }
   }
 </style>

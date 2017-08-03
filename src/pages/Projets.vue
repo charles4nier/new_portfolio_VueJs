@@ -373,4 +373,18 @@ article {
 .router-link-exact-active {
   background-color: red;
 }
+
+@media only screen and (max-width: 650px) {
+
+  p {
+    top: 88.5%;
+    font-size: 0.9em;
+    width: 130px;
+    height: 40px;
+  }
+
+  .scroll-info {
+    display: none;
+  }
+}
 </style>

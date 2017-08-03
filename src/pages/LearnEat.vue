@@ -21,7 +21,6 @@
         <transition name="showImg">
           <div class="carroussel" v-if="showCarrousel">
             <img  ref="img1" v-if="showImg1" src="../assets/learn-eat2.png" alt="">
-            <img  ref="img2" v-if="showImg2" src="../assets/learn-eat.png" alt="">
           </div>
         </transition>
       </div>
@@ -259,5 +258,50 @@ export default {
 
   .linkToWebSite:hover::after {
     transform: scaleX(1.4) translate3d(-7px, 0, 0);
+  }
+
+  @media only screen and (max-width: 650px) {
+
+    h1 {
+      font-size: 1.5em;
+      background-color: rgba(255,255,255, 1);
+      padding: 10px 20px;
+    }
+
+    .colored-headband {
+      top: 40%;
+      height: 180%;
+      opacity: 0.8;
+    }
+
+    .background-img-container {
+      height: 100vh;
+      width: 100%;
+      top: 0;
+      left: 0;
+      transform: skewX(0);
+    }
+
+    .card {
+      width: 100vw;
+      right: 0;
+      top: 40%;
+    }
+
+    .card p{
+      margin-top: 20px;
+      font-size: 16px;
+      padding: 0 10px;
+    }
+
+    .carroussel {
+      display: none;
+    }
+
+    .linkToWebSite {
+      right: 30px;
+      font-size: 0.9em;
+      bottom: 6%;
+    }
   }
 </style>

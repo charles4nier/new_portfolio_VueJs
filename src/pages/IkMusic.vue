@@ -106,11 +106,8 @@ export default {
     left: 0;
     opacity: 0.7;
     background: #BA8B02;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #181818, #BA8B02);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #181818, #BA8B02); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-
-
+    background: -webkit-linear-gradient(to right, #181818, #BA8B02);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #181818, #BA8B02); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   }
 
   .showBackgroundImg-enter-active {
@@ -265,5 +262,55 @@ background: linear-gradient(to right, #181818, #BA8B02); /* W3C, IE 10+/ Edge, F
 
   .linkToWebSite:hover::after {
     transform: scaleX(1.4) translate3d(-7px, 0, 0);
+  }
+
+  @media only screen and (max-width: 650px) {
+
+  h1 {
+    font-size: 1.5em;
+    background-color: rgba(255,255,255, 1);
+    padding: 10px 20px;
+  }
+
+    .colored-headband {
+      top: 40%;
+      height: 180%;
+      opacity: 0.8;
+      background: #fceabb;  /* fallback for old browsers */
+      background: -webkit-linear-gradient(to left, #f8b500, #b39846);  /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(to left, #f8b500, #b39846); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    }
+
+    .background-img-container {
+      height: 100vh;
+      width: 100%;
+      top: 0;
+      left: 0;
+      transform: skewX(0);
+      background: url('../assets/ikmusic.png') -69% 45% scroll;
+    }
+
+    .card {
+      width: 100vw;
+      right: 0;
+      top: 40%;
+    }
+
+    .card p{
+      margin-top: 20px;
+      font-size: 16px;
+      padding: 0 10px;
+    }
+
+
+    .visual-container .carroussel {
+      display: none;
+    }
+
+    .linkToWebSite {
+      right: 30px;
+      font-size: 0.9em;
+      bottom: 6%;
+    }
   }
 </style>
