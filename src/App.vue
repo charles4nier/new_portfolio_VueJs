@@ -1,12 +1,32 @@
 <template>
   <div id="app">
+    <transition
+      @before-enter="beforeCalc"
+      @enter="enterCalc"
+      @leave="leaveCalc"
+      :css="false"
+    >
+      <div v-if="showMenu" class="calc" v-on:click="openMenu"></div>
+    </transition>
     <nav class="main-nav">
-      <div class="button-menu">
+      <div ref="buttonMenu" class="button-menu" v-on:click="openMenu">
         <div class="first-bar"></div>
         <div class="second-bar"></div>
         <div class="third-bar"></div>
       </div>
-      <ul>
+      <transition-group
+        tag="ul"
+        :css="false"
+        @before-enter="beforeEnterList"
+        @enter="enterList"
+        @leave="leaveList"
+        class="hide-menu"
+      >
+          <li v-if="showMenu" :key="1" :data-index="1">Bonjour</li>
+          <li v-if="showMenu" :key="2" :data-index="2">Au revoir</li>
+          <li v-if="showMenu" :key="3" :data-index="3">Test</li>
+      </transition-group>
+      <ul class="right-menu">
         <li><router-link class="main-nav-link" to="/projets/learn-eat">Projets</router-link></li>
         <li><router-link class="main-nav-link" to="/a-propos">Mon Cv</router-link></li>
         <li><a class="main-nav-link" href="https://github.com/charles4nier" target="_blank"><img src="./assets/gitHub.svg" alt="l'icône de github" width="18px"></a></li>
@@ -21,27 +41,22 @@
     <footer></footer>
   </div>
 </template>
-li {
-    list-style-type:none;
-    margin-bottom: 35px;
-  }
 
-  li span {
-    width: 50%;
-    display: block;
-    margin: 5px auto;
-    text-align: center;
-    font-weight: 600;
-    font-size: 0.9em;
-  }
-
-  ul div {
-    font-size: 14px;
-    margin-bottom: 5px;
-  }
 <script>
+import Vue from 'vue'
+import Velocity from 'velocity-animate'
+
+let VueTouch = require('vue-touch')
+
+Vue.use(VueTouch, {name: 'v-touch'})
+
 export default {
   name: 'app',
+  data () {
+    return {
+      showMenu: false
+    }
+  },
   methods: {
     mainTransition: function () {
       this.$refs.background1.style.transform = 'translate3d(0,0,0)'
@@ -53,6 +68,56 @@ export default {
         this.$refs.background2.style.transform = 'translate3d(0,-100%,0)'
         this.$refs.background3.style.transform = 'translate3d(50%,100%,0)'
       }, 600)
+    },
+    openMenu: function () {
+      this.showMenu = !this.showMenu
+      this.$refs.buttonMenu.classList.toggle('active')
+    },
+    beforeEnterList: function (el) {
+      el.style.opacity = 0
+    },
+    enterList: function (el, done) {
+      var delay = el.dataset.index * 130
+      setTimeout(function () {
+        Velocity(
+          el,
+          { opacity: 1, translateX: '90%' },
+          { duration: 350 },
+          { complete: done }
+        )
+      }, delay)
+    },
+    leaveList: function (el, done) {
+      var delay = el.dataset.index * 130
+      setTimeout(function () {
+        Velocity(
+          el,
+          { opacity: 0, translateX: '-100%' },
+          { duration: 320 },
+          { complete: done }
+        )
+      }, delay)
+    },
+    beforeEnterCalc: function (el) {
+      el.style.opacity = 1
+    },
+    enterCalc: function (el, done) {
+      el.style.pointerEvents = 'auto'
+      Velocity(
+        el,
+        { opacity: 1 },
+        { duration: 550 },
+        { complete: done }
+      )
+    },
+    leaveCalc: function (el, done) {
+      el.style.pointerEvents = 'none'
+      Velocity(
+        el,
+        { opacity: 0 },
+        { duration: 150 },
+        { complete: done }
+      )
     }
   }
 }
@@ -72,13 +137,27 @@ export default {
     transition: opacity .2s ease-out;
   }
 
+  li {
+    list-style-type: none;
+  }
+
+  .calc {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(5,5,5,0.45);
+    z-index: 140;
+  }
+
   .main-nav {
     position: absolute;
     display: flex;
     width: 100%;
     height: 80px;
     justify-content: flex-end;
-    z-index: 10;
+    z-index: 180;
     pointer-events: none;
   }
 
@@ -105,9 +184,26 @@ export default {
     height: 2px;
     background-color: #2d2d2a;
     transform: translate3d(0,0,0) skewX(-10deg) rotate(0deg);
-    transition: all .1s ease-in-out;
+    transition: all .3s ease-in-out;
     margin: 2px 0;
     overflow: hidden;
+  }
+
+  .active .first-bar, .active .second-bar, .active .third-bar {
+    background-color: white;
+  }
+
+  .active .first-bar {
+    transform: translate3d(0,8px,0) skewX(0deg) rotate(45deg);
+  }
+
+  .active .second-bar {
+    transform: translate3d(50px,4px,0) skewX(0deg) rotate(0deg);
+    opacity: 0;
+  }
+
+  .active .third-bar {
+    transform: translate3d(0,0,0) skewX(0deg) rotate(-45deg);
   }
 
   .first-bar::after, .second-bar::after, .third-bar::after {
@@ -133,9 +229,7 @@ export default {
     transform: translate3d(-2px,0,0) skewX(-10deg) rotate(0deg);
   }
 
-  .button-menu:hover .second-bar {<div ref="background1" class="background1"></div>
-    <div ref="background2" class="background1"></div>
-    <div ref="background3" class="background1"></div>
+  .button-menu:hover .second-bar {
     transform: translate3d(2px,0,0) skewX(-10deg) rotate(0deg);
   }
 
@@ -147,45 +241,56 @@ export default {
     transform: translate3d(-100%, 0, 0);
   }
 
-  .main-nav ul {
+  .active:hover .first-bar {
+    transform: translate3d(0,8px,0) skewX(0deg) rotate(45deg);
+  }
+
+  .active:hover .third-bar {
+    transform: translate3d(0,0,0) skewX(0deg) rotate(-45deg);
+  }
+
+  .main-nav ul.right-menu {
     display: flex;
   }
 
-  .main-nav ul li {
+  .main-nav ul.right-menu li {
     font-size: 0.9em;
     letter-spacing: -1px;
     font-weight: 600;
     margin-right: 20px;
     margin-top: 10px;
-    list-style-type: none;
   }
 
-  .background1, .background2, .background3 {
+  ul.hide-menu {
     position: absolute;
-    height: 100%;
-    width: 33.4%;
-    top: 0;
-    background: #4CA1AF;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to bottom, #C4E0E5, #4CA1AF);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to bottom, #C4E0E5, #4CA1AF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    z-index: 10;
+    top: 50px;
+    left: 0;
+    transform: translateX(-100%);
   }
 
-  .background1 {
-    transform: translate3d(-30%, -100%, 0);
-    transition: transform .2s ease-out;
+  ul.hide-menu li {
+    position: relative;
+    display: flex;
+    width: 150px;
+    height: 45px;
+    justify-content: center;
+    align-items: center;
+    /*padding-left: 25%;*/
+    background-color: black;
+    color: white;
+    border-bottom: 1px solid rgba(255,255,255,0.8);
+    /*transform: skewX(-3deg);*/
   }
 
-  .background2 {
-    transform: translate3d(0, 100%, 0);
-    transition: transform .2s ease-out .1s;
-    left: 33.4%;
-  }
-
-  .background3 {
-    transform: translate3d(30%, -100%, 0);
-    transition: transform .2s ease-out .2s;
-    left: 66.8%;
+  ul.hide-menu li:first-child::before {
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    top: -50px;
+    left: 0;
+    background-color: black;
+    border-bottom: 1px solid rgba(255,255,255,0.8);
+    content: '';
   }
 
   .mainTransition-enter {
