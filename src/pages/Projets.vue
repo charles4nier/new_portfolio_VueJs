@@ -293,7 +293,7 @@ p::before, p::after {
 p::before {
   top: 0;
   left: 0;
-  transform: translate3d(0, -100%, 0);
+  transform: translate3d(0, -110%, 0);
 }
 
 p:hover::before {
@@ -404,15 +404,24 @@ article {
     font-size: 1.4vh;
   }
 }
+@media only screen and (min-width: 330px) and (max-width: 650px) and (orientation: landscape) {
+  p {
+    width: 130px;
+    height: 40px;
+    top: 80.5%;
+    font-size: 13px;
+    left: calc(50% - 65px);
+  }
+}
 
-@media only screen and (max-width: 650px) {
+@media only screen and (max-width: 650px) and (orientation: portrait){
 
   p {
+    width: 130px;
+    height: 40px;
     left: calc(50% - 65px);
     top: 90.5%;
     font-size: 0.9em;
-    width: 130px;
-    height: 40px;
   }
 
   .scroll-info {

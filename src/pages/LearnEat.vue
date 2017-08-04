@@ -376,7 +376,70 @@ export default {
     }
   }
 
-  @media only screen and (max-width: 650px) {
+  @media only screen and (max-width: 768px) and (orientation: landscape) {
+    h1 {
+      width: auto;
+      font-size: 2.7vw;
+      top: 15%;
+      left: 18%;
+      padding: 10px 20px;
+      background-color: white;
+    }
+
+    .card {
+      height: 110px;
+      display: flex;
+      width: 68%;
+    }
+
+    .card p{
+      margin-top: 0;
+      padding: 0 10px;
+    }
+  }
+
+  @media only screen and (min-width: 330px) and (max-width: 650px) and (orientation: landscape) {
+    h1 {
+      font-size: 16px;
+      padding: 10px 20px;
+      width: auto;
+      top: 16%;
+      left: 12%;
+    }
+
+    .colored-headband {
+      top: 40%;
+      height: 180%;
+      opacity: 0.9;
+    }
+
+    .card {
+      display: flex;
+      width: 88%;
+      height: 110px;
+      top: 38%;
+    }
+
+    .card p{
+      font-size: 12px;
+      margin-top: 0;
+      padding: 0 10px;
+    }
+
+    .linkToWebSite {
+      right: 10px;
+      font-size: 0.8em;
+      font-weight: normal;
+      bottom: 32%;
+      letter-spacing: normal;
+    }
+
+    .linkToWebSite::after {
+      display: none;
+    }
+  }
+
+  @media only screen and (max-width: 650px) and (orientation: portrait){
 
     h1 {
       font-size: 1.5em;
@@ -435,14 +498,14 @@ export default {
     }
   }
 
-  @media only screen and (max-width: 350px) {
+  @media only screen and (max-width: 350px) and (orientation: portrait){
     .card p {
       font-size: 14px;
       padding: 0 10px;
     }
   }
 
-  @media only screen and (max-width: 330px) {
+  @media only screen and (max-width: 330px) and (orientation: portrait){
     .card {
       width: 100vw;
       right: 0;
