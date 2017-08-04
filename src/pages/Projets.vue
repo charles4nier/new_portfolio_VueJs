@@ -1,28 +1,44 @@
 <template>
-  <section id="projets" @wheel="scrollTo">
-    <!-- <span class="scroll-up"><img src="../assets/uparrow.png" alt="une pointe de flèche" width="15px"></span>
-    <span class="scroll-down"><img src="../assets/uparrow.png" alt="une pointe de flèche" width="15px"></span> -->
-    <transition name="showNavProject">
-      <nav v-if="show" class="projects-nav">
-        <ul>
-          <li class="li-menu" v-for="item in dataNav"><router-link class="nav-link" :to="{ path: item.link}" @click.native="goTo" :style="{ backgroundImage: 'url(' + item.style + ')' }"><span class="spanCache"></span><span class="spanMessage">{{ item.name }}</span></router-link></li>
-        </ul>
-      </nav>
-    </transition>
-    <transition name="showCalc">
-      <div class="calc" v-if="show" @click="show = !show"></div>
-    </transition>
-    <p @click="show = !show"><span>Plus de projets</span></p>
-    <article :class="{'down-transition': downTransition, 'up-transition': upTransition} ">
-      <transition name="projectsTransition">
-        <router-view></router-view>
+  <v-touch tag="section" v-on:swipedown="swipeDown" v-on:swipeup="swipeUp">
+    <div id="projets" @wheel="scrollTo">
+      <transition name="showNavProject">
+        <nav v-if="show" class="projects-nav">
+          <ul ref="ulProjects">
+            <li class="li-menu" v-for="item in dataNav"><router-link class="nav-link" :to="{ path: item.link}" @click.native="goTo" :style="{ backgroundImage: 'url(' + item.style + ')' }"><span class="spanCache"></span><span class="spanMessage">{{ item.name }}</span></router-link></li>
+          </ul>
+        </nav>
       </transition>
-    </article>
-    <span class="scroll-info">Scrollez pour naviguer</span>
-  </section >
+      <transition name="showNavProject">
+        <div v-if="show" class="arrowContainer">
+          <v-touch v-on:tap="upNav">
+            <span class="up-arrow"></span>
+          </v-touch>
+          <v-touch v-on:tap="downNav">
+            <span class="down-arrow"></span>
+          </v-touch>
+        </div>
+      </transition>
+      <transition name="showCalc">
+        <div class="calc" v-if="show" @click="show = !show"></div>
+      </transition>
+      <p @click="show = !show"><span>Plus de projets</span></p>
+      <article :class="{'down-transition': downTransition, 'up-transition': upTransition} ">
+        <transition name="projectsTransition">
+          <router-view></router-view>
+        </transition>
+      </article>
+      <span class="scroll-info">Scrollez pour naviguer</span>
+    </div >
+  </v-touch>
 </template>
 
 <script>
+import Vue from 'vue'
+
+let VueTouch = require('vue-touch')
+
+Vue.use(VueTouch, {name: 'v-touch'})
+
 export default {
   name: 'projets',
   data () {
@@ -46,6 +62,7 @@ export default {
     },
     // fonction qui permet de naviguer grace au scroll de la souris
     scrollTo: function (event) {
+      this.show = false
       // récupération de l'url
       let path = this.$route.path
       // navigation dans le tableau dataNav qui contient toutes les url
@@ -80,6 +97,47 @@ export default {
           }
         }
       }
+    },
+    // Les méthodes swipeUp et swipeDown permettent une
+    // navigation au swipe (aussi bien sur mobile que sur oridnateur)
+    swipeUp: function () {
+      let path = this.$route.path
+
+      this.downTransition = false
+      this.upTransition = true
+
+      for (let i = 0; i < this.dataNav.length; i++) {
+        if (path === this.dataNav[i].link) {
+          if (i === 0) {
+            i = this.dataNav.length - 1
+            this.$router.push(this.dataNav[i].link)
+          } else {
+            this.$router.push(this.dataNav[i - 1].link)
+          }
+        }
+      }
+    },
+    swipeDown: function () {
+      let path = this.$route.path
+
+      this.downTransition = true
+      this.upTransition = false
+
+      for (let i = 0; i < this.dataNav.length; i++) {
+        if (path === this.dataNav[i].link) {
+          if (i + 1 === this.dataNav.length) {
+            this.$router.push(this.dataNav[0].link)
+          } else {
+            this.$router.push(this.dataNav[i + 1].link)
+          }
+        }
+      }
+    },
+    upNav: function () {
+      this.$refs.ulProjects.style.transform = 'translate3d(0, -100px, 0)'
+    },
+    downNav: function () {
+      this.$refs.ulProjects.style.transform = 'translate3d(0, 100px, 0)'
     }
   }
 }
@@ -122,6 +180,7 @@ section {
   z-index: 140;
   opacity: 1;
   transition: opacity .1s ease-out;
+  pointer-events: auto;
 }
 
 .showCalc-leave-active {
@@ -135,7 +194,7 @@ section {
 .projects-nav {
   position: absolute;
   width: 350px;
-  height: 100%;
+  height: 100vh;
   border-right: 2px solid white;
   top: 0;
   left: 0;
@@ -155,18 +214,51 @@ section {
   transform: translate3d(-350px, 0, 0);
 }
 
+.arrowContainer {
+  position: absolute;
+  height: 100vh;
+  width: auto;
+  top: 0;
+  left: 2%;
+  transition: all .2s;
+  z-index: 100000;
+}
+
+.up-arrow, .down-arrow {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: green;
+}
+
+.up-arrow {
+  top: 5%;
+}
+
+.down-arrow {
+  bottom: 5%;
+}
+
 .projects-nav ul {
   height: 100%;
   width: 100%;
+  background-color: black;
+  transition: all .2s ease-in-out;
 }
 
 .projects-nav ul li {
   display: flex;
-  height: 180px;
+  height: 25%;
   width: 100%;
   justify-content: center;
   align-items: center;
   list-style-type: none;
+  user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+-webkit-user-drag: none;
+-webkit-user-select: none;
+-ms-user-select: none;
 }
 
 .nav-link {
@@ -303,7 +395,7 @@ p:hover::before {
 p::after {
   top: 0;
   right: 0;
-  transform: translate3d(-50%, 200%, 0);
+  transform: translate3d(0, 200%, 0);
 }
 
 p:hover::after {
@@ -314,21 +406,6 @@ p:hover span {
   transition: all .1s ease-out;
   color: white;
   z-index: 2;
-}
-
-.up-arrow {
-  position: absolute;
-  top: 50%;
-  left: 8%;
-  z-index: 5;
-}
-
-.down-arrow {
-  position: absolute;
-  bottom: 12%;
-  left: 8%;
-  z-index: 5;
-  transform: rotate(180deg);
 }
 
 article {
