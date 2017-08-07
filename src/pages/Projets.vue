@@ -181,6 +181,7 @@ section {
   opacity: 1;
   transition: opacity .1s ease-out;
   pointer-events: auto;
+  filter: blur(40px);
 }
 
 .showCalc-leave-active {
@@ -253,16 +254,13 @@ section {
   justify-content: center;
   align-items: center;
   list-style-type: none;
-  user-drag: none;
-  user-select: none;
-  -moz-user-select: none;
--webkit-user-drag: none;
--webkit-user-select: none;
--ms-user-select: none;
 }
 
 .nav-link {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
   background-size: cover;
@@ -270,7 +268,6 @@ section {
 }
 
 .nav-link .spanCache {
-  position: absolute;
   display: flex;
   width: 100%;
   height: 100%;
@@ -298,9 +295,7 @@ section {
 .nav-link .spanCache::before {
   position: absolute;
   width: 190px;
-  height: 50px;
-  top: 65px;
-  left: 80px;
+  height: 30%;
   z-index: 5;
   background-color: white;
   transform: skewX(-3deg) scaleX(1);
@@ -314,11 +309,8 @@ section {
 }
 
 .nav-link .spanCache::after {
-  position: absolute;
   width: 192px;
-  height: 50px;
-  top: 65px;
-  right: 78px;
+  height: 30%;
   z-index: 5;
   background-color: black;
   transform: skewX(-3deg) scaleX(0);

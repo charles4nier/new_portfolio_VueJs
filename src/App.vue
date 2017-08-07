@@ -22,8 +22,8 @@
         @leave="leaveList"
         class="hide-menu"
       >
-          <li v-if="showMenu" :key="1" :data-index="1">Bonjour</li>
-          <li v-if="showMenu" :key="2" :data-index="2">Au revoir</li>
+          <li v-if="showMenu" :key="1" :data-index="1"><a href="mailto:charles.4nier@gmail.com" target="_top">Me contacter</a></li>
+          <li v-if="showMenu" :key="2" :data-index="2"><a href="../static/assets/cv_Charles_Fournier.pdf" download>Télécharger mon CV</a></li>
           <li v-if="showMenu" :key="3" :data-index="3">Test</li>
       </transition-group>
       <ul class="right-menu">
@@ -81,7 +81,7 @@ export default {
       setTimeout(function () {
         Velocity(
           el,
-          { opacity: 1, translateX: '90%' },
+          { opacity: 1, translateX: '90%', rotateZ: '0' },
           { duration: 350 },
           { complete: done }
         )
@@ -275,11 +275,9 @@ export default {
     height: 45px;
     justify-content: center;
     align-items: center;
-    /*padding-left: 25%;*/
     background-color: black;
     color: white;
-    border-bottom: 1px solid rgba(255,255,255,0.8);
-    /*transform: skewX(-3deg);*/
+    z-index: 1000000;
   }
 
   ul.hide-menu li:first-child::before {
@@ -289,8 +287,14 @@ export default {
     top: -50px;
     left: 0;
     background-color: black;
-    border-bottom: 1px solid rgba(255,255,255,0.8);
+    border-bottom: 1px solid rgba(255,255,255,0.5);
     content: '';
+  }
+
+  ul.hide-menu li a {
+    text-decoration: none;
+    color: white;
+    pointer-events: auto;
   }
 
   .mainTransition-enter {
