@@ -449,10 +449,6 @@ article {
     height: 7%;
     font-size: 1.4vw;
   }
-
-  .scroll-info {
-    display: none;
-  }
 }
 
 

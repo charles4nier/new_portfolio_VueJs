@@ -22,9 +22,9 @@
         @leave="leaveList"
         class="hide-menu"
       >
-          <li v-if="showMenu" :key="1" :data-index="1"><a href="mailto:charles.4nier@gmail.com" target="_top">Me contacter</a></li>
-          <li v-if="showMenu" :key="2" :data-index="2"><a href="../static/assets/cv_Charles_Fournier.pdf" download>Télécharger mon CV</a></li>
-          <li v-if="showMenu" :key="3" :data-index="3">Test</li>
+          <li v-if="showMenu" :key="3" :data-index="1"><a href="mailto:charles.4nier@gmail.com" target="_top">Accueil</a></li>
+          <li v-if="showMenu" :key="2" :data-index="2"><a href="../static/assets/cv_Charles_Fournier.pdf" download>Mon CV</a></li>
+          <li v-if="showMenu" :key="1" :data-index="3"><a href="mailto:charles.4nier@gmail.com" target="_top">charles.4nier@gmail.com</a></li>
       </transition-group>
       <ul class="right-menu">
         <li><router-link class="main-nav-link" to="/projets/learn-eat">Projets</router-link></li>
@@ -81,22 +81,19 @@ export default {
       setTimeout(function () {
         Velocity(
           el,
-          { opacity: 1, translateX: '90%', rotateZ: '0' },
-          { duration: 350 },
+          { opacity: 1, translateY: '5px', rotateZ: '0' },
+          { duration: 450 },
           { complete: done }
         )
       }, delay)
     },
     leaveList: function (el, done) {
-      var delay = el.dataset.index * 130
-      setTimeout(function () {
-        Velocity(
-          el,
-          { opacity: 0, translateX: '-100%' },
-          { duration: 320 },
-          { complete: done }
-        )
-      }, delay)
+      Velocity(
+        el,
+        { opacity: 0, translateY: '100%' },
+        { duration: 320 },
+        { complete: done }
+      )
     },
     beforeEnterCalc: function (el) {
       el.style.opacity = 1
@@ -147,7 +144,7 @@ export default {
     left: 0;
     height: 100%;
     width: 100%;
-    background-color: rgba(5,5,5,0.45);
+    background-color: rgba(0,0,0,0.95);
     z-index: 140;
   }
 
@@ -194,7 +191,7 @@ export default {
   }
 
   .active .first-bar {
-    transform: translate3d(0,8px,0) skewX(0deg) rotate(45deg);
+    transform: translate3d(0,28px,0) skewX(0deg) rotate(45deg);
   }
 
   .active .second-bar {
@@ -203,7 +200,7 @@ export default {
   }
 
   .active .third-bar {
-    transform: translate3d(0,0,0) skewX(0deg) rotate(-45deg);
+    transform: translate3d(0,20px,0) skewX(0deg) rotate(-45deg);
   }
 
   .first-bar::after, .second-bar::after, .third-bar::after {
@@ -242,11 +239,11 @@ export default {
   }
 
   .active:hover .first-bar {
-    transform: translate3d(0,8px,0) skewX(0deg) rotate(45deg);
+    transform: translate3d(0,28px,0) skewX(0deg) rotate(45deg);
   }
 
   .active:hover .third-bar {
-    transform: translate3d(0,0,0) skewX(0deg) rotate(-45deg);
+    transform: translate3d(0,20px,0) skewX(0deg) rotate(-45deg);
   }
 
   .main-nav ul.right-menu {
@@ -263,38 +260,51 @@ export default {
 
   ul.hide-menu {
     position: absolute;
-    top: 50px;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
     left: 0;
-    transform: translateX(-100%);
+    justify-content: center;
+    align-items: center;
+    transform: translateY(-300px);
   }
 
   ul.hide-menu li {
     position: relative;
     display: flex;
-    width: 150px;
+    width: 200px;
     height: 45px;
     justify-content: center;
     align-items: center;
-    background-color: black;
     color: white;
     z-index: 1000000;
   }
 
-  ul.hide-menu li:first-child::before {
-    position: absolute;
-    width: 100%;
-    height: 50px;
-    top: -50px;
-    left: 0;
-    background-color: black;
-    border-bottom: 1px solid rgba(255,255,255,0.5);
-    content: '';
-  }
-
   ul.hide-menu li a {
+    position: relative;
+    font-size: 17px;
+    font-weight: bold;
     text-decoration: none;
     color: white;
     pointer-events: auto;
+    transform: skewX(-3deg);
+  }
+
+  ul.hide-menu li a::after {
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background-color: white;
+    bottom: -3px;
+    left: 0;
+    transition: all .2s ease-out;
+    transform: scaleX(0);
+    content: '';
+  }
+
+  ul.hide-menu li a:hover::after {
+    transform: scaleX(1);
   }
 
   .mainTransition-enter {
