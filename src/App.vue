@@ -6,10 +6,13 @@
       @leave="leaveCalc"
       :css="false"
     >
-      <div v-if="showMenu" class="calc" v-on:click="openMenu"></div>
+      <div v-if="showMenu" class="calc" v-on:click="openMenu">
+        <DeveloperSkills :showDeveloper="showDeveloper" :showChartDev="showChartDev"></DeveloperSkills>
+        <Developer :showDeveloper="showDeveloper"></Developer>
+      </div>
     </transition>
     <nav class="main-nav">
-      <div ref="buttonMenu" class="button-menu" v-on:click="openMenu">
+       <div ref="buttonMenu" class="button-menu" v-on:click="openMenu">
         <div class="first-bar"></div>
         <div class="second-bar"></div>
         <div class="third-bar"></div>
@@ -22,13 +25,15 @@
         @leave="leaveList"
         class="hide-menu"
       >
-          <li v-if="showMenu" :key="3" :data-index="1"><a href="mailto:charles.4nier@gmail.com" target="_top">Accueil</a></li>
-          <li v-if="showMenu" :key="2" :data-index="2"><a href="../static/assets/cv_Charles_Fournier.pdf" download>Mon CV</a></li>
-          <li v-if="showMenu" :key="1" :data-index="3"><a href="mailto:charles.4nier@gmail.com" target="_top">charles.4nier@gmail.com</a></li>
+          <li v-if="showMenu" :key="2" :data-index="2"><a href="../static/assets/cv_Charles_Fournier.pdf" download><span>Télécharger mon CV</span></a></li>
+          <li v-if="showMenu" :key="1" :data-index="3"><a href="mailto:charles.4nier@gmail.com" target="_top"><span>charles.4nier@gmail.com</span></a></li>
       </transition-group>
       <ul class="right-menu">
-        <li><router-link class="main-nav-link" to="/projets/learn-eat">Projets</router-link></li>
-        <li><router-link class="main-nav-link" to="/a-propos">Mon Cv</router-link></li>
+        <!-- <li><router-link class="main-nav-link" to="/projets/learn-eat">Projets</router-link></li>
+        <li><router-link class="main-nav-link" to="/mon-cv">Mon Cv</router-link></li> -->
+        <!-- <li><router-link  class="main-nav-link" to="/">Accueil</router-link></li>
+        <li ><a class="main-nav-link" href="../static/assets/cv_Charles_Fournier.pdf" download>Mon CV</a></li>
+        <li><a class="main-nav-link" href="mailto:charles.4nier@gmail.com" target="_top">charles.4nier@gmail.com</a></li> -->
         <li><a class="main-nav-link" href="https://github.com/charles4nier" target="_blank"><img src="./assets/gitHub.svg" alt="l'icône de github" width="18px"></a></li>
         <li><a class="main-nav-link" href="https://www.linkedin.com/in/charles-fournier-856723121/" target="_blank"><img src="./assets/linkedin.svg" alt="l'icône de github" width="18px"></a></li>
       </ul>
@@ -45,16 +50,21 @@
 <script>
 import Vue from 'vue'
 import Velocity from 'velocity-animate'
+import Developer from './components/Developer'
+import DeveloperSkills from './components/DeveloperSkills'
 
 let VueTouch = require('vue-touch')
 
 Vue.use(VueTouch, {name: 'v-touch'})
 
 export default {
+  components: {Developer, DeveloperSkills},
   name: 'app',
   data () {
     return {
-      showMenu: false
+      showDeveloper: false,
+      showMenu: false,
+      showChartDev: false
     }
   },
   methods: {
@@ -71,6 +81,18 @@ export default {
     },
     openMenu: function () {
       this.showMenu = !this.showMenu
+      if (this.showMenu === true) {
+        setTimeout(() => {
+          this.showDeveloper = true
+        }, 240)
+        setTimeout(() => {
+          this.showChartDev = true
+        }, 300)
+      } else {
+        this.showDeveloper = false
+        this.showChartDev = false
+      }
+
       this.$refs.buttonMenu.classList.toggle('active')
     },
     beforeEnterList: function (el) {
@@ -81,7 +103,7 @@ export default {
       setTimeout(function () {
         Velocity(
           el,
-          { opacity: 1, translateY: '5px', rotateZ: '0' },
+          { opacity: 1, translateY: '55%' },
           { duration: 450 },
           { complete: done }
         )
@@ -140,8 +162,11 @@ export default {
 
   .calc {
     position: absolute;
+    display: flex;
     top: 0;
     left: 0;
+    justify-content: flex-start;
+    align-items: center;
     height: 100%;
     width: 100%;
     background-color: rgba(0,0,0,0.95);
@@ -173,6 +198,7 @@ export default {
     cursor: pointer;
     z-index: 5;
     pointer-events: auto;
+    transition: all .3s ease-in-out;
   }
 
   .first-bar, .second-bar, .third-bar {
@@ -186,12 +212,16 @@ export default {
     overflow: hidden;
   }
 
+  div.active {
+    transform: translate3d(0, 20px, 0);
+  }
+
   .active .first-bar, .active .second-bar, .active .third-bar {
     background-color: white;
   }
 
   .active .first-bar {
-    transform: translate3d(0,28px,0) skewX(0deg) rotate(45deg);
+    transform: translate3d(0,8px,0) skewX(0deg) rotate(45deg);
   }
 
   .active .second-bar {
@@ -200,7 +230,7 @@ export default {
   }
 
   .active .third-bar {
-    transform: translate3d(0,20px,0) skewX(0deg) rotate(-45deg);
+    transform: translate3d(0,0,0) skewX(0deg) rotate(-45deg);
   }
 
   .first-bar::after, .second-bar::after, .third-bar::after {
@@ -239,11 +269,11 @@ export default {
   }
 
   .active:hover .first-bar {
-    transform: translate3d(0,28px,0) skewX(0deg) rotate(45deg);
+    transform: translate3d(0,8px,0) skewX(0deg) rotate(45deg);
   }
 
   .active:hover .third-bar {
-    transform: translate3d(0,20px,0) skewX(0deg) rotate(-45deg);
+    transform: translate3d(0,0,0) skewX(0deg) rotate(-45deg);
   }
 
   .main-nav ul.right-menu {
@@ -263,44 +293,64 @@ export default {
     display: flex;
     width: 100vw;
     height: 100vh;
-    top: 0;
+    top: 5%;
     left: 0;
     justify-content: center;
-    align-items: center;
-    transform: translateY(-300px);
+    align-items: flex-start;
+    transform: translateY(0);
   }
 
   ul.hide-menu li {
     position: relative;
     display: flex;
-    width: 200px;
-    height: 45px;
-    justify-content: center;
+    width: 220px;
+    height: 40px;
+    justify-content: space-around;
     align-items: center;
     color: white;
     z-index: 1000000;
+    margin-left: 5px;
+    margin-right: 5px;
   }
 
   ul.hide-menu li a {
     position: relative;
+    width: 100%;
+    height: 100%;
     font-size: 17px;
     font-weight: bold;
     text-decoration: none;
     color: white;
     pointer-events: auto;
-    transform: skewX(-3deg);
+    overflow: hidden;
   }
+
+  ul.hide-menu span{
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+    transition: color .1s ease-out;
+  }
+
 
   ul.hide-menu li a::after {
     position: absolute;
     width: 100%;
-    height: 1px;
-    background-color: white;
-    bottom: -3px;
-    left: 0;
-    transition: all .2s ease-out;
-    transform: scaleX(0);
+    height: 100%;
     content: '';
+    top: 0;
+    left: 0;
+    transform: translate3d(0, -100%, 0);
+    transition: transform .2s ease-out;
+    background: #ff9966;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #ff5e62, #ff9966);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #ff5e62, #ff9966); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   }
 
   ul.hide-menu li a:hover::after {
@@ -343,6 +393,11 @@ export default {
   }
 
   @media only screen and (min-width: 1370px) and (max-width: 4000px) and (orientation: landscape) {
+
+    .calc {
+      justify-content: center;
+    }
+
     .main-nav-link {
       font-size: 1.2vw;
     }
@@ -367,9 +422,7 @@ export default {
       background-color: white;
     }
 
-    .button-menu {
-      top: 23px;
-    }
+
 
     footer {
       position: absolute;
@@ -379,6 +432,51 @@ export default {
       bottom: 0;
       left: 0;
       z-index: 1;
+    }
+  }
+
+  @media only screen and (max-width: 650px) and (orientation: portrait){
+    div.active {
+      transform: translate3d(0, 0, 0);
+    }
+
+    .button-menu {
+      top: 18px;
+    }
+
+    .active .first-bar {
+      transform: translate3d(0,8px,0) skewX(0deg) rotate(45deg);
+      background-color: black;
+    }
+
+    .active .second-bar {
+      transform: translate3d(50px,24px,0) skewX(0deg) rotate(0deg);
+      opacity: 0;
+    }
+
+    .active .third-bar {
+      transform: translate3d(0,0,0) skewX(0deg) rotate(-45deg);
+      background-color: black;
+    }
+
+    ul.hide-menu {
+      top: 30px;
+    }
+
+    ul.hide-menu li {
+      width: 150px;
+    }
+
+    ul.hide-menu span {
+      font-size: 12px;
+    }
+
+    .main-nav-link {
+      font-size: 11px;
+    }
+
+    .main-nav-link img{
+      width: 13px;
     }
   }
 </style>

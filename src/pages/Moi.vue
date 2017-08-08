@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="test">
     <nav>
       <ul class="experiences-ul">
         <li class="cv-nav" id="developer-list" :class="{active: showDeveloper}"><span @click="showContent" id="developer" :class="{active: showDeveloper}">Développeur Web</span></li>
@@ -7,13 +7,16 @@
         <li class="cv-nav" id="studio-list" :class="{active: showStudioTroll}"><span @click="showContent" id="studio" :class="{active: showStudioTroll}">Fondateur Studio Troll</span></li>
       </ul>
     </nav>
-    <div class="experiences-container">
-      <Developer :showDeveloper="showDeveloper"></Developer>
-      <Immo :showImmo="showImmo"></Immo>
-      <StudioTroll :showStudioTroll="showStudioTroll"></StudioTroll>
-    </div>
-    <div class="skills">
-      <DeveloperSkills :showDeveloper="showDeveloper" :showChartDev="showChartDev"></DeveloperSkills>
+    <div class="content-container">
+      <div class="experiences-container">
+        <Developer :showDeveloper="showDeveloper"></Developer>
+        <Immo :showImmo="showImmo"></Immo>
+        <StudioTroll :showStudioTroll="showStudioTroll"></StudioTroll>
+      </div>
+      <div class="skills">
+        <DeveloperSkills :showDeveloper="showDeveloper" :showChartDev="showChartDev"></DeveloperSkills>
+        <ImmoSkills :showImmo="showImmo" :showChartDev="showChartImmo"></ImmoSkills>
+      </div>
     </div>
   </section>
 </template>
@@ -23,14 +26,16 @@
   import Immo from '../components/Immo'
   import StudioTroll from '../components/StudioTroll'
   import DeveloperSkills from '../components/DeveloperSkills'
+  import ImmoSkills from '../components/ImmoSkills'
 
   export default {
-    components: { Developer, Immo, StudioTroll, DeveloperSkills },
+    components: { Developer, Immo, StudioTroll, DeveloperSkills, ImmoSkills },
     data () {
       return {
         showDeveloper: false,
         showChartDev: false,
         showImmo: false,
+        showChartImmo: false,
         showStudioTroll: false
       }
     },
@@ -39,18 +44,21 @@
         switch (event.target.id) {
           case 'developer':
             this.showImmo = false
+            this.showChartImmo = false
             this.showStudioTroll = false
             this.showDeveloper = true
             this.showChartDev = true
             break
           case 'immo':
             this.showImmo = true
+            this.showChartImmo = true
             this.showStudioTroll = false
             this.showDeveloper = false
             this.showChartDev = false
             break
           case 'studio':
             this.showImmo = false
+            this.showChartImmo = false
             this.showStudioTroll = true
             this.showDeveloper = false
             this.showChartDev = false
@@ -72,8 +80,12 @@
 <style scoped>
   section {
     position: absolute;
+    display: flex;
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    flex-wrap: wrap;
+    top: 0;
+    left: 0;
   }
 
   li {
@@ -81,15 +93,26 @@
   }
 
   section nav {
-    position: absolute;
-    top: 14%;
-    left: 5%;
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 20%;
+    justify-content: flex-start;
+    align-items: center;
     z-index: 10;
+    margin: 5% 0 0 5%;
+  }
+
+  .content-container {
+    position: relative;
+    display: flex;
+    width: 90%;
+    height: auto;
+    margin-left: 5%;
   }
 
   .experiences-container {
-    position: relative;
-    width: 100%;
+    width: 50%;
     height: 100%;
   }
 
@@ -150,10 +173,49 @@
   }
 
   .skills {
-    position: absolute;
-    width: 40%;
+    width: 50%;
+    /*width: 40%;
     height: 90%;
-    top: 10%;
-    right: 5%;
+    top: 0;
+    right: 5%;*/
+  }
+
+
+  @media only screen and (max-width: 1024px) {
+    .test {
+      width: 100vw;
+      overflow-y: scroll;
+      transform: scale(0.8);
+    }
+
+    .experiences-ul {
+      width: 100vw;
+    }
+
+    .experiences-ul li {
+      position: relative;
+      height: 45px;
+      padding-left: 5px;
+      list-style-type: none;
+      overflow: hidden;
+      font-style: 12px;
+      margin: 0 1px;
+    }
+
+    .content-container {
+      margin-top: 22%;
+    }
+
+    .experiences-container {
+      position: relative;
+      width: 50%;
+      height: 100%;
+      margin-left: 0;
+    }
+
+    .skills {
+      right: 80%;
+      top: 95%;
+    }
   }
 </style>

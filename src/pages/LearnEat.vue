@@ -15,7 +15,8 @@
       <div class="visual-container">
         <div class="card">
           <transition name="showImg">
-          <p v-if="showBackgroundImg">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <p v-if="showBackgroundImg">Learn eat est un site créé pour une amie. Elle avait besoin d'une interface présentant son activité - elle donne des cours de langues via l'apprentissage de la cuisine.<br>
+          Mes missions: charte graphique, maquette, développement et mise en ligne du site.</p>
         </transition>
       </div>
         <transition name="showImg">

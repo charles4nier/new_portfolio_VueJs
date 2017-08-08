@@ -33,7 +33,7 @@
     position: absolute;
     width: 550px;
     height: 450px;
-    top: 25%;
+    top: 3%;
     left: 5%;
     padding: 15px 5px;
     overflow: hidden;

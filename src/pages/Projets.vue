@@ -10,12 +10,12 @@
       </transition>
       <transition name="showNavProject">
         <div v-if="show" class="arrowContainer">
-          <v-touch v-on:tap="upNav">
+          <!-- <v-touch v-on:tap="upNav">
             <span class="up-arrow"></span>
           </v-touch>
           <v-touch v-on:tap="downNav">
             <span class="down-arrow"></span>
-          </v-touch>
+          </v-touch> -->
         </div>
       </transition>
       <transition name="showCalc">

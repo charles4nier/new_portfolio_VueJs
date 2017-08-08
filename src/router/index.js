@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Home from '@/pages/Home'
 import Projets from '@/pages/Projets'
 import LearnEat from '@/pages/LearnEat'
 import PFCG from '@/pages/PFCG'
@@ -11,7 +12,10 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
-    { path: '/', redirect: '/projets/learn-eat' },
+    { path: '/',
+      name: 'Home',
+      component: Home
+    },
     {
       path: '/projets',
       name: 'Projets',
@@ -39,6 +43,6 @@ export default new Router({
         }
       ]
     },
-    { path: '/a-propos', component: Moi }
+    { path: '/mon-cv', component: Moi }
   ]
 })

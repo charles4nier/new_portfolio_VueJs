@@ -1,5 +1,5 @@
 <template>
-  <div class="devSkills">
+  <div>
     <transition-group
       tag="ul"
       :css="false"
@@ -8,7 +8,7 @@
       @leave="leaveList"
     >
       <li
-        v-if="showDeveloper"
+        v-if="showImmo"
         v-for="(skill, index) in devSkills"
         :style="{width: skill.width}"
         :key="index"
@@ -16,7 +16,7 @@
       >
         <img :src="skill.logo" :alt="'le logo de ' + skill.name" height="45">
           <span
-            v-show="showChartDev"
+            v-show="showChartImmo"
             class="chart"
             :class="'chart' + index"
           >
@@ -31,17 +31,13 @@
 import Velocity from 'velocity-animate'
 
 export default {
-  props: ['showDeveloper', 'showChartDev'],
+  props: ['showImmo', 'showChartImmo'],
   data () {
     return {
       devSkills: [
         {logo: '../../static/assets/js.png', name: 'Js', width: '320px', value: 'Javascript : 80%'},
-        {logo: '../../static/assets/vuesjs.png', name: 'Vue js', width: '260px', value: 'Vue Js 2.0 : 65%'},
-        {logo: '../../static/assets/react.svg', name: 'React', width: '200px', value: 'React : 50%'},
-        {logo: '../../static/assets/angular.svg', name: 'AngularJs', width: '200px', value: 'Angular Js : 50%'},
-        {logo: '../../static/assets/php7.png', name: 'Php 7', width: '280px', value: 'Php 7 : 70%'},
-        {logo: '../../static/assets/laravel.png', name: 'Laravel', width: '160px', value: 'Laravel : 40%'},
-        {logo: '../../static/assets/html5-css.svg', name: 'Html et css', width: '360px', value: 'Html/Css : 90%'}
+        {logo: '../../static/assets/vuesjs.png', name: 'Vue js', width: '280px', value: 'Vue Js 2.0 : 70%'},
+        {logo: '../../static/assets/react.svg', name: 'React', width: '200px', value: 'React : 50%'}
       ]
     }
   },
@@ -73,14 +69,17 @@ export default {
 </script>
 <style scoped>
   ul {
-    margin-top: 6%;
+    margin-top: 25%;
     margin-left: 10%;
   }
 
   li {
     position: relative;
     height: 30px;
-    margin-left: 70px;
+    margin-left: 70px;  .cv-container ul {
+        height: 500px;
+      }
+
     margin-bottom: 35px;
     list-style-type: none;
     transform-origin: left;
@@ -92,20 +91,8 @@ export default {
     left: -80px;
   }
 
-  li:nth-child(3) img{
-    left: -82px;
-  }
-
-  li:nth-child(4) img{
-    left: -78px;
-  }
-
   li:nth-child(5) img{
-    left: -70px;
-  }
-
-  li:nth-child(6) img{
-    left: -85px;
+    left: -73px;
   }
 
   li:last-child img{
@@ -154,15 +141,5 @@ export default {
   @keyframes showChart {
     0% {transform: translate3d(-100%, 0, 0);},
     100% {transform: translate3d(0, 0, 0);}
-  }
-
-  @media only screen and (max-width: 650px) and (orientation: portrait)  {
-    div.devSkills {
-      transform: scale(0.65);
-    }
-
-    ul {
-      margin-left: -18%;
-    }
   }
 </style>

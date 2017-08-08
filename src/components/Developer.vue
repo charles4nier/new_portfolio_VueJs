@@ -31,11 +31,11 @@
 
 <style scoped>
   article {
-    position: absolute;
+    position: relative;
     width: 550px;
     height: 450px;
-    top: 25%;
-    left: 5%;
+    margin-top: -25px;
+    margin-left: 8%;
     padding: 15px 5px;
     overflow: hidden;
   }
@@ -63,7 +63,7 @@
   ul div {
     font-size: 14px;
     margin-bottom: 8px;
-    color: black;
+    color: white;
   }
 
   .experiences-transition-enter, .experiences-transition-leave {
@@ -84,5 +84,11 @@
   .experiences-transition-leave-active {
     opacity: 0;
     transform: translate3d(0, 100%, 0);
+  }
+
+  @media only screen and (max-width: 1200px) {
+    article {
+      display: none;
+    }
   }
 </style>
