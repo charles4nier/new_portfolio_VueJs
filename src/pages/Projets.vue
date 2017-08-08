@@ -177,11 +177,12 @@ section {
   height: 100%;
   width: 100%;
   background-color: rgba(5,5,5,0.45);
-  z-index: 140;
+  z-index: 14000000;
   opacity: 1;
   transition: opacity .1s ease-out;
   pointer-events: auto;
   filter: blur(40px);
+  cursor: pointer;
 }
 
 .showCalc-leave-active {
@@ -199,7 +200,7 @@ section {
   border-right: 2px solid white;
   top: 0;
   left: 0;
-  z-index: 150;
+  z-index: 15000000;
   transform-origin: top;
   transform: translate3d(0, 0, 0);
   transition-property: all;

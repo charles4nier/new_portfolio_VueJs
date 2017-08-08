@@ -20,6 +20,7 @@ export default new Router({
       path: '/projets',
       name: 'Projets',
       component: Projets,
+      redirect: '/projets/learn-eat',
       children: [
         {
           path: 'learn-eat',

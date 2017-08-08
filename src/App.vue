@@ -112,7 +112,7 @@ export default {
     leaveList: function (el, done) {
       Velocity(
         el,
-        { opacity: 0, translateY: '100%' },
+        { opacity: 0, translateY: '-100%' },
         { duration: 320 },
         { complete: done }
       )
