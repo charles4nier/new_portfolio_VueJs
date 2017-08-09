@@ -1,27 +1,16 @@
 <template>
   <v-touch tag="section" v-on:swipedown="swipeDown" v-on:swipeup="swipeUp">
     <div id="projets" @wheel="scrollTo">
-      <transition name="showNavProject">
-        <nav v-if="show" class="projects-nav">
+      <span class="project-counter">{{ projectKey }} / {{ dataLength }}</span>
+        <nav ref="projectsNav" class="projects-nav">
           <ul ref="ulProjects">
             <li class="li-menu" v-for="item in dataNav"><router-link class="nav-link" :to="{ path: item.link}" @click.native="goTo" :style="{ backgroundImage: 'url(' + item.style + ')' }"><span class="spanCache"></span><span class="spanMessage">{{ item.name }}</span></router-link></li>
           </ul>
         </nav>
-      </transition>
-      <transition name="showNavProject">
-        <div v-if="show" class="arrowContainer">
-          <!-- <v-touch v-on:tap="upNav">
-            <span class="up-arrow"></span>
-          </v-touch>
-          <v-touch v-on:tap="downNav">
-            <span class="down-arrow"></span>
-          </v-touch> -->
-        </div>
-      </transition>
       <transition name="showCalc">
-        <div class="calc" v-if="show" @click="show = !show"></div>
+        <div class="calc" v-if="show" @click="callMenu"></div>
       </transition>
-      <p @click="show = !show"><span>Plus de projets</span></p>
+      <p ref="buttonProject" @click="callMenu"><span>Plus de projets</span></p>
       <article :class="{'down-transition': downTransition, 'up-transition': upTransition} ">
         <transition name="projectsTransition">
           <router-view></router-view>
@@ -43,22 +32,33 @@ export default {
   name: 'projets',
   data () {
     return {
+      projectKey: 1,
       show: false,
       downTransition: true,
       upTransition: false,
       image: 'http://1.bp.blogspot.com/-8PfnHfgrH4I/TylX2v8pTMI/AAAAAAAAJJ4/TICBoSEI57o/s1600/search_by_image_image.png',
       dataNav: [
-        {link: '/projets/learn-eat', name: 'Learn Eat', style: '../../static/assets/learnEat.png'},
-        {link: '/projets/paris-foot-golf-club', name: 'Paris Foot Golf Club', style: '../../static/assets/pfgc2.png'},
-        {link: '/projets/ik-music-production', name: 'Ik music Production', style: '../../static/assets/ikmusic.png'},
-        {link: '/projets/les-legumes-de-cedric', name: 'Les légumes de Cédric', style: '../../static/assets/royco.png'}
-      ]
+        {link: '/projets/learn-eat', name: 'Learn Eat', style: '../../static/assets/learnEat.png', key: '1'},
+        {link: '/projets/paris-foot-golf-club', name: 'Paris Foot Golf Club', style: '../../static/assets/pfgc2.png', key: '2'},
+        {link: '/projets/ik-music-production', name: 'Ik music Production', style: '../../static/assets/ikmusic.png', key: '3'},
+        {link: '/projets/les-legumes-de-cedric', name: 'Les légumes de Cédric', style: '../../static/assets/royco.png', key: '4'}
+      ],
+      dataLength: 0
     }
   },
   methods: {
+    changeCount: function () {
+      this.dataLength = this.dataNav.length
+      for (let i = 0; i < this.dataNav.length; i++) {
+        let path = this.$route.path
+        if (path === this.dataNav[i].link) {
+          this.projectKey = this.dataNav[i].key
+        }
+      }
+    },
     // fonction qui permet de naviguer au click
     goTo: function () {
-      this.show = false
+      this.callMenu()
     },
     // fonction qui permet de naviguer grace au scroll de la souris
     scrollTo: function (event) {
@@ -138,6 +138,24 @@ export default {
     },
     downNav: function () {
       this.$refs.ulProjects.style.transform = 'translate3d(0, 100px, 0)'
+    },
+    callMenu: function () {
+      this.show = !this.show
+      if (this.show === true) {
+        this.$refs.projectsNav.classList.add('active')
+        this.$refs.buttonProject.classList.add('active')
+      } else {
+        this.$refs.projectsNav.classList.remove('active')
+        this.$refs.buttonProject.classList.remove('active')
+      }
+    }
+  },
+  mounted: function () {
+    this.changeCount()
+  },
+  watch: {
+    '$route' (to, from) {
+      this.changeCount()
     }
   }
 }
@@ -168,6 +186,21 @@ section {
   transform: skewX(3deg);
   opacity: 0.6;
   content: '';
+}
+
+.project-counter {
+  position: absolute;
+  display: flex;
+  width: 50px;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+  left: calc(50% - 25px);
+  top: 1%;
+  z-index: 15;
+  font-size: 15px;
+  font-style: italic;
+  font-weight: 600;
 }
 
 .calc {
@@ -202,10 +235,16 @@ section {
   left: 0;
   z-index: 15000000;
   transform-origin: top;
-  transform: translate3d(0, 0, 0);
+  transform: translate3d(-349px, 0, 0);
   transition-property: all;
   transition-duration: .3s;
   transition-timing-function: ease-in-out;
+  opacity: 0.1;
+}
+
+.projects-nav.active {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
 }
 
 .showNavProject-enter {
@@ -214,31 +253,6 @@ section {
 
 .showNavProject-leave-active {
   transform: translate3d(-350px, 0, 0);
-}
-
-.arrowContainer {
-  position: absolute;
-  height: 100vh;
-  width: auto;
-  top: 0;
-  left: 2%;
-  transition: all .2s;
-  z-index: 100000;
-}
-
-.up-arrow, .down-arrow {
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  background-color: green;
-}
-
-.up-arrow {
-  top: 5%;
-}
-
-.down-arrow {
-  bottom: 5%;
 }
 
 .projects-nav ul {
@@ -359,7 +373,12 @@ p {
   align-items: center;
   cursor: pointer;
   overflow: hidden;
-  transition: all .1s ease-out;
+  transition: transform .1s ease-out, opacity .1s ease-out .18s;
+}
+
+p.active {
+  transition: transform .1s ease-out, opacity .1s ease-out;
+  opacity: 0;
 }
 
 p:hover {
@@ -440,10 +459,6 @@ article {
   opacity: 0;
 }
 
-.router-link-exact-active {
-  background-color: red;
-}
-
 @media only screen and (max-width: 4000px) {
   p {
     width: 12%;
@@ -482,12 +497,19 @@ article {
 
 @media only screen and (max-width: 650px) and (orientation: portrait){
 
+  .project-counter {
+    top: 71%;
+    left: 1%;
+    font-size: 12px;
+  }
+
   p {
     width: 130px;
     height: 40px;
     left: calc(50% - 65px);
     top: 90.5%;
     font-size: 0.9em;
+    opacity: 0;
   }
 
   .scroll-info {

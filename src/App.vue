@@ -7,7 +7,7 @@
       :css="false"
     >
       <div v-if="showMenu" class="calc" v-on:click="openMenu">
-        <DeveloperSkills :showDeveloper="showDeveloper" :showChartDev="showChartDev"></DeveloperSkills>
+        <DeveloperSkills :showChartDev="showChartDev"></DeveloperSkills>
         <Developer :showDeveloper="showDeveloper"></Developer>
       </div>
     </transition>
@@ -43,7 +43,6 @@
         <router-view></router-view>
       </transition>
     </main>
-    <footer></footer>
   </div>
 </template>
 
@@ -84,10 +83,10 @@ export default {
       if (this.showMenu === true) {
         setTimeout(() => {
           this.showDeveloper = true
-        }, 240)
+        }, 550)
         setTimeout(() => {
           this.showChartDev = true
-        }, 300)
+        }, 150)
       } else {
         this.showDeveloper = false
         this.showChartDev = false
@@ -336,6 +335,7 @@ export default {
     align-items: center;
     z-index: 5;
     transition: color .1s ease-out;
+    font-style: italic;
   }
 
 
@@ -346,7 +346,7 @@ export default {
     content: '';
     top: 0;
     left: 0;
-    transform: translate3d(0, -100%, 0);
+    transform: translate3d(-100%, 0, 0);
     transition: transform .2s ease-out;
     background: #ff9966;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to bottom, #ff5e62, #ff9966);  /* Chrome 10-25, Safari 5.1-6 */
@@ -363,24 +363,21 @@ export default {
   }
 
   @keyframes mainTransitionEnter {
-    0% {opacity: 0; trans  nav {
-    background-color: white;
-  }form: translate3d(0, -100%, 0);},
+    0% {opacity: 0; transform: translate3d(0, -100%, 0);},
     100% { opacity: 0; transform: translate3d(0, -100%, 0);}
   }
 
   .mainTransition-enter-active {
     animation-name: mainTransitionEnterActive;
-    animation-duration: .5s;
+    animation-duration: .6s;
     animation-timing-function: ease-out;
     transform-origin: 50% 30%;
-    transform: scale(1);
   }
 
   @keyframes mainTransitionEnterActive {
-    0% {opacity: 0; transform: translate3d(0, -100%, 0) scaleY(2);},
-    80% {opacity: 0; transform: scaleY(1.6);},
-    100% {opacity: 1; transform: translate3d(0, 0, 0)scaleY(1);}
+    0% {opacity: 0; transform: translate3d(0, -100%, 0);},
+    /*80% {opacity: 0; transform: scaleY(1.6);},*/
+    100% {opacity: 1; transform: translate3d(0, 0, 0);}
   }
 
   .mainTransition-leave-active {
@@ -405,12 +402,6 @@ export default {
     .main-nav-link img {
       width: 1.2vw;
     }
-
-    .button-menu div {
-      width: 3vw;
-      height: 0.2vw;
-      margin-bottom: 0.2vw;
-    }
   }
 
   @media only screen and (max-width: 650px) {
@@ -420,18 +411,6 @@ export default {
       align-items: center;
       height: 50px;
       background-color: white;
-    }
-
-
-
-    footer {
-      position: absolute;
-      width: 100%;
-      height: 80px;
-      background-color: white;
-      bottom: 0;
-      left: 0;
-      z-index: 1;
     }
   }
 

@@ -8,7 +8,7 @@
       @leave="leaveList"
     >
       <li
-        v-if="showDeveloper"
+        v-if="showChartDev"
         v-for="(skill, index) in devSkills"
         :style="{width: skill.width}"
         :key="index"

@@ -71,13 +71,11 @@
   }
 
   .experiences-transition-enter-active {
-    animation: showExperiences .6s ease-out forwards;
+    animation: showExperiences .3s ease-out forwards;
   }
 
   @keyframes showExperiences {
-    0% { transform: translate3d(0, -110%, 0); opacity: 0;},
-    5% {opacity: 1;},
-    95% { transform: translate3d(0, -20%, 0);},
+    0% { opacity: 0;},
     100% { transform: translate3d(0, 0, 0);}
   }
 

@@ -1,37 +1,21 @@
 <template>
   <div class="page1">
-    <transition name="showBackgroundImg">
-      <div v-if="showBackgroundImg" class="background-img-container">
-        <div class="filterBackground">
-
+    <div class="background-img-container">
+      <div class="filterBackground"></div>
+    </div>
+    <div class="colored-headband">
+      <p>Les légumes de Cédric est une landing page qui présente l'activité d'un ami.<br>
+      Mes missions: charte graphique, maquette, développement et mise en ligne du site.</p>
+    </div>
+    <div class="project-scene">
+      <h1 ref="title">Les légumes<br> de Cédric</h1>
+      <div class="visual-container">
+        <div class="carroussel">
+          <img  src="../assets/royco2.png" alt="">
         </div>
       </div>
-    </transition>
-    <transition name="test" type="animation" appear>
-      <div class="colored-headband">
-
-      </div>
-    </transition>
-    <div class="project-scene">
-      <transition name="title" type="animation" appear>
-        <h1 ref="title" v-if="showTitle">Les légumes<br> de Cédric</h1>
-      </transition>
-      <div class="visual-container">
-        <div class="card">
-          <transition name="showImg">
-            <p v-if="showBackgroundImg">Les légumes de Cédric est une landing page qui présente l'activité d'un ami.<br>
-            Mes missions: charte graphique, maquette, développement et mise en ligne du site.</p>
-
-        </transition>
-      </div>
-        <transition name="showImg">
-          <div class="carroussel" v-if="showImg">
-            <img  src="../assets/royco2.png" alt="">
-          </div>
-        </transition>
-      </div>
     </div>
-    <a class="linkToWebSite" href="http://www.learn-eat.fr/" target="_blank">Voir le site</a>
+    <a class="linkToWebSite" href="http://ikmusic.org/" target="_blank">Voir le site</a>
   </div>
 </template>
 
@@ -73,16 +57,17 @@ export default {
 
   .colored-headband {
     position: absolute;
+    display: flex;
     width: 100%;
-    height: 160%;
+    height: 28%;
+    justify-content: flex-end;
+    align-items: center;
     background: #DCE35B;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to left, #45B649, #DCE35B);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to left, #45B649, #DCE35B); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     left: 0;
     top: 55%;
-    transform: translate3d(0,0,0) scaleY(0.17);
-    transform-origin: 50% 0%;
-    opacity: 0.8;
+    opacity: 0.9;
     z-index: 2;
   }
 
@@ -113,28 +98,6 @@ export default {
     background: linear-gradient(to left, #ffc500, #c21500); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   }
 
-  .showBackgroundImg-enter-active {
-    animation: showBackgroundImg .4s ease-out forwards;
-  }
-
-  @keyframes showBackgroundImg {
-    0% {opacity: 0;},
-    100% {opacity: 1;}
-  }
-/*
-  .test-enter-active {
-    animation: coloredHeadbandEnter .55s ease-out forwards .4s;
-  }
-
-  .test-leave-active {
-    animation: coloredHeadbandLeave .6s ease-out forwards;
-  }
-
-  @keyframes coloredHeadbandEnter {
-    0% { transform: translate3d(0, -650px, 0);},
-    100% { transform: translate3d(0, 0, 0);}
-  }*/
-
   .project-scene {
     position: relative;
     display: flex;
@@ -156,50 +119,15 @@ export default {
     letter-spacing: -2px;
   }
 
-  .title-enter {
-    opacity: 0;
-    transform: skewX(-3deg)
-  }
-
-  .title-enter-active {
-    animation: titleEnter .35s ease-out forwards;
-  }
-
-  .title-leave-active {
-    animation: titleLeave .4s ease-out forwards;
-  }
-
-  @keyframes titleEnter {
-    0% { transform: translate3d(0, -110%, 0) scaleY(2) skewX(-3deg); opacity: 0;},
-    5% {opacity: 1;},
-    45% { transform: translate3d(0, -20%, 0) scaleY(1.6);},
-    80% { transform: scaleY(1);},
-    100% { transform: translate3d(0, 0, 0) skewX(-3deg);}
-  }
-
-  @keyframes titleLeave {
-    0% { transform: translate3d(0, 0, 0) scaleY(1);},
-    100% { transform: translate3d(0, -110%, 0) scaleY(2);}
-  }
-
-  .card {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    width: 35%;
-    height: 200px;
-    top: 54%;
-    right: 8%;
-    color: black;
-    z-index: 3;
-  }
-
-  .card p {
+  .colored-headband p {
+    width: 40%;
+    min-width: 320px;
     font-size: 0.9em;
     font-weight: 500;
     color: white;
     overflow: hidden;
     line-height: -1.2;
+    margin-right: 5%;
   }
 
   .visual-container {
@@ -217,17 +145,6 @@ export default {
     margin-left: 14%;
     transform-origin: 50% 70%;
     transform: translate3d(0, 0, 0);
-  }
-
-  .showImg-enter, .showImg-enter-active {
-    animation: showImgEnter .3s ease-out forwards;
-  }
-
-  @keyframes showImgEnter {
-    0% { transform: translate3d(0, -110%, 0) scaleY(2); opacity: 0;},
-    5% {opacity: 1;},
-    95% { transform: translate3d(0, -20%, 0) scaleY(1.6);},
-    100% { transform: translate3d(0, 0, 0) scaleY(1);}
   }
 
   .carroussel img {
@@ -275,7 +192,7 @@ export default {
       font-size: 5vw;
     }
 
-    .card p{
+    .colored-headband p{
       font-size: 1.2vw;
       padding: 0 10px;
     }
@@ -316,11 +233,7 @@ export default {
       display: none;
     }
 
-    .card {
-      width: 65%;
-    }
-
-    .card p{
+    .colored-headband p{
       margin-top: 5%;
       font-size: 1.7vw;
       padding: 0 10px;
@@ -343,21 +256,11 @@ export default {
       background-color: white;
     }
 
-    .colored-headband {
-      opacity: 0.9;
-    }
-
     br {
       display: none;
     }
 
-    .card {
-      display: flex;
-      width: 68%;
-      top: 60vh;
-    }
-
-    .card p{
+    .colored-headband p{
       font-size: 1.7vh;
       padding: 0 10px;
     }
@@ -392,18 +295,17 @@ export default {
       opacity: 0.95;
     }
 
-    .card p{
+    .colored-headband p{
       margin-top: 10%;
     }
-  }
 
-  @media only screen and (max-width: 880px) {
-    .visual-container .carroussel{
-      display: none;
+    .background-img-container {
+      background: url('../assets/pfgc2.png') bottom scroll;
+      background-size: auto;
     }
   }
 
-  @media only screen and (min-width: 660px) and (max-width: 768px) and (orientation: landscape) {
+  @media only screen and (max-width: 768px) and (orientation: landscape) {
     h1 {
       width: auto;
       font-size: 2.7vw;
@@ -413,13 +315,7 @@ export default {
       background-color: white;
     }
 
-    .card {
-      height: 110px;
-      display: flex;
-      width: 68%;
-    }
-
-    .card p{
+    .colored-headband p{
       margin-top: 0;
       padding: 0 10px;
     }
@@ -436,23 +332,18 @@ export default {
 
     .colored-headband {
       top: 40%;
-      height: 180%;
+      height: 40%;
       opacity: 0.9;
       background: #DCE35B;  /* fallback for old browsers */
       background: -webkit-linear-gradient(to left, #98a900, #91cd52);  /* Chrome 10-25, Safari 5.1-6 */
       background: linear-gradient(to left, #98a900, #91cd52); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     }
 
-    .card {
-      display: flex;
-      width: 88%;
-      height: 110px;
-      top: 38%;
-    }
-
-    .card p{
+    .colored-headband p{
+      width: 75%;
       font-size: 12px;
-      margin-top: 0;
+      margin-left: 5%;
+      margin-right: auto;
       padding: 0 10px;
     }
 
@@ -472,7 +363,7 @@ export default {
   @media only screen and (max-width: 650px) and (orientation: portrait){
 
     h1 {
-      font-size: 2.5em;
+      font-size: 1.5em;
       background-color: rgba(255,255,255, 1);
       padding: 10px 20px;
       width: auto;
@@ -484,7 +375,7 @@ export default {
 
     .colored-headband {
       top: 40%;
-      height: 180%;
+      height: 35%;
       opacity: 1;
       background: #DCE35B;  /* fallback for old browsers */
       background: -webkit-linear-gradient(to left, #98a900, #91cd52);  /* Chrome 10-25, Safari 5.1-6 */
@@ -501,15 +392,10 @@ export default {
       background-size: cover;
     }
 
-    .card {
-      width: 100vw;
-      right: 0;
-      top: 40%;
-    }
-
-    .card p{
+    .colored-headband p{
       font-size: 3.6vw;
       padding: 0 10px;
+      margin: 0;
     }
 
     .visual-container .carroussel {
@@ -520,7 +406,7 @@ export default {
       right: 30px;
       font-size: 0.8em;
       font-weight: normal;
-      bottom: 32%;
+      bottom: 26%;
       letter-spacing: normal;
     }
 
@@ -530,14 +416,8 @@ export default {
     }
   }
 
-  @media only screen and (max-width: 330px) and (orientation: portrait) {
-    .card {
-      width: 100vw;
-      right: 0;
-      top: 35%;
-    }
-
-    .card p {
+  @media only screen and (max-width: 330px) and (orientation: portrait){
+    .colored-headband p {
       font-size: 12px;
       padding: 0 10px;
     }
