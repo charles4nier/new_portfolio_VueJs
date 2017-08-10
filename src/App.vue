@@ -202,7 +202,8 @@ export default {
   }
 
   .active.button-menu {
-    pointer-events: none;
+    pointer-events: auto;
+
   }
 
   .first-bar, .second-bar, .third-bar {
