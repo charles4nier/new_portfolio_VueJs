@@ -1,7 +1,7 @@
 <template>
   <div class="home-container">
     <h1>Charles Fournier<strong>Développeur Web Front-End junior</strong></h1>
-    <p><router-link to="/projets/learn-eat"><span>Projets</span></router-link></p>
+    <p><router-link to="/projets/learn-eat"><span>Découvrir</span></router-link></p>
   </div>
 </template>
 
@@ -20,8 +20,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    z-index: 999999999;
-    background-color: white;
   }
 
   h1 {

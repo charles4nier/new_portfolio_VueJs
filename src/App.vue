@@ -29,13 +29,13 @@
           <li v-if="showMenu" :key="1" :data-index="3"><a href="mailto:charles.4nier@gmail.com" target="_top"><span>charles.4nier@gmail.com</span></a></li>
       </transition-group>
       <ul class="right-menu">
-        <!-- <li><router-link class="main-nav-link" to="/projets/learn-eat">Projets</router-link></li>
-        <li><router-link class="main-nav-link" to="/mon-cv">Mon Cv</router-link></li> -->
+        <li><router-link class="main-nav-link" to="/"><img src="./assets/home.png" alt="une icone" width="20px"></router-link></li>
+        <li><a @click="openMenu" class="main-nav-link">CV</a></li>
         <!-- <li><router-link  class="main-nav-link" to="/">Accueil</router-link></li>
         <li ><a class="main-nav-link" href="../static/assets/cv_Charles_Fournier.pdf" download>Mon CV</a></li>
         <li><a class="main-nav-link" href="mailto:charles.4nier@gmail.com" target="_top">charles.4nier@gmail.com</a></li> -->
-        <li><a class="main-nav-link" href="https://github.com/charles4nier" target="_blank"><img src="./assets/gitHub.svg" alt="l'icône de github" width="18px"></a></li>
-        <li><a class="main-nav-link" href="https://www.linkedin.com/in/charles-fournier-856723121/" target="_blank"><img src="./assets/linkedin.svg" alt="l'icône de github" width="18px"></a></li>
+        <li><a class="main-nav-link" href="https://github.com/charles4nier" target="_blank"><img src="./assets/github.png" alt="l'icône de github" width="22px"></a></li>
+        <li><a class="main-nav-link" href="https://www.linkedin.com/in/charles-fournier-856723121/" target="_blank"><img src="./assets/linkedin.png" alt="l'icône de github" width="20px"></a></li>
       </ul>
     </nav>
     <main ref="main">
@@ -186,6 +186,7 @@ export default {
     text-decoration: none;
     color: black;
     pointer-events: auto;
+    cursor: pointer;
   }
 
   .button-menu {
@@ -196,15 +197,19 @@ export default {
     left: 4%;
     cursor: pointer;
     z-index: 5;
-    pointer-events: auto;
+    pointer-events: none;
     transition: all .3s ease-in-out;
+  }
+
+  .active.button-menu {
+    pointer-events: none;
   }
 
   .first-bar, .second-bar, .third-bar {
     position: relative;
     width: 30px;
     height: 2px;
-    background-color: #2d2d2a;
+    opacity: 0;
     transform: translate3d(0,0,0) skewX(-10deg) rotate(0deg);
     transition: all .3s ease-in-out;
     margin: 2px 0;
@@ -217,6 +222,7 @@ export default {
 
   .active .first-bar, .active .second-bar, .active .third-bar {
     background-color: white;
+    opacity: 1;
   }
 
   .active .first-bar {
@@ -285,6 +291,13 @@ export default {
     font-weight: 600;
     margin-right: 20px;
     margin-top: 10px;
+  }
+
+  .main-nav ul.right-menu li:nth-child(2) a {
+    display: block;
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: 0.15em;
   }
 
   ul.hide-menu {

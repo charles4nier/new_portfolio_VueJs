@@ -1,5 +1,7 @@
 <template>
   <v-touch tag="section" v-on:swipedown="swipeDown" v-on:swipeup="swipeUp">
+    <span @click="swipeUp"class="up-arrow"><img src="../assets/up-arrow.svg" width="10px">Scroll up</span>
+    <span @click="swipeDown" class="down-arrow">Scroll down<img src="../assets/down-arrow.svg" width="10px"></span>
     <div id="projets" @wheel="scrollTo">
       <span class="project-counter">{{ projectKey }} / {{ dataLength }}</span>
         <nav ref="projectsNav" class="projects-nav">
@@ -16,7 +18,6 @@
           <router-view></router-view>
         </transition>
       </article>
-      <span class="scroll-info">Scrollez pour naviguer</span>
     </div >
   </v-touch>
 </template>
@@ -152,6 +153,12 @@ export default {
   },
   mounted: function () {
     this.changeCount()
+    setTimeout(() => {
+      this.active = true
+      if (this.active === true) {
+        this.$refs.scrollInfo.classList.add('active')
+      }
+    }, 2000)
   },
   watch: {
     '$route' (to, from) {
@@ -163,29 +170,37 @@ export default {
 
 <style scoped>
 section {
+  position: relative;
   height: 100vh;
 }
 
-.scroll-info {
+.up-arrow, .down-arrow {
   position: absolute;
-  left: 4%;
-  bottom: 4%;
-  font-size: 0.9em;
-  letter-spacing: -1px;
-  transform: skewX(-3deg);
-  z-index: 5;
+  display: flex;
+  left: 5.5%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-style: italic;
+  z-index: 15;
+  cursor: pointer;
 }
 
-.scroll-info::before {
-  position: absolute;
-  width: 1px;
-  height: 50px;
-  top: -60px;
-  left: calc(50% - 1px);
-  background-color: black;
-  transform: skewX(3deg);
-  opacity: 0.6;
-  content: '';
+.up-arrow {
+  top: 1%;
+}
+
+.up-arrow img{
+  margin-bottom: 3px;
+}
+
+.down-arrow {
+  bottom: 4%;
+}
+
+.down-arrow img {
+  margin-top: 3px;
 }
 
 .project-counter {
