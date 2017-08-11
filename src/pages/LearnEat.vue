@@ -1,4 +1,4 @@
-<template>
+learn-eat<template>
   <div class="page1">
     <div class="background-img-container">
       <div class="filterBackground"></div>
@@ -301,7 +301,7 @@ export default {
     }
 
     .background-img-container {
-      background: url('../assets/pfgc2.png') bottom scroll;
+      background: url('../assets/learn-eat2.png') bottom scroll;
       background-size: auto;
     }
   }

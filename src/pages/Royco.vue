@@ -15,7 +15,7 @@
         </div>
       </div>
     </div>
-    <a class="linkToWebSite" href="http://ikmusic.org/" target="_blank">Voir le site</a>
+    <a class="linkToWebSite" href="https://charles4nier.github.io/royco/" target="_blank">Voir le site</a>
   </div>
 </template>
 
@@ -300,7 +300,7 @@ export default {
     }
 
     .background-img-container {
-      background: url('../assets/pfgc2.png') bottom scroll;
+      background: url('../assets/royco.png') bottom scroll;
       background-size: auto;
     }
   }

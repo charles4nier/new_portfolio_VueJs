@@ -28,15 +28,12 @@
           <li v-if="showMenu" :key="2" :data-index="2"><a href="../static/assets/cv_Charles_Fournier.pdf" download><span>Télécharger mon CV</span></a></li>
           <li v-if="showMenu" :key="1" :data-index="3"><a href="mailto:charles.4nier@gmail.com" target="_top"><span>charles.4nier@gmail.com</span></a></li>
       </transition-group>
-      <ul class="right-menu">
-        <li><router-link class="main-nav-link" to="/"><img src="./assets/home.png" alt="une icone" width="20px"></router-link></li>
-        <li><a @click="openMenu" class="main-nav-link">CV</a></li>
-        <!-- <li><router-link  class="main-nav-link" to="/">Accueil</router-link></li>
-        <li ><a class="main-nav-link" href="../static/assets/cv_Charles_Fournier.pdf" download>Mon CV</a></li>
-        <li><a class="main-nav-link" href="mailto:charles.4nier@gmail.com" target="_top">charles.4nier@gmail.com</a></li> -->
-        <li><a class="main-nav-link" href="https://github.com/charles4nier" target="_blank"><img src="./assets/github.png" alt="l'icône de github" width="22px"></a></li>
-        <li><a class="main-nav-link" href="https://www.linkedin.com/in/charles-fournier-856723121/" target="_blank"><img src="./assets/linkedin.png" alt="l'icône de github" width="20px"></a></li>
-      </ul>
+        <ul ref="rightMenu" class="right-menu">
+          <li><router-link class="main-nav-link cv" to="/">home</router-link></li>
+          <li><a @click="openMenu" class="main-nav-link cv">cv</a></li>
+          <li><a href="https://github.com/charles4nier" target="_blank"class="main-nav-link cv">github</a></li>
+          <li><a href="https://www.linkedin.com/in/charles-fournier-856723121/" target="_blank" class="main-nav-link cv">linkedin</a></li>
+        </ul>
     </nav>
     <main ref="main">
       <transition name="mainTransition" mode="out-in">
@@ -61,9 +58,21 @@ export default {
   name: 'app',
   data () {
     return {
+      showHomeButton: false,
       showDeveloper: false,
       showMenu: false,
       showChartDev: false
+    }
+  },
+  mounted: function () {
+    setTimeout(() => {
+      this.showHomeButton = true
+    }, 100)
+
+    let path = this.$route.path
+    if (path.match(/projets/)) {
+      this.showHomeButton = true
+      this.$refs.rightMenu.classList.add('active')
     }
   },
   methods: {
@@ -136,6 +145,25 @@ export default {
         { duration: 150 },
         { complete: done }
       )
+    }
+  },
+  // mounted: function () {
+    // let path = this.$route.path
+    // if (path.match(/projets/)) {
+    //   this.showHomeButton = true
+    //   this.$refs.rightMenu.classList.add('active')
+  // },
+
+  watch: {
+    '$route' (to, from) {
+      let path = this.$route.path
+      if (path.match(/projets/)) {
+        this.showHomeButton = true
+        this.$refs.rightMenu.classList.add('active')
+      } else {
+        this.showHomeButton = false
+        this.$refs.rightMenu.classList.remove('active')
+      }
     }
   }
 }
@@ -284,21 +312,49 @@ export default {
 
   .main-nav ul.right-menu {
     display: flex;
+    height: 20px;
+    opacity: 0;
+    transform: translate3d(0, -50px, 0);
+    transition: all .4s ease-out .2s;
+
+  }
+
+  .main-nav ul.right-menu.active {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 
   .main-nav ul.right-menu li {
+    height: 100%;
     font-size: 0.9em;
     letter-spacing: -1px;
     font-weight: 600;
     margin-right: 20px;
-    margin-top: 10px;
+    margin-top: 12px;
   }
 
-  .main-nav ul.right-menu li:nth-child(2) a {
+  .cv {
+    position: relative;
     display: block;
-    font-size: 18px;
-    font-weight: 900;
-    letter-spacing: 0.15em;
+    margin-top: -2px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .cv::after {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: black;
+    bottom: -1px;
+    left: 0;
+    transform: scaleX(0) skewX(-15deg);
+    transition: all .2s ease-out;
+    content: '';
+  }
+
+  .cv:hover::after {
+    transform: scaleX(1) skewX(-15deg);
   }
 
   ul.hide-menu {

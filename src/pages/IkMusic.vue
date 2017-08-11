@@ -299,7 +299,7 @@ export default {
     }
 
     .background-img-container {
-      background: url('../assets/pfgc2.png') bottom scroll;
+      background: url('../assets/ikmusic.png') bottom scroll;
       background-size: auto;
     }
   }
