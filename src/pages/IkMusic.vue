@@ -4,8 +4,9 @@
       <div class="filterBackground"></div>
     </div>
     <div class="colored-headband">
-      <p>Ik Music Production est un site créé pour un ami dont le besoin est de promouvoir toutes ses productions musicales en les mettant en ligne. Le but est d'avoir un site très minimaliste.<br>
-      Mes missions: charte graphique, maquette, développement et mise en ligne du site.</p>
+      <p><strong>Ik Music Production</strong> est un site minimaliste qui a pour but de promouvoir toutes les productions musicales de son propriétaire.<br><br>
+      <strong>Missions :</strong> charte graphique, maquette, développement et mise en ligne du site.<br><br>
+      <strong>Technos :</strong> Html5, Css3, Js/Jquery</p>
     </div>
     <div class="project-scene">
       <h1 ref="title">IK Music<br> Production</h1>
@@ -16,6 +17,9 @@
       </div>
     </div>
     <a class="linkToWebSite" href="http://ikmusic.org/" target="_blank">Voir le site</a>
+    <div class="go-button">
+      <a href="http://ikmusic.org/" target="_blank">Visit</a>
+    </div>
   </div>
 </template>
 
@@ -149,7 +153,7 @@ export default {
   .carroussel img {
     width: 100%;
     height: 100%;
-    border: 1px solid rgb(220, 220, 220);
+    border: 1px solid rgb(240, 240, 240);
   }
 
   .linkToWebSite {
@@ -183,6 +187,10 @@ export default {
 
   .linkToWebSite:hover::after {
     transform: scaleX(1.4) translate3d(-7px, 0, 0);
+  }
+
+  strong {
+    color: black;
   }
 
   @media only screen and (max-width: 4000px) {
@@ -359,13 +367,14 @@ export default {
     }
   }
 
-  @media only screen and (max-width: 650px) and (orientation: portrait){
+  @media only screen and (max-width: 750px) and (orientation: portrait){
 
     h1 {
       font-size: 1.5em;
       background-color: rgba(255,255,255, 1);
       padding: 10px 20px;
       width: auto;
+      left: auto;
     }
 
     br {
@@ -407,11 +416,41 @@ export default {
       font-weight: normal;
       bottom: 26%;
       letter-spacing: normal;
+      display: none;
     }
 
     .linkToWebSite::after {
       top: 8px;
       height: 1px;
+      display: none;
+    }
+
+    .go-button {
+      position: absolute;
+      display: flex;
+      width: 70px;
+      height: 70px;
+      bottom: 8%;
+      right: 5%;
+      justify-content: center;
+      align-items: center;
+      z-index: 15;
+      border: 1px solid rgba(0,0,0,0.5);
+      border-radius: 50%;
+    }
+
+    .go-button a{
+      display: flex;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: white;
+      justify-content: center;
+      align-items: center;
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 0 1px 1px rgba(0,0,0,0.3);
     }
   }
 

@@ -4,8 +4,9 @@
       <div class="filterBackground"></div>
     </div>
     <div class="colored-headband">
-      <p>Le PFGC est le premier club de foot golf de Paris et avait besoin d'un site présentant le sport ainsi que le club. Un autre besoin était un outil permettant de visualiser tous les évènement sportifs dans un calendrier et sur une carte. Enfin, il fallait un backoffice pour gérer le site et la boutique du club. Le site est toujours en cours de construction.<br>
-      Mes missions : charte graphique, maquette, dev front et back.</p>
+      <p><strong>Le PFGC </strong>est le club de foot golf de Paris dont le besoin est d'avoir un outil à la fois commercial, administratif et ludique. Le site est toujours en cours de réalisation<br><br>
+      <strong>Missions :</strong> charte graphique, maquette, dev front et back.<br><br>
+      <strong>Technos :</strong> Html5, Css3, Js / Jquery</p>
     </div>
     <div class="project-scene">
       <h1 ref="title">Paris Foot<br> Golf Club</h1>
@@ -16,6 +17,9 @@
       </div>
     </div>
     <a class="linkToWebSite" href="https://github.com/charles4nier/paris_foot_golf_club" target="_blank">Voir le site</a>
+    <div class="go-button">
+      <a href="https://github.com/charles4nier/paris_foot_golf_club" target="_blank">Visit</a>
+    </div>
   </div>
 </template>
 
@@ -150,7 +154,7 @@ export default {
   .carroussel img {
     width: 100%;
     height: 100%;
-    border: 1px solid rgb(220, 220, 220);
+    border: 1px solid rgb(240, 240, 240);
   }
 
   .linkToWebSite {
@@ -184,6 +188,10 @@ export default {
 
   .linkToWebSite:hover::after {
     transform: scaleX(1.4) translate3d(-7px, 0, 0);
+  }
+
+  strong {
+  color: white;
   }
 
   @media only screen and (max-width: 4000px) {
@@ -360,13 +368,14 @@ export default {
     }
   }
 
-  @media only screen and (max-width: 650px) and (orientation: portrait){
+  @media only screen and (max-width: 750px) and (orientation: portrait){
 
     h1 {
       font-size: 1.5em;
       background-color: rgba(255,255,255, 1);
       padding: 10px 20px;
       width: auto;
+      left: auto;
     }
 
     br {
@@ -408,11 +417,41 @@ export default {
       font-weight: normal;
       bottom: 26%;
       letter-spacing: normal;
+      display: none;
     }
 
     .linkToWebSite::after {
       top: 8px;
       height: 1px;
+      display: none;
+    }
+
+    .go-button {
+      position: absolute;
+      display: flex;
+      width: 70px;
+      height: 70px;
+      bottom: 8%;
+      right: 5%;
+      justify-content: center;
+      align-items: center;
+      z-index: 15;
+      border: 1px solid rgba(0,0,0,0.5);
+      border-radius: 50%;
+    }
+
+    .go-button a{
+      display: flex;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: white;
+      justify-content: center;
+      align-items: center;
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 0 1px 1px rgba(0,0,0,0.3);
     }
   }
 

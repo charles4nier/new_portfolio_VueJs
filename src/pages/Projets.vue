@@ -1,7 +1,7 @@
 <template>
-  <v-touch tag="section" v-on:swipedown="swipeDown" v-on:swipeup="swipeUp">
-    <span @click="swipeUp"class="up-arrow"><img src="../assets/up-arrow.svg" width="10px">Scroll up</span>
-    <span @click="swipeDown" class="down-arrow">Scroll down<img src="../assets/down-arrow.svg" width="10px"></span>
+  <v-touch tag="section" v-on:swipedown="swipeUp" v-on:swipeup="swipeDown">
+    <span @click="swipeDown"class="up-arrow"><img src="../assets/up-arrow.svg" width="10px">Scroll up</span>
+    <span @click="swipeUp" class="down-arrow">Scroll down<img src="../assets/down-arrow.svg" width="10px"></span>
     <div id="projets" @wheel="scrollTo">
       <span class="project-counter">{{ projectKey }} / {{ dataLength }}</span>
         <nav ref="projectsNav" class="projects-nav">
@@ -13,7 +13,7 @@
         <div class="calc" v-if="show" @click="callMenu"></div>
       </transition>
       <p ref="buttonProject" @click="callMenu"><span>Plus de projets</span></p>
-      <article :class="{'down-transition': downTransition, 'up-transition': upTransition} ">
+      <article :class="{'down-transition': downTransition, 'up-transition': upTransition}">
         <transition name="projectsTransition">
           <router-view></router-view>
         </transition>
@@ -63,7 +63,6 @@ export default {
     },
     // fonction qui permet de naviguer grace au scroll de la souris
     scrollTo: function (event) {
-      this.show = false
       // récupération de l'url
       let path = this.$route.path
       // navigation dans le tableau dataNav qui contient toutes les url
@@ -76,8 +75,8 @@ export default {
           // positif = vers le bas
           if (event.deltaY > 0) {
             // permet de gérer le sens du départ de la page
-            this.downTransition = true
-            this.upTransition = false
+            this.downTransition = false
+            this.upTransition = true
             // permet de vérifier si nous sommes à la fin du début this.dataNav et revenir au début ou pas
             if (i + 1 === this.dataNav.length) {
               this.$router.push(this.dataNav[0].link)
@@ -86,8 +85,8 @@ export default {
             }
           } else {
             // permet de gérer le sens du départ de la page
-            this.downTransition = false
-            this.upTransition = true
+            this.downTransition = true
+            this.upTransition = false
             // permet de vérifier si nous sommes au début du début this.dataNav et d'aller à la fin ou pas
             if (i === 0) {
               i = this.dataNav.length - 1
@@ -228,7 +227,7 @@ section {
   z-index: 14000000;
   opacity: 1;
   transition: opacity .1s ease-out;
-  pointer-events: auto;
+  pointer-events: stroke;
   filter: blur(40px);
   cursor: pointer;
 }
@@ -327,7 +326,10 @@ section {
   width: 190px;
   height: 30%;
   z-index: 5;
+  top: calc(50% - 15%);
+  left: calc(50% - 96px);
   background-color: white;
+  -webkit-transform: skewX(-3deg) scaleX(1);
   transform: skewX(-3deg) scaleX(1);
   transform-origin: left;
   transition: transform .2s ease-out;
@@ -335,14 +337,19 @@ section {
 }
 
 .nav-link:hover .spanCache::before {
+  -webkit-transform: skewX(-3deg) scaleX(0);
   transform: skewX(-3deg) scaleX(0);
 }
 
 .nav-link .spanCache::after {
+  position:absolute;
   width: 192px;
   height: 30%;
+  top: calc(50% - 15%);
+  right: calc(50% - 96px);
   z-index: 5;
   background-color: black;
+  -webkit-transform: skewX(-3deg) scaleX(0);
   transform: skewX(-3deg) scaleX(0);
   transform-origin: right;
   transition: transform .2s ease-out;
@@ -350,6 +357,7 @@ section {
 }
 
 .nav-link:hover .spanCache::after, .router-link-exact-active .spanCache::after {
+  -webkit-transform: skewX(-3deg) scaleX(1);
   transform: skewX(-3deg) scaleX(1);
 }
 
@@ -445,17 +453,30 @@ article {
   opacity: 0;
 }
 
-.projectsTransition-enter-active {
-  animation-name: projectsTransitionEnter;
+.down-transition .projectsTransition-enter-active {
+  animation-name: projectsTransitionEnterDown;
   animation-duration: .4s;
   animation-delay: .4s;
   animation-timing-function: ease-out;
-  transform-origin: 50% 100%;
+  transform-origin: 50% 80%;
 }
 
-@keyframes projectsTransitionEnter {
-  0% {transform: scale(2); opacity: 0;},
-  100% {transform: scale(1); opacity: 1;}
+@keyframes projectsTransitionEnterDown {
+  0% {transform: translate3d(0, -100%, 0) scale(0.8); opacity: 0;},
+  100% {transform: translate3d(0, 0 , 0) scale(1); opacity: 1;}
+}
+
+.up-transition .projectsTransition-enter-active {
+  animation-name: projectsTransitionEnterUp;
+  animation-duration: .4s;
+  animation-delay: .4s;
+  animation-timing-function: ease-out;
+  transform-origin: 50% 20%;
+}
+
+@keyframes projectsTransitionEnterUp {
+  0% {transform: translate3d(0, 100%, 0) scale(0.8); opacity: 0;},
+  100% {transform: translate3d(0, 0 , 0) scale(1); opacity: 1;}
 }
 
 .down-transition .projectsTransition-leave-active {
@@ -499,7 +520,12 @@ article {
     height: 5.5%;
     font-size: 1.4vh;
   }
+
+  .go-button {
+    display: none;
+  }
 }
+
 @media only screen and (min-width: 330px) and (max-width: 650px) and (orientation: landscape) {
   p {
     width: 130px;
@@ -510,12 +536,20 @@ article {
   }
 }
 
-@media only screen and (max-width: 650px) and (orientation: portrait){
+@media only screen and (max-width: 750px) and (orientation: portrait){
 
   .project-counter {
-    top: 71%;
-    left: 1%;
+    top: 69%;
+    left: 80%;
     font-size: 12px;
+  }
+
+  .up-arrow {
+    top: 10%;
+  }
+
+  .down-arrow {
+    bottom: 10%;
   }
 
   p {
@@ -530,5 +564,6 @@ article {
   .scroll-info {
     display: none;
   }
+
 }
 </style>

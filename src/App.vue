@@ -6,17 +6,13 @@
       @leave="leaveCalc"
       :css="false"
     >
-      <div v-if="showMenu" class="calc" v-on:click="openMenu">
+      <div v-if="showMenu" class="calc" ref="calc" v-on:click="openMenu">
         <DeveloperSkills :showChartDev="showChartDev"></DeveloperSkills>
         <Developer :showDeveloper="showDeveloper"></Developer>
       </div>
     </transition>
-    <nav class="main-nav">
-       <div ref="buttonMenu" class="button-menu" v-on:click="openMenu">
-        <div class="first-bar"></div>
-        <div class="second-bar"></div>
-        <div class="third-bar"></div>
-      </div>
+    <nav class="main-nav" ref="mainNav">
+
       <transition-group
         tag="ul"
         :css="false"
@@ -28,12 +24,17 @@
           <li v-if="showMenu" :key="2" :data-index="2"><a href="../static/assets/cv_Charles_Fournier.pdf" download><span>Télécharger mon CV</span></a></li>
           <li v-if="showMenu" :key="1" :data-index="3"><a href="mailto:charles.4nier@gmail.com" target="_top"><span>charles.4nier@gmail.com</span></a></li>
       </transition-group>
-        <ul ref="rightMenu" class="right-menu">
-          <li><router-link class="main-nav-link cv" to="/">home</router-link></li>
-          <li><a @click="openMenu" class="main-nav-link cv">cv</a></li>
-          <li><a href="https://github.com/charles4nier" target="_blank"class="main-nav-link cv">github</a></li>
-          <li><a href="https://www.linkedin.com/in/charles-fournier-856723121/" target="_blank" class="main-nav-link cv">linkedin</a></li>
-        </ul>
+
+      <ul v-if="showNav" ref="rightMenu" class="right-menu">
+        <li><router-link class="main-nav-link cv" to="/">home</router-link></li>
+        <li><a @click="openMenu" class="main-nav-link cv" ref="cv">cv</a></li>
+        <li><a href="https://github.com/charles4nier" target="_blank"class="main-nav-link cv">github</a></li>
+        <li><a href="https://www.linkedin.com/in/charles-fournier-856723121/" target="_blank" class="main-nav-link cv">linkedin</a></li>
+      </ul>
+        <!-- <div ref="buttonMenu" class="button-menu" v-on:click="openMenu">
+         <div class="first-bar"></div>
+         <div class="third-bar"></div>
+       </div> -->
     </nav>
     <main ref="main">
       <transition name="mainTransition" mode="out-in">
@@ -58,6 +59,7 @@ export default {
   name: 'app',
   data () {
     return {
+      showNav: true,
       showHomeButton: false,
       showDeveloper: false,
       showMenu: false,
@@ -73,6 +75,7 @@ export default {
     if (path.match(/projets/)) {
       this.showHomeButton = true
       this.$refs.rightMenu.classList.add('active')
+      this.$refs.mainNav.classList.add('active')
     }
   },
   methods: {
@@ -95,12 +98,13 @@ export default {
         }, 550)
         setTimeout(() => {
           this.showChartDev = true
+          this.$refs.rightMenu.classList.remove('active')
         }, 150)
       } else {
         this.showDeveloper = false
         this.showChartDev = false
+        this.$refs.rightMenu.classList.add('active')
       }
-
       this.$refs.buttonMenu.classList.toggle('active')
     },
     beforeEnterList: function (el) {
@@ -147,22 +151,17 @@ export default {
       )
     }
   },
-  // mounted: function () {
-    // let path = this.$route.path
-    // if (path.match(/projets/)) {
-    //   this.showHomeButton = true
-    //   this.$refs.rightMenu.classList.add('active')
-  // },
-
   watch: {
     '$route' (to, from) {
       let path = this.$route.path
       if (path.match(/projets/)) {
         this.showHomeButton = true
         this.$refs.rightMenu.classList.add('active')
+        this.$refs.mainNav.classList.add('active')
       } else {
         this.showHomeButton = false
         this.$refs.rightMenu.classList.remove('active')
+        this.$refs.mainNav.classList.remove('active')
       }
     }
   }
@@ -217,106 +216,14 @@ export default {
     cursor: pointer;
   }
 
-  .button-menu {
-    position: absolute;
-    width: 30px;
-    height: 20px;
-    top: 12%;
-    left: 4%;
-    cursor: pointer;
-    z-index: 5;
-    pointer-events: none;
-    transition: all .3s ease-in-out;
-  }
-
-  .active.button-menu {
-    pointer-events: auto;
-
-  }
-
-  .first-bar, .second-bar, .third-bar {
-    position: relative;
-    width: 30px;
-    height: 2px;
-    opacity: 0;
-    transform: translate3d(0,0,0) skewX(-10deg) rotate(0deg);
-    transition: all .3s ease-in-out;
-    margin: 2px 0;
-    overflow: hidden;
-  }
-
-  div.active {
-    transform: translate3d(0, 20px, 0);
-  }
-
-  .active .first-bar, .active .second-bar, .active .third-bar {
-    background-color: white;
-    opacity: 1;
-  }
-
-  .active .first-bar {
-    transform: translate3d(0,8px,0) skewX(0deg) rotate(45deg);
-  }
-
-  .active .second-bar {
-    transform: translate3d(50px,4px,0) skewX(0deg) rotate(0deg);
-    opacity: 0;
-  }
-
-  .active .third-bar {
-    transform: translate3d(0,0,0) skewX(0deg) rotate(-45deg);
-  }
-
-  .first-bar::after, .second-bar::after, .third-bar::after {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background-color: white;
-    transition: transform .2s ease-out;
-    content: '';
-  }
-
-  .first-bar::after, .third-bar::after {
-    transform: translate3d(-100%, 0, 0);
-  }
-
-  .second-bar::after {
-    transform: translate3d(100%, 0, 0);
-  }
-
-  .button-menu:hover .first-bar, .button-menu:hover .third-bar {
-    transform: translate3d(-2px,0,0) skewX(-10deg) rotate(0deg);
-  }
-
-  .button-menu:hover .second-bar {
-    transform: translate3d(2px,0,0) skewX(-10deg) rotate(0deg);
-  }
-
-  .button-menu:hover .first-bar::after, .button-menu:hover .third-bar::after {
-    transform: translate3d(100%, 0, 0);
-  }
-
-  .button-menu:hover .second-bar::after {
-    transform: translate3d(-100%, 0, 0);
-  }
-
-  .active:hover .first-bar {
-    transform: translate3d(0,8px,0) skewX(0deg) rotate(45deg);
-  }
-
-  .active:hover .third-bar {
-    transform: translate3d(0,0,0) skewX(0deg) rotate(-45deg);
-  }
-
   .main-nav ul.right-menu {
     display: flex;
     height: 20px;
+    width: 250px;
+    justify-content: center;
     opacity: 0;
     transform: translate3d(0, -50px, 0);
     transition: all .4s ease-out .2s;
-
   }
 
   .main-nav ul.right-menu.active {
@@ -343,6 +250,7 @@ export default {
 
   .cv::after {
     position: absolute;
+    display: block;
     width: 100%;
     height: 2px;
     background-color: black;
@@ -474,39 +382,37 @@ export default {
     }
   }
 
-  @media only screen and (max-width: 650px) {
+
+
+  @media only screen and (max-width: 750px) {
+    nav {
+      transition: all .2s ease-out;
+    }
+
     .main-nav {
       display: flex;
-      justify-content: flex-end;
+      justify-content: center;
       align-items: center;
       height: 50px;
-      background-color: white;
+      background-color: rgba(0,0,0,0);
+      padding-bottom: 15px;
+    }
+
+    .main-nav.active {
+      background-color: black;
+    }
+
+    .main-nav ul.right-menu li a {
+      color: white;
+      font-size: 15px;
+    }
+
+    .cv::after {
+      display: none;
     }
   }
 
   @media only screen and (max-width: 650px) and (orientation: portrait){
-    div.active {
-      transform: translate3d(0, 0, 0);
-    }
-
-    .button-menu {
-      top: 18px;
-    }
-
-    .active .first-bar {
-      transform: translate3d(0,8px,0) skewX(0deg) rotate(45deg);
-      background-color: black;
-    }
-
-    .active .second-bar {
-      transform: translate3d(50px,24px,0) skewX(0deg) rotate(0deg);
-      opacity: 0;
-    }
-
-    .active .third-bar {
-      transform: translate3d(0,0,0) skewX(0deg) rotate(-45deg);
-      background-color: black;
-    }
 
     ul.hide-menu {
       top: 30px;

@@ -4,8 +4,9 @@
       <div class="filterBackground"></div>
     </div>
     <div class="colored-headband">
-      <p>Les légumes de Cédric est une landing page qui présente l'activité d'un ami.<br>
-      Mes missions: charte graphique, maquette, développement et mise en ligne du site.</p>
+      <p><strong>Les légumes de Cédric</strong> est une landing page qui présente l'activité d'un ami.<br>
+      <strong>Missions :</strong> charte graphique, maquette et développement.<br><br>
+      <strong>Technos :</strong> Html5, Css3</p>
     </div>
     <div class="project-scene">
       <h1 ref="title">Les légumes<br> de Cédric</h1>
@@ -16,6 +17,9 @@
       </div>
     </div>
     <a class="linkToWebSite" href="https://charles4nier.github.io/royco/" target="_blank">Voir le site</a>
+    <div class="go-button">
+      <a href="https://charles4nier.github.io/royco/" target="_blank">Visit</a>
+    </div>
   </div>
 </template>
 
@@ -186,6 +190,10 @@ export default {
     transform: scaleX(1.4) translate3d(-7px, 0, 0);
   }
 
+  strong {
+    color: black;
+  }
+
   @media only screen and (max-width: 4000px) {
     h1 {
       width: auto;
@@ -297,7 +305,7 @@ export default {
 
     .colored-headband p{
       margin-top: 10%;
-    }
+    }atom
 
     .background-img-container {
       background: url('../assets/royco.png') bottom scroll;
@@ -360,13 +368,14 @@ export default {
     }
   }
 
-  @media only screen and (max-width: 650px) and (orientation: portrait){
+  @media only screen and (max-width: 750px) and (orientation: portrait){
 
     h1 {
       font-size: 1.5em;
       background-color: rgba(255,255,255, 1);
       padding: 10px 20px;
       width: auto;
+      left: auto;
     }
 
     br {
@@ -408,11 +417,41 @@ export default {
       font-weight: normal;
       bottom: 26%;
       letter-spacing: normal;
+      display: none;
     }
 
     .linkToWebSite::after {
       top: 8px;
       height: 1px;
+      display: none;
+    }
+
+    .go-button {
+      position: absolute;
+      display: flex;
+      width: 70px;
+      height: 70px;
+      bottom: 8%;
+      right: 5%;
+      justify-content: center;
+      align-items: center;
+      z-index: 15;
+      border: 1px solid rgba(0,0,0,0.5);
+      border-radius: 50%;
+    }
+
+    .go-button a{
+      display: flex;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: white;
+      justify-content: center;
+      align-items: center;
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 0 1px 1px rgba(0,0,0,0.3);
     }
   }
 
